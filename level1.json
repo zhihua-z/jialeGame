@@ -1,0 +1,106 @@
+[
+    {
+        "name": "Player",
+        "type": "GameObject",
+        "pos": [
+            200,
+            200
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "人物走路_前",
+                "visible": true
+            }
+        }
+    },
+    {
+        "name": "Player2",
+        "type": "GameObject",
+        "pos": [
+            422,
+            322
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "史莱姆运动2",
+                "visible": true
+            }
+        }
+    },
+    {
+        "name": "Player3",
+        "type": "GameObject",
+        "pos": [
+            300,
+            200
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "史莱姆运动3",
+                "visible": true
+            }
+        }
+    },
+    {
+        "name": "Player4",
+        "type": "GameObject",
+        "pos": [
+            100,
+            100
+        ],
+        
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "史莱姆运动1",
+                "visible": true
+            }
+        }
+    },
+    {
+        "name": "Circle1",
+        "type": "GameObject",
+        "pos": [
+            500,
+            300
+        ],
+        "components": {
+            "CircleRenderer": {
+                "radius": 40,
+                "visible": true
+            }
+        }
+    },
+    {
+        "name": "Wall1",
+        "type": "GameObject",
+        "pos": [
+            500,
+            300
+        ],
+        "components": {
+            "RectangleRenderer": {
+                "width": 255,
+                "height": 123,
+                "color": [133,100,200],
+                "visible": true
+            }
+        }
+    },
+    {
+        "name": "积分",
+        "type": "GameObject",
+        "pos": [
+            650,
+            50
+        ],
+        "components": {
+            "TextRenderer": {
+                "text": "积分",
+                "font": "三极榜楷_24",
+                "fontColor": [255, 255, 0],
+                "visible": true
+            }
+        }
+    }
+    
+]
