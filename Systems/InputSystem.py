@@ -11,7 +11,6 @@ class InputSystem:
         
     # 更新一个按键的状态
     def update(self, event):
-        #event : 事件
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
                 self.keyA = True

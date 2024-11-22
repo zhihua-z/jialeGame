@@ -36,8 +36,9 @@ class RenderSystem:
                 elif r.name == "CircleRenderer":
                     pygame.draw.circle(self.screen, (255, 255, 255), pos, r.radius)
 
-                elif r.name == "RecntangleRenderer":
-                    pygame.draw.circle(self.screen, (255, 255, 255), pos, r.width , r.height , r.color)
+                elif r.name == "RectangleRenderer":
+                    pygame.draw.rect(self.screen, r.color , (pos[0], pos[1], r.width, r.height))
+                    
                 elif r.name == 'TextRenderer':
                     print(r.font)
                     text = r.font.render(r.text, True, r.fontColor, (0,0,0))

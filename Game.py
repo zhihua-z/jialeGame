@@ -38,19 +38,13 @@ class Game:
         #fps framepersecond：帧率，一秒能花多少张画面
 
 
+        # # 设置小窗口
+        # self.var小窗口 = pygame.display.set_mode((200,200))
+        # self.width小 = 200
+        # self.height小 = 200
+        # pygame.display.set_caption('资源管理器')
         self.entity = EntitySystem(self)
         self.renderSystem = RenderSystem(self, self.var主窗口)
-        self.rs = ResourceSystem(self)
-        self.scriptSystem = ScriptSystem(self)
-        self.fn加载()
-
-        # 设置小窗口
-        self.var小窗口 = pygame.display.set_mode((200,200))
-        self.width小 = 200
-        self.height小 = 200
-        pygame.display.set_caption('资源管理器')
-        self.entity = EntitySystem(self)
-        self.renderSystem = RenderSystem(self, self.var小窗口)
         self.rs = ResourceSystem(self)
         self.scriptSystem = ScriptSystem(self)
         self.fn加载()
@@ -124,7 +118,7 @@ class Game:
             # 画出游戏内容
             # fill: 填充
             self.var主窗口.fill((0, 0, 0))
-            self.var小窗口.fill((0, 0, 0))
+            # self.var小窗口.fill((0, 0, 0))
         
             self.renderSystem.draw()
             
