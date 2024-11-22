@@ -1,6 +1,6 @@
 import json
 
-from GameObject import GameObject, CircleObject, Wallobject, TextObject
+from Components.GameObject import GameObject, CircleObject, Wallobject, TextObject
 '''
 Entity: 实体，一个物体 
 
@@ -22,11 +22,7 @@ class EntitySystem:
     
     def CreateObject(self, item):
         obj = None
-        if item['type'] == 'CircleObject':
-            obj = self.CreateCircleObject(item)
-        elif item['type'] == 'TextObject':
-            obj = self.CreateTextObject(item)
-        elif item['type'] == 'GameObject':
+        if item['type'] == 'GameObject':
             obj = self.CreateGameObject(item)
         
         if obj is not None:
@@ -96,20 +92,6 @@ class EntitySystem:
         
         return obj
     
- 
-        
-    def CreateTextObject(self, item):
-        obj = TextObject(
-            game = self.game, 
-            screen = self.game.var主窗口, 
-            name = item['name'], 
-            sprite = None, 
-            pos = item['pos'], 
-            font = self.game.getFont(item['font']),
-            text = item['text'],
-            color = item['color'])
-        obj.visible = item['visible']
-        return obj
     
     def DrawObjects(self):
         for objName in self.gameObjects:

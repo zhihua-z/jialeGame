@@ -1,20 +1,42 @@
 import pygame
+from Components.Renderer import AnimationRenderer, CircleRenderer, TextRenderer , RectangleRenderer
 
 # 游戏物体
 class GameObject:
     
-    def __init__(self, game, screen, name, sprite, pos):
+    def __init__(self, game, screen, name, pos):
         self.game = game
         self.screen = screen
         self.name = name
-        self.spriteAnimation = sprite
         self.pos = pos
         self.visible = True
         
         self.type = 'None'
         self.direction = [0, 0]
         
-        
+        self.components = {
+            # 保存这个游戏物体拥有的所有的组件
+        }
+    
+    # 添加组件除了组件的名字之外，我们还会传一堆数据过来。
+    # 如果是AnimationRenderer, param1会是我的动画名字
+    def addComponent(self, componentName, param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None):
+        if componentName == 'AnimationRenderer':
+            # param1: animation name, param2 visible
+            self.components['AnimationRenderer'] = AnimationRenderer(self.game, self, 'AnimationRenderer', param1, param2)   
+            #param:参数
+
+        elif componentName == 'CircleRenderer':
+            # param1: radius, param2 visible
+            self.components['CircleRenderer'] = CircleRenderer(self.game, self, "CircleRenderer",param1, param2)
+        elif componentName == 'RectangleRenderer':
+             # param1: width, param2 height, param3 color, param4 visible
+            self.components['RectangleRenderer'] = RectangleRenderer(self.game, self, "RectangleRenderer",param1, param2, param3, param4)
+            
+        elif componentName == 'TextRenderer':
+            # param1: text, param2 font, param4 color, param5 visible
+            self.components['TextRenderer'] = TextRenderer(self.game, self, "TextRenderer", param1, param2, param3, param4)
+    
     def update(self):
         
         direction = [0, 0]
@@ -64,8 +86,8 @@ class GameObject:
 
 class CircleObject(GameObject):
     
-    def __init__(self, game, screen, name, sprite, pos, radius):
-        super().__init__(game, screen, name, sprite, pos)
+    def __init__(self, game, screen, name, pos, radius):
+        super().__init__(game, screen, name,  pos)
         # 半径
         self.radius = radius
         self.type = 'Circle'

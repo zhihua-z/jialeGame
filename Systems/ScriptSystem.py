@@ -1,6 +1,6 @@
 import pygame
 
-from GameObject import GameObject, CircleObject, Wallobject, TextObject
+from Components.GameObject import GameObject, CircleObject, Wallobject, TextObject
 
 
 class ScriptSystem():
