@@ -33,7 +33,6 @@ class EntitySystem:
         obj = GameObject(
             game = self.game, 
             screen = self.game.var主窗口, 
-            screen2 = self.game.var小窗口,
             name = item['name'],
             pos = item['pos']
             #pos：posisition：位置

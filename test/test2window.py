@@ -1,40 +1,29 @@
-import tkinter as tk
 import pygame
-import multiprocessing
-import time
-import sys
-
-# pygame 的进程函数
-def run_pygame():
-    pygame.init()
-
-    # 创建 pygame 窗口
-    screen = pygame.display.set_mode((400, 300))
-    pygame.display.set_caption("Pygame 窗口")
-
-    running = True
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-
-        # 填充颜色（示例）
-        screen.fill((100, 150, 200))
-        pygame.display.flip()
-        
-        # 防止 CPU 占用过高
-        time.sleep(0.01)
-
-    pygame.quit()
-    sys.exit()
-
-# 创建 tkinter 主窗口
-root = tk.Tk()
-root.title("Tkinter 窗口")
-
-# 启动 pygame 进程的按钮
-start_button = tk.Button(root, text="启动 Pygame 窗口", command=lambda: multiprocessing.Process(target=run_pygame).start())
-start_button.pack()
-
-# 启动 tkinter 主循环
-root.mainloop()
+import pygame_gui
+pygame.init()
+pygame.display.set_caption('Quick Start')
+window_surface = pygame.display.set_mode((800, 600))
+background = pygame.Surface((800, 600))
+background.fill(pygame.Color('#000000'))
+manager = pygame_gui.UIManager((800, 600))
+hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((350, 275), (100, 50)),
+                                            text='Say Hello',
+                                            manager=manager)
+hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((350, 335), (100, 50)),
+                                            text='Say Hello',
+                                            manager=manager)
+clock = pygame.time.Clock()
+is_running = True
+while is_running:
+    time_delta = clock.tick(60)/1000.0
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            is_running = False
+        if event.type == pygame_gui.UI_BUTTON_PRESSED:
+            if event.ui_element == hello_button:
+                print('Hello World!')
+        manager.process_events(event)
+    manager.update(time_delta)
+    window_surface.blit(background, (0, 0))
+    manager.draw_ui(window_surface)
+    pygame.display.update()
