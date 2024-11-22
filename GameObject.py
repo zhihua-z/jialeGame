@@ -4,9 +4,10 @@ from Components.Renderer import AnimationRenderer, CircleRenderer, TextRenderer 
 # 游戏物体
 class GameObject:
     
-    def __init__(self, game, screen, name, pos):
+    def __init__(self, game, screen,screen2, name, pos):
         self.game = game
         self.screen = screen
+        self.screen2 = screen2
         self.name = name
         self.pos = pos
         self.visible = True

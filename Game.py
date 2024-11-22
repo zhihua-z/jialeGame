@@ -27,8 +27,10 @@ class Game:
         self.height = 400
         # 设置窗口的标题，即游戏名称
         pygame.display.set_caption('地下城杀手')
-        #caption：标题
-        
+        #caption：标题     
+
+
+
         self.time = 0
         self.frametime = 100000000000
         #frametime：渲染一张画面的时间
@@ -41,6 +43,20 @@ class Game:
         self.rs = ResourceSystem(self)
         self.scriptSystem = ScriptSystem(self)
         self.fn加载()
+
+        # 设置小窗口
+        self.var小窗口 = pygame.display.set_mode((200,200))
+        self.width小 = 200
+        self.height小 = 200
+        pygame.display.set_caption('资源管理器')
+        self.entity = EntitySystem(self)
+        self.renderSystem = RenderSystem(self, self.var小窗口)
+        self.rs = ResourceSystem(self)
+        self.scriptSystem = ScriptSystem(self)
+        self.fn加载()
+
+
+
 
     def serialize(self, obj):
         result = obj.Serialize()
@@ -108,6 +124,7 @@ class Game:
             # 画出游戏内容
             # fill: 填充
             self.var主窗口.fill((0, 0, 0))
+            self.var小窗口.fill((0, 0, 0))
         
             self.renderSystem.draw()
             
