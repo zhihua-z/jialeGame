@@ -1,15 +1,25 @@
 [
     {
+        "name": "Camera",
+        "type": "GameObject",
+        "pos": [
+            400,
+            200
+        ],
+        "components": {}
+    },
+    {
         "name": "Player",
         "type": "GameObject",
         "pos": [
-            200,
+            400,
             200
         ],
         "components": {
             "AnimationRenderer": {
                 "AnimationName": "人物走路_前",
-                "visible": true
+                "visible": true,
+                "moveWithCamera": true
             }
         }
     },
@@ -23,7 +33,8 @@
         "components": {
             "AnimationRenderer": {
                 "AnimationName": "史莱姆运动2",
-                "visible": true
+                "visible": true,
+                "moveWithCamera": false
             }
         }
     },
@@ -37,7 +48,8 @@
         "components": {
             "AnimationRenderer": {
                 "AnimationName": "史莱姆运动3",
-                "visible": true
+                "visible": true,
+                "moveWithCamera": false
             }
         }
     },
@@ -52,7 +64,8 @@
         "components": {
             "AnimationRenderer": {
                 "AnimationName": "史莱姆运动1",
-                "visible": true
+                "visible": true,
+                "moveWithCamera": false
             }
         }
     },
@@ -66,7 +79,8 @@
         "components": {
             "CircleRenderer": {
                 "radius": 40,
-                "visible": true
+                "visible": true,
+                "moveWithCamera": false
             }
         }
     },
@@ -82,7 +96,8 @@
                 "width": 100,
                 "height": 20,
                 "color": [0,200,0],
-                "visible": true
+                "visible": true,
+                "moveWithCamera": false
             }
         }
     },
@@ -98,7 +113,8 @@
                 "text": "积分",
                 "font": "三极榜楷_24",
                 "fontColor": [255, 255, 0],
-                "visible": true
+                "visible": true,
+                "moveWithCamera": true
             }
         }
     }

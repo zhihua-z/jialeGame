@@ -22,20 +22,24 @@ class GameObject:
     # 如果是AnimationRenderer, param1会是我的动画名字
     def addComponent(self, componentName, param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None):
         if componentName == 'AnimationRenderer':
-            # param1: animation name, param2 visible
-            self.components['AnimationRenderer'] = AnimationRenderer(self.game, self, 'AnimationRenderer', param1, param2)   
+            # param1: animation name, param2 visible, param3 moveWithCamera
+            self.components['AnimationRenderer'] = AnimationRenderer(self.game, self, 'AnimationRenderer', param1, param2, param3)   
+            self.game.addRenderer(self.components['AnimationRenderer'])
             #param:参数
 
         elif componentName == 'CircleRenderer':
-            # param1: radius, param2 visible
-            self.components['CircleRenderer'] = CircleRenderer(self.game, self, "CircleRenderer",param1, param2)
+            # param1: radius, param2 visible, param3 moveWithCamera
+            self.components['CircleRenderer'] = CircleRenderer(self.game, self, "CircleRenderer",param1, param2, param3)
+            self.game.addRenderer(self.components['CircleRenderer'])
         elif componentName == 'RectangleRenderer':
-             # param1: width, param2 height, param3 color, param4 visible
-            self.components['RectangleRenderer'] = RectangleRenderer(self.game, self, "RectangleRenderer",param1, param2, param3, param4)
+             # param1: width, param2 height, param3 color, param4 visible, param5 moveWithCamera
+            self.components['RectangleRenderer'] = RectangleRenderer(self.game, self, "RectangleRenderer",param1, param2, param3, param4, param5)
+            self.game.addRenderer(self.components['RectangleRenderer'])
             
         elif componentName == 'TextRenderer':
-            # param1: text, param2 font, param4 color, param5 visible
-            self.components['TextRenderer'] = TextRenderer(self.game, self, "TextRenderer", param1, param2, param3, param4)
+            # param1: text, param2 font, param3 color, param4 visible, param5 moveWithCamera
+            self.components['TextRenderer'] = TextRenderer(self.game, self, "TextRenderer", param1, param2, param3, param4, param5)
+            self.game.addRenderer(self.components['TextRenderer'])
     
     def update(self):
         
@@ -45,24 +49,28 @@ class GameObject:
         
         
         # 更新 x y 位置
-        self.pos[0] += direction[0]
-        self.pos[1] += direction[1]
+        if (direction[0] != 0 and direction[1] != 0):
+            self.pos[0] += direction[0] / 1.414213562
+            self.pos[1] += direction[1] / 1.414213562
+        else:
+            self.pos[0] += direction[0]
+            self.pos[1] += direction[1]
         
-        # x方向的物理计算
-        if self.pos[0] + 20 > self.game.width: #x方向撞了右边
-            self.direction[0] = -self.direction[0]
-            self.pos[0] = self.game.width - 20
-        if self.pos[0] - 20 < 0: #x方向撞了左边
-            self.direction[0] = -self.direction[0]
-            self.pos[0] = 20
+        # # x方向的物理计算
+        # if self.pos[0] + 20 > self.game.width: #x方向撞了右边
+        #     self.direction[0] = -self.direction[0]
+        #     self.pos[0] = self.game.width - 20
+        # if self.pos[0] - 20 < 0: #x方向撞了左边
+        #     self.direction[0] = -self.direction[0]
+        #     self.pos[0] = 20
         
-        # y方向的物理计算
-        if self.pos[1] + 20 > self.game.height: #y方向撞了右边
-            self.direction[1] = -self.direction[1]
-            self.pos[1] = self.game.height - 20
-        if self.pos[1] - 20 < 0: #y方向撞了左边
-            self.direction[1] = -self.direction[1]
-            self.pos[1] = 20
+        # # y方向的物理计算
+        # if self.pos[1] + 20 > self.game.height: #y方向撞了右边
+        #     self.direction[1] = -self.direction[1]
+        #     self.pos[1] = self.game.height - 20
+        # if self.pos[1] - 20 < 0: #y方向撞了左边
+        #     self.direction[1] = -self.direction[1]
+        #     self.pos[1] = 20
         
     def draw(self):
         if self.spriteAnimation is not None:
