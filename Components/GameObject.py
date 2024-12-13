@@ -18,6 +18,10 @@ class GameObject:
             # 保存这个游戏物体拥有的所有的组件
         }
     
+    def getWorldPosition(self):
+        return [self.pos[0] + self.game.camerapos[0], self.pos[1] + self.game.camerapos[1]]
+        
+    
     # 添加组件除了组件的名字之外，我们还会传一堆数据过来。
     # 如果是AnimationRenderer, param1会是我的动画名字
     def addComponent(self, componentName, param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None):

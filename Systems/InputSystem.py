@@ -8,11 +8,11 @@ class InputSystem:
         
         # [0,0,0,0,0,0...0, SPACE ! " # ....] 在前面塞32个空物体，所以K_SPACE将从第32号开始。就不需要做键值转换了
         for i in range(32):
-            self.keys.append([])
+            self.keys.append(0)
         
         # 32: SPACE ~ 127 DELETE
         # 0: down, 1: up
-        for i in range(pygame.K_SPACE, pygame.K_DELETE):
+        for i in range(pygame.K_SPACE, pygame.K_DELETE + 1):
             self.keys.append(0)
         self.previousKeys = self.keys.copy()
     
