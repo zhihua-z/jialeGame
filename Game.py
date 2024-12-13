@@ -25,6 +25,9 @@ class Game:
         self.var主窗口 = pygame.display.set_mode((800,400))
         self.width = 800
         self.height = 400
+        
+        self.camerapos = [0, 0]
+        
         # 设置窗口的标题，即游戏名称
         pygame.display.set_caption('地下城杀手')
         #caption：标题     
@@ -92,6 +95,7 @@ class Game:
             # │          在这里处理游戏事件
             # └────────────────────────────────────────────────────────
             # 循环获取事件，监听所有事件状态
+            self.inputSystem.preUpdate()
             for event in pygame.event.get():
                 # 判断用户是否点了"X"关闭按钮,并执行if代码段
                 if event.type == pygame.QUIT:
@@ -104,6 +108,7 @@ class Game:
                     self.inputSystem.update(event)
                 if event.type == pygame.KEYUP:
                     self.inputSystem.update(event)
+            
                     
             
             

@@ -11,24 +11,25 @@ class ScriptSystem():
             
         def update(self):
             jifen = self.game.entity.findObject('积分')
+            camera = self.game.entity.findObject('Camera')
             player = self.game.entity.findObject('Player')
             jifen.components['TextRenderer'].text = f'积分: {self.jifen}'
             
-            player.direction = [0, 0]
+            camera.direction = [0, 0]
             if self.running:
-                if self.game.inputSystem.getKey('A') == True:
-                        player.direction[0] = -200
+                if self.game.inputSystem.getKeyDown(pygame.K_a) == True:
+                        camera.direction[0] = -200
                         player.components['AnimationRenderer'].animation = self.game.rs.getAnimation('人物走路_左')
-                if self.game.inputSystem.getKey('D') == True:
-                        player.direction[0] = 200
+                if self.game.inputSystem.getKeyDown(pygame.K_d) == True:
+                        camera.direction[0] = 200
                         player.components['AnimationRenderer'].animation = self.game.rs.getAnimation('人物走路_右')
-                if self.game.inputSystem.getKey('W') == True:
-                        player.direction[1] = -200
+                if self.game.inputSystem.getKeyDown(pygame.K_w) == True:
+                        camera.direction[1] = -200
                         player.components['AnimationRenderer'].animation = self.game.rs.getAnimation('人物走路_后')
-                if self.game.inputSystem.getKey('S') == True:
-                        player.direction[1] = 200
+                if self.game.inputSystem.getKeyDown(pygame.K_s) == True:
+                        camera.direction[1] = 200
                         player.components['AnimationRenderer'].animation = self.game.rs.getAnimation('人物走路_前')
-       
+
         
             # 我们想要获得这个人物在这一帧可以走多远（路程）
             # 我的目标速度是每秒200单位（速度）
@@ -36,7 +37,24 @@ class ScriptSystem():
         
             # 计算游戏内容
             self.jifen += 1
-            self.game.entity.findObject('Player').update()
+            
+            camera.update()
+            self.game.camerapos[0] = camera.pos[0]
+            self.game.camerapos[1] = camera.pos[1]
+            
+            
+            # g for generate
+            if self.game.inputSystem.getKeyPress(pygame.K_g):
+                obj = self.game.entity.CreateNewObject("obj1")
+                obj.addComponent(
+                    'AnimationRenderer', 
+                    "史莱姆运动2",
+                    True,
+                    False
+                )
+                obj.pos = [500, 300]
+                
+            
             
             
             if self.running ==False:

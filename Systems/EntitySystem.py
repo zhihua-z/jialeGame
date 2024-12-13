@@ -47,9 +47,9 @@ class EntitySystem:
                 obj.addComponent(
                     'AnimationRenderer', 
                     item['components']['AnimationRenderer']['AnimationName'],
-                    item['components']['AnimationRenderer']['visible']
+                    item['components']['AnimationRenderer']['visible'],
+                    item['components']['AnimationRenderer']['moveWithCamera']
                 )
-                self.game.addRenderer(obj.components['AnimationRenderer'])
                 
             # ┌───────────────────────────────┐
             # │         Circle Renderer       │
@@ -58,9 +58,9 @@ class EntitySystem:
                 obj.addComponent(
                     'CircleRenderer',
                     item['components']['CircleRenderer']["radius"],
-                    item['components']['CircleRenderer']['visible']
+                    item['components']['CircleRenderer']['visible'],
+                    item['components']['CircleRenderer']['moveWithCamera']
                 )
-                self.game.addRenderer(obj.components['CircleRenderer'])
 
 
             # ┌───────────────────────────────┐
@@ -73,9 +73,9 @@ class EntitySystem:
                     item['components']['RectangleRenderer']["width"],
                     item['components']['RectangleRenderer']["height"],
                     item['components']['RectangleRenderer']['color'],
-                    item['components']['RectangleRenderer']['visible']
+                    item['components']['RectangleRenderer']['visible'],
+                    item['components']['RectangleRenderer']['moveWithCamera']
                 )
-                self.game.addRenderer(obj.components['RectangleRenderer'])
                 
             # ┌───────────────────────────────┐
             # │         Text Renderer         │
@@ -86,9 +86,22 @@ class EntitySystem:
                     item['components']['TextRenderer']['text'],
                     item['components']['TextRenderer']['font'],
                     item['components']['TextRenderer']['fontColor'],
-                    item['components']['TextRenderer']['visible']
+                    item['components']['TextRenderer']['visible'],
+                    item['components']['TextRenderer']['moveWithCamera']
                 )
-                self.game.addRenderer(obj.components['TextRenderer'])
+        
+        return obj
+    
+    def CreateNewObject(self, name, pos = [0, 0]):
+        obj = GameObject(
+            game = self.game, 
+            screen = self.game.var主窗口, 
+            name = name,
+            pos = pos
+        )
+    
+        if obj is not None:
+            self.gameObjects[obj.name] = obj
         
         return obj
     

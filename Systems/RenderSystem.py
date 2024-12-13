@@ -12,13 +12,22 @@ class RenderSystem:
 
         def addRenderer(self,renderer):
             self.renders.append(renderer)
+            
+        def changeToCameraPosition(self, pos):
+            return [pos[0] - self.game.camerapos[0], pos[1] - self.game.camerapos[1]]
+        
+        def changeToScreenPosition(self, pos):
+            return [pos[0] + self.game.camerapos[0], pos[1] +self.game.camerapos[1]]
 
         def draw(self):
             for r in self.renders:
                 if not r.visible:
                     continue
                 
-                pos = r.gameObject.pos
+                if r.moveWithCamera:
+                    pos = r.gameObject.pos
+                else:
+                    pos = self.changeToCameraPosition(r.gameObject.pos)
                 
                 if r.name == 'AnimationRenderer':
                     if r.animation is not None:
