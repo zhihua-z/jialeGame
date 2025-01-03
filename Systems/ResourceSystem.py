@@ -37,6 +37,10 @@ class ResourceSystem:
         self.var动画资源['史莱姆大'] = pygame.image.load('Resources/img/shilaimu_da.png')
         self.var动画资源['史莱姆中'] = pygame.image.load('Resources/img/shilaimu_zhong.png')
         self.var动画资源['史莱姆小'] = pygame.image.load('Resources/img/shilaimu_xiao.png')
+        
+        # 加载游戏资源贴图
+        self.var动画资源['游戏贴图'] = pygame.image.load('Resources/img/GRASS+.png')
+        self.var动画['草地1'] = AnimatedSprite(self.var动画资源['游戏贴图'], 0, 0, 1, 64, 64, '人物走路_前')
 
         
         # 转化成一个精灵动画
@@ -48,6 +52,7 @@ class ResourceSystem:
         self.var动画['史莱姆运动1']  = AnimatedSprite(self.var动画资源['史莱姆大'], 0, 0, 6, 210, 64, '史莱姆运动大') 
         self.var动画['史莱姆运动2']  = AnimatedSprite(self.var动画资源['史莱姆中'], 0, 0, 6, 105, 32, '史莱姆运动中') 
         self.var动画['史莱姆运动3']  = AnimatedSprite(self.var动画资源['史莱姆小'], 0, 0, 6, 52, 16, '史莱姆运动小')
+        
         
         # 加载游戏关卡
         data = open('level1.json', 'r').read()

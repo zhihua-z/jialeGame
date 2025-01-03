@@ -18,6 +18,10 @@ from Systems.ScriptSystem import ScriptSystem
 class Game:
     
     def __init__(self):
+        
+        # ┌────────────────────────────────────────────────────────
+        # │          初始化游戏系统
+        # └────────────────────────────────────────────────────────
         # 使用pygame之前必须初化
         pygame.init()
         self.inputSystem = InputSystem()
@@ -34,6 +38,9 @@ class Game:
 
 
 
+        # ┌────────────────────────────────────────────────────────
+        # │          初始化游戏变量
+        # └────────────────────────────────────────────────────────
         self.time = 0
         self.frametime = 100000000000
         #frametime：渲染一张画面的时间
@@ -46,10 +53,19 @@ class Game:
         # self.width小 = 200
         # self.height小 = 200
         # pygame.display.set_caption('资源管理器')
+        
+        # ┌────────────────────────────────────────────────────────
+        # │          初始化各大系统
+        # └────────────────────────────────────────────────────────
         self.entity = EntitySystem(self)
         self.renderSystem = RenderSystem(self, self.var主窗口)
         self.rs = ResourceSystem(self)
         self.scriptSystem = ScriptSystem(self)
+        
+        
+        # ┌────────────────────────────────────────────────────────
+        # │          加载资源
+        # └────────────────────────────────────────────────────────
         self.fn加载()
 
 
