@@ -85,6 +85,21 @@
         }
     },
     {
+        "name": "Circle2",
+        "type": "GameObject",
+        "pos": [
+            500,
+            300
+        ],
+        "components": {
+            "CircleRenderer": {
+                "radius": 40,
+                "visible": true,
+                "moveWithCamera": false
+            }
+        }
+    },
+    {
         "name": "Wall1",
         "type": "GameObject",
         "pos": [
