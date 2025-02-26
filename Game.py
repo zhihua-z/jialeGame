@@ -24,7 +24,6 @@ class Game:
         # └────────────────────────────────────────────────────────
         # 使用pygame之前必须初化
         pygame.init()
-        self.inputSystem = InputSystem()
         # 设置主屏窗口
         self.var主窗口 = pygame.display.set_mode((800,400))
         self.width = 800
@@ -57,6 +56,7 @@ class Game:
         # ┌────────────────────────────────────────────────────────
         # │          初始化各大系统
         # └────────────────────────────────────────────────────────
+        self.inputSystem = InputSystem()
         self.entity = EntitySystem(self)
         self.renderSystem = RenderSystem(self, self.var主窗口)
         self.rs = ResourceSystem(self)
