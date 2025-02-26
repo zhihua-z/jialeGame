@@ -55,6 +55,17 @@
         "radius": 20
     },
     {
+        "name": "grass",
+        "animation": "草地1",
+        "type": "CircleObject",
+        "visible": true,
+        "pos": [
+            500,
+            600
+        ],
+        "radius": 20
+    },    
+    {
         "name": "积分",
         "animation": "",
         "type": "TextObject",

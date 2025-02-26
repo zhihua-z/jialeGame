@@ -38,9 +38,13 @@ class ResourceSystem:
         self.var动画资源['史莱姆中'] = pygame.image.load('Resources/img/shilaimu_zhong.png')
         self.var动画资源['史莱姆小'] = pygame.image.load('Resources/img/shilaimu_xiao.png')
         
+        
         # 加载游戏资源贴图
         self.var动画资源['游戏贴图'] = pygame.image.load('Resources/img/GRASS+.png')
         self.var动画['草地1'] = AnimatedSprite(self.var动画资源['游戏贴图'], 0, 0, 1, 64, 64, '人物走路_前')
+        self.var动画['草地2'] = AnimatedSprite(self.var动画资源['游戏贴图'], 64, 0, 1, 64, 64, '人物走路_前')
+        self.var动画['一圈草'] = AnimatedSprite(self.var动画资源['游戏贴图'], 640, 0, 15, 64, 64, '人物走路_前')
+        self.var动画['草原'] = AnimatedSprite(self.var动画资源['游戏贴图'], 640, 0, 3, 64, 640, '人物走路_前')
 
         
         # 转化成一个精灵动画

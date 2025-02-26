@@ -70,6 +70,54 @@
         }
     },
     {
+        "name": "Player5",
+        "type": "GameObject",
+        "pos": [
+            200,
+            300
+        ],
+        
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "草地1",
+                "visible": true,
+                "moveWithCamera": false
+            }
+        }
+    },
+    {
+        "name": "Player6",
+        "type": "GameObject",
+        "pos": [
+            400,
+            600
+        ],
+        
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "一圈草",
+                "visible": true,
+                "moveWithCamera": false
+            }
+        }
+    },
+    {
+        "name": "Player7",
+        "type": "GameObject",
+        "pos": [
+            800,
+            900
+        ],
+        
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "草原",
+                "visible": true,
+                "moveWithCamera": false
+            }
+        }
+    },
+    {
         "name": "Circle1",
         "type": "GameObject",
         "pos": [
