@@ -51,7 +51,7 @@ class ScriptSystem():
                 newobj = self.addAnimationGameObject('obj1', '草地2', True, False, player.getWorldPosition())
                 newobj.direction = [0, 0]
             if self.game.inputSystem.getKeyPress(pygame.K_x):
-                newobj = self.addAnimationGameObject('obj1', '一圈草', True, False, player.getWorldPosition())
+                newobj = self.addAnimationGameObject('obj1', '棕色的草', True, False, player.getWorldPosition())
                 newobj.direction = [0, 0]
         # 我们想要获得这个人物在这一帧可以走多远（路程）
         # 我的目标速度是每秒200单位（速度）

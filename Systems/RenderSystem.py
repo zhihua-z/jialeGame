@@ -42,6 +42,20 @@ class RenderSystem:
                         rect.center = (pos[0], pos[1])
                         self.screen.blit(sp, rect)
 
+                elif r.name == 'SpriteRenderer':
+                    if r.spirit is not None:
+                    
+                        ###sp#黑喵:
+                        #第一步，获取图片
+                        #第二步 得到这个图片的大小信息（长方形）
+                        #第三步 设置这个长方形中心点在r的位置
+                        #第四步 画到屏幕上
+                        sp = r.spirit.get_sprite(self.game.time // 1000)
+                        rect = sp.get_rect()
+                        rect.center = (pos[0], pos[1])
+                        self.screen.blit(sp, rect)
+
+
                 elif r.name == "CircleRenderer":
                     pygame.draw.circle(self.screen, (255, 255, 255), pos, r.radius)
 
@@ -56,6 +70,7 @@ class RenderSystem:
                     textRect.bottomleft = (pos[0], pos[1])
                     # 将准备好的文本信息，绘制到主屏幕 Screen 上。
                     self.screen.blit(text, textRect)
+                    
 
 
 

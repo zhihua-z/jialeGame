@@ -1,0 +1,185 @@
+[
+    {
+        "name": "Camera",
+        "type": "GameObject",
+        "pos": [
+            400,
+            200
+        ],
+        "components": {}
+    },
+    {
+        "name": "Player",
+        "type": "GameObject",
+        "pos": [
+            400,
+            200
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "人物走路_前",
+                "visible": true,
+                "moveWithCamera": true
+            }
+        }
+    },
+    {
+        "name": "Player2",
+        "type": "GameObject",
+        "pos": [
+            422,
+            322
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "史莱姆运动2",
+                "visible": true,
+                "moveWithCamera": false
+            }
+        }
+    },
+    {
+        "name": "Player3",
+        "type": "GameObject",
+        "pos": [
+            300,
+            200
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "史莱姆运动3",
+                "visible": true,
+                "moveWithCamera": false
+            }
+        }
+    },
+    {
+        "name": "Player4",
+        "type": "GameObject",
+        "pos": [
+            100,
+            100
+        ],
+        
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "史莱姆运动1",
+                "visible": true,
+                "moveWithCamera": false
+            }
+        }
+    },
+    {
+        "name": "Player5",
+        "type": "GameObject",
+        "pos": [
+            200,
+            300
+        ],
+        
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "草地1",
+                "visible": true,
+                "moveWithCamera": false
+            }
+        }
+    },
+    {
+        "name": "Player6",
+        "type": "GameObject",
+        "pos": [
+            400,
+            600
+        ],
+        
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "棕色的草",
+                "visible": true,
+                "moveWithCamera": false
+            }
+        }
+    },
+    {
+        "name": "Player7",
+        "type": "GameObject",
+        "pos": [
+            800,
+            900
+        ],
+        
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "草原",
+                "visible": true,
+                "moveWithCamera": false
+            }
+        }
+    },
+    {
+        "name": "Circle1",
+        "type": "GameObject",
+        "pos": [
+            500,
+            300
+        ],
+        "components": {
+            "CircleRenderer": {
+                "radius": 40,
+                "visible": true,
+                "moveWithCamera": false
+            }
+        }
+    },
+    {
+        "name": "Circle2",
+        "type": "GameObject",
+        "pos": [
+            500,
+            300
+        ],
+        "components": {
+            "CircleRenderer": {
+                "radius": 40,
+                "visible": true,
+                "moveWithCamera": false
+            }
+        }
+    },
+    {
+        "name": "Wall1",
+        "type": "GameObject",
+        "pos": [
+            500,
+            300
+        ],
+        "components": {
+            "RectangleRenderer": {
+                "width": 100,
+                "height": 20,
+                "color": [0,200,0],
+                "visible": true,
+                "moveWithCamera": false
+            }
+        }
+    },
+    {
+        "name": "积分",
+        "type": "GameObject",
+        "pos": [
+            650,
+            50
+        ],
+        "components": {
+            "TextRenderer": {
+                "text": "积分",
+                "font": "三极榜楷_24",
+                "fontColor": [255, 255, 0],
+                "visible": true,
+                "moveWithCamera": true
+            }
+        }
+    }
+    
+]

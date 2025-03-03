@@ -31,6 +31,7 @@ class ResourceSystem:
         self.var字体['三极榜楷'] = Font('三极榜楷', pygame.font.Font('Resources/font/SanJiBangKaiJianTi-2.ttf',50))
         self.var字体['三极榜楷_24'] = Font('三极榜楷', pygame.font.Font('Resources/font/SanJiBangKaiJianTi-2.ttf', 24))
         self.var字体['爱点乾峰行书-2'] = Font('爱点乾峰行书-2', pygame.font.Font('Resources/font/AiDianGanFengXingShuttf-2.ttf',50))
+        self.var字体['龙楷24'] = Font('龙楷24', pygame.font.Font('Resources/font/longkai.ttf',24))
         
         # 加载贴图
         self.var动画资源['人物行走'] = pygame.image.load('Resources/img/walk.png')
@@ -38,13 +39,16 @@ class ResourceSystem:
         self.var动画资源['史莱姆中'] = pygame.image.load('Resources/img/shilaimu_zhong.png')
         self.var动画资源['史莱姆小'] = pygame.image.load('Resources/img/shilaimu_xiao.png')
         self.var动画资源['游戏贴图'] = pygame.image.load('Resources/img/GRASS+.png')
+        self.var动画资源['游戏贴图1'] = pygame.image.load('Resources/img/minecraft.png')
         
         
         # 加载游戏资源贴图
         self.var动画['草地1'] = AnimatedSprite(self.var动画资源['游戏贴图'], 0, 0, 1, 64, 64, '草地1')
         self.var动画['草地2'] = AnimatedSprite(self.var动画资源['游戏贴图'], 64, 0, 1, 64, 64, '草地2')
-        self.var动画['一圈草'] = AnimatedSprite(self.var动画资源['游戏贴图'], 640, 0, 15, 64, 64, '一圈草')
+        self.var动画['棕色的草'] = AnimatedSprite(self.var动画资源['游戏贴图'], 640, 0, 3, 64, 64, '棕色的草')
         self.var动画['草原'] = AnimatedSprite(self.var动画资源['游戏贴图'], 640, 0, 3, 64, 640, '草原')
+        self.var动画['圆石'] = AnimatedSprite(self.var动画资源['游戏贴图1'], 448, 0, 1, 64,64, '草原')
+
 
         
         # 转化成一个精灵动画

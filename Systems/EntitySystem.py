@@ -45,10 +45,21 @@ class EntitySystem:
             # └───────────────────────────────┘
             if componentName == 'AnimationRenderer':
                 obj.addComponent(
-                    'AnimationRenderer', 
+                    'AnimationRenderer',  
                     item['components']['AnimationRenderer']['AnimationName'],
                     item['components']['AnimationRenderer']['visible'],
                     item['components']['AnimationRenderer']['moveWithCamera']
+                )
+
+            # ┌───────────────────────────────┐
+            # │       Image Renderer          │
+            # └───────────────────────────────┘
+            if componentName == 'ImageRenderer':
+                obj.addComponent(
+                    'ImageRenderer', 
+                    item['components']['ImageRenderer']['ImageName'],
+                    item['components']['ImageRenderer']['visible'],
+                    item['components']['ImageRenderer']['moveWithCamera']
                 )
                 
             # ┌───────────────────────────────┐

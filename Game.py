@@ -85,6 +85,9 @@ class Game:
     def getAnimation(self, animationName):
         return self.rs.getAnimation(animationName)
     
+    def getSprite(self, spriteName):
+        return self.rs.getSprite(spriteName)
+    
     # 把渲染器添加到渲染系统里，所以等会儿可以画出来
     def addRenderer(self, renderer):
         self.renderSystem.addRenderer(renderer)

@@ -18,7 +18,12 @@ class AnimationRenderer(RendererComponent):
         
         self.animation = self.game.getAnimation(animationName)
         
+class ImageRenderer(RendererComponent):
+    
+    def __init__(self, game, gameObject, name, imageName, visible, moveWithCamera):
+        super().__init__(game, gameObject, name, visible, moveWithCamera)
         
+        self.image = self.game.getSprite(imageName)        
 
 class CircleRenderer(RendererComponent):
     
@@ -41,4 +46,11 @@ class TextRenderer(RendererComponent):
         self.text = text
         self.font = self.game.getFont(font).font
         self.fontColor = fontColor
+
+class ImageRenderer(RendererComponent):
+    
+    def __init__(self, game, gameObject, name, imageName, visible, moveWithCamera):
+        super().__init__(game, gameObject, name, visible, moveWithCamera)
+        
+        self.image = self.game.getSprite(imageName)
 
