@@ -1,5 +1,5 @@
 import pygame
-from Components.Renderer import AnimationRenderer, CircleRenderer, TextRenderer , RectangleRenderer
+from Components.Renderer import AnimationRenderer,SpriteRenderer, CircleRenderer, TextRenderer , RectangleRenderer
 
 # 游戏物体
 class GameObject:
@@ -29,6 +29,12 @@ class GameObject:
             # param1: animation name, param2 visible, param3 moveWithCamera
             self.components['AnimationRenderer'] = AnimationRenderer(self.game, self, 'AnimationRenderer', param1, param2, param3)   
             self.game.addRenderer(self.components['AnimationRenderer'])
+            #param:参数
+
+        elif componentName == 'SpriteRenderer':
+            # param1: animation name, param2 visible, param3 moveWithCamera
+            self.components['SpriteRenderer'] = SpriteRenderer(self.game, self, 'SpriteRenderer', param1, param2, param3)   
+            self.game.addRenderer(self.components['SpriteRenderer'])
             #param:参数
 
         elif componentName == 'CircleRenderer':

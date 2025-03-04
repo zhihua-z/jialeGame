@@ -43,15 +43,15 @@
         }
     },
     {
-        "name": "Player10",
+        "name": "圆石",
         "type": "GameObject",
         "pos": [
             400,
             200
         ],
         "components": {
-            "ImageRenderer": {
-                "ImageName": "圆石",
+            "SpriteRenderer": {
+                "SpriteName": "圆石",
                 "visible": true,
                 "moveWithCamera": false
             }

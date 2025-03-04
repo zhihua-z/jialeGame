@@ -43,7 +43,7 @@ class RenderSystem:
                         self.screen.blit(sp, rect)
 
                 elif r.name == 'SpriteRenderer':
-                    if r.spirit is not None:
+                    if r.sprite is not None:
                     
                         ###sp#黑喵:
                         #第一步，获取图片

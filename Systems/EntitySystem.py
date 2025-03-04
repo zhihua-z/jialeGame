@@ -52,14 +52,14 @@ class EntitySystem:
                 )
 
             # ┌───────────────────────────────┐
-            # │       Image Renderer          │
+            # │       Sprite Renderer         │
             # └───────────────────────────────┘
-            if componentName == 'ImageRenderer':
+            if componentName == 'SpriteRenderer':
                 obj.addComponent(
-                    'ImageRenderer', 
-                    item['components']['ImageRenderer']['ImageName'],
-                    item['components']['ImageRenderer']['visible'],
-                    item['components']['ImageRenderer']['moveWithCamera']
+                    'SpriteRenderer', 
+                    item['components']['SpriteRenderer']['SpriteName'],
+                    item['components']['SpriteRenderer']['visible'],
+                    item['components']['SpriteRenderer']['moveWithCamera']
                 )
                 
             # ┌───────────────────────────────┐
