@@ -3,8 +3,8 @@
         "name": "Camera",
         "type": "None",
         "pos": [
-            92.11800000000376,
-            200.0
+            422.17742690881795,
+            223.69715362633613
         ]
     },
     "积分": {
@@ -18,7 +18,7 @@
             "name": "TextRenderer",
             "visible": true,
             "moveWithCamera": true,
-            "text": "积分: 14170",
+            "text": "积分: 58357",
             "font": "三极榜楷_24",
             "fontColor": [
                 255,
@@ -38,29 +38,29 @@
             "name": "AnimationRenderer",
             "visible": true,
             "moveWithCamera": true,
-            "animation_name": "人物走路_左"
+            "animation_name": "人物走路_后"
         }
     },
     "obj0": {
         "name": "obj0",
         "type": "None",
         "pos": [
-            800.0,
-            416.0
+            736.0,
+            288.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
             "visible": true,
             "moveWithCamera": false,
-            "animation_name": "草地2"
+            "animation_name": "草地1"
         }
     },
     "obj1": {
         "name": "obj1",
         "type": "None",
         "pos": [
-            800.0,
-            416.0
+            736.0,
+            288.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
@@ -73,22 +73,8 @@
         "name": "obj2",
         "type": "None",
         "pos": [
-            800.0,
-            416.0
-        ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地2"
-        }
-    },
-    "obj3": {
-        "name": "obj3",
-        "type": "None",
-        "pos": [
-            800.0,
-            416.0
+            736.0,
+            224.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
@@ -97,12 +83,26 @@
             "animation_name": "草地1"
         }
     },
+    "obj3": {
+        "name": "obj3",
+        "type": "None",
+        "pos": [
+            800.0,
+            160.0
+        ],
+        "AnimationRenderer": {
+            "name": "AnimationRenderer",
+            "visible": true,
+            "moveWithCamera": false,
+            "animation_name": "草地2"
+        }
+    },
     "obj4": {
         "name": "obj4",
         "type": "None",
         "pos": [
-            800.0,
-            416.0
+            864.0,
+            160.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
@@ -115,8 +115,8 @@
         "name": "obj5",
         "type": "None",
         "pos": [
-            800.0,
-            416.0
+            928.0,
+            224.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
@@ -129,22 +129,22 @@
         "name": "obj6",
         "type": "None",
         "pos": [
-            800.0,
-            416.0
+            928.0,
+            352.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
             "visible": true,
             "moveWithCamera": false,
-            "animation_name": "草地2"
+            "animation_name": "草地1"
         }
     },
     "obj7": {
         "name": "obj7",
         "type": "None",
         "pos": [
-            800.0,
-            416.0
+            928.0,
+            288.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
@@ -157,8 +157,8 @@
         "name": "obj8",
         "type": "None",
         "pos": [
-            736.0,
-            416.0
+            864.0,
+            288.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
@@ -171,22 +171,22 @@
         "name": "obj9",
         "type": "None",
         "pos": [
-            736.0,
-            416.0
+            800.0,
+            352.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
             "visible": true,
             "moveWithCamera": false,
-            "animation_name": "草地2"
+            "animation_name": "草地1"
         }
     },
     "obj10": {
         "name": "obj10",
         "type": "None",
         "pos": [
-            736.0,
-            416.0
+            800.0,
+            224.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
@@ -199,8 +199,8 @@
         "name": "obj11",
         "type": "None",
         "pos": [
-            736.0,
-            416.0
+            544.0,
+            96.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
@@ -213,84 +213,84 @@
         "name": "obj12",
         "type": "None",
         "pos": [
-            736.0,
-            416.0
+            672.0,
+            -96.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
             "visible": true,
             "moveWithCamera": false,
-            "animation_name": "草地1"
+            "animation_name": "草地2"
         }
     },
     "obj13": {
         "name": "obj13",
         "type": "None",
         "pos": [
-            608.0,
-            416.0
+            736.0,
+            -288.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
             "visible": true,
             "moveWithCamera": false,
-            "animation_name": "草地2"
+            "animation_name": "棕色的草"
         }
     },
     "obj14": {
         "name": "obj14",
         "type": "None",
         "pos": [
-            608.0,
-            416.0
+            864.0,
+            224.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
             "visible": true,
             "moveWithCamera": false,
-            "animation_name": "草地2"
+            "animation_name": "棕色的草"
         }
     },
     "obj15": {
         "name": "obj15",
         "type": "None",
         "pos": [
-            544.0,
-            416.0
+            800.0,
+            288.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
             "visible": true,
             "moveWithCamera": false,
-            "animation_name": "草地2"
+            "animation_name": "棕色的草"
         }
     },
     "obj16": {
         "name": "obj16",
         "type": "None",
         "pos": [
-            544.0,
-            416.0
+            864.0,
+            352.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
             "visible": true,
             "moveWithCamera": false,
-            "animation_name": "草地2"
+            "animation_name": "棕色的草"
         }
     },
     "obj17": {
         "name": "obj17",
         "type": "None",
         "pos": [
-            480.0,
+            864.0,
             416.0
         ],
         "AnimationRenderer": {
             "name": "AnimationRenderer",
             "visible": true,
             "moveWithCamera": false,
-            "animation_name": "草地2"
+            "animation_name": "棕色的草"
         }
     }
 }

@@ -47,7 +47,11 @@ class ResourceSystem:
         self.var动画['草地2'] = AnimatedSprite(self.var动画资源['游戏贴图'], 64, 0, 1, 64, 64, '草地2')
         self.var动画['棕色的草'] = AnimatedSprite(self.var动画资源['游戏贴图'], 640, 0, 3, 64, 64, '棕色的草')
         self.var动画['草原'] = AnimatedSprite(self.var动画资源['游戏贴图'], 640, 0, 3, 64, 640, '草原')
-        self.var动画['圆石'] = AnimatedSprite(self.var动画资源['游戏贴图1'], 448, 0, 1, 64,64, '圆石')
+    
+
+
+
+        self.var贴图['圆石'] = AnimatedSprite(self.var动画资源['游戏贴图1'], 448, 0, 1, 64,64, '圆石')
 
 
         
@@ -63,7 +67,7 @@ class ResourceSystem:
         
         
         # 加载游戏关卡
-        data = open('level1.json', 'r').read()
+        data = open('level0.json', 'r').read()
         self.level1 = json.loads(data)
         
         # 从读到的文件里创建出来这些游戏物体

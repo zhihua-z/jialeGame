@@ -50,7 +50,7 @@ class RenderSystem:
                         #第二步 得到这个图片的大小信息（长方形）
                         #第三步 设置这个长方形中心点在r的位置
                         #第四步 画到屏幕上
-                        sp = r.spirit.get_sprite(self.game.time // 1000)
+                        sp = r.sprite.get_sprite(self.game.time // 1000)
                         rect = sp.get_rect()
                         rect.center = (pos[0], pos[1])
                         self.screen.blit(sp, rect)

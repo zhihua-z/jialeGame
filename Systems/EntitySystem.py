@@ -11,7 +11,28 @@ class EntitySystem:
     def __init__(self, game ):
         self.game = game
         self.gameObjects = {}
-        
+    
+    
+# for item in gameobjects:
+#     dict1[item.name] = {
+#         'name': item.name,
+#         'type': item.type,
+#         'pos':   item.pos,
+#         'components' : item.components
+#     }
+    def saveObject(self):
+        dict1 = {}
+
+        for item in self.gameObjects:
+            dict1[item] = self.gameObjects[item].serialize()
+            
+        towrite = json.dumps(dict1,indent=4,ensure_ascii=False)
+        a = open('output.json',"w")
+        a.write(towrite)
+        a.close()
+
+
+
     def findObject(self, name):
         if name in self.gameObjects:
             return self.gameObjects[name]

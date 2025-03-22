@@ -4,6 +4,39 @@ from Components.Renderer import AnimationRenderer,SpriteRenderer, CircleRenderer
 # 游戏物体
 class GameObject:
     
+
+    def __init__(self):
+        self.name = ''
+        self.type = 'GameObject'
+        self.pos = [1, 1]
+        
+        self.components = {}
+#serialize：序列化：把物体编码成一段可读的文字和数字
+    def serialize(self):
+        dict1 = {}
+        dict1['name'] =  self.name
+        dict1['type'] =  self.type
+        dict1['pos'] =  self.pos
+        
+        for item in self.components:
+            dict1[item] = self.components[item].serialize()
+
+
+        return dict1
+           
+
+
+
+# for item in gameobjects:
+#     dict1[item.name] = {
+#         'name': item.name,
+#         'type': item.type,
+#         'pos':   item.pos,
+#         'components' : item.components
+#     }
+
+
+
     def __init__(self, game, screen, name, pos):
         self.game = game
         self.screen = screen

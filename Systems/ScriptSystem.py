@@ -10,15 +10,18 @@ class ScriptSystem():
         self.running = True
         
     def addAnimationGameObject(self, name, animationName, visible, moveWithCamera, pos):
-        obj = self.game.entity.CreateNewObject(name)
+        newpos = [pos[0] // 64 *  64+32,pos[1] // 64 *  64+32]
+    
+
+        obj = self.game.entity.CreateNewObject(name,newpos)
+
+
         obj.addComponent(
             'AnimationRenderer', 
             animationName,
             visible,
             moveWithCamera
         )
-        obj.pos = pos
-        
         return obj
         
     def update(self):
@@ -42,17 +45,23 @@ class ScriptSystem():
                 camera.direction[1] = 200
                 player.components['AnimationRenderer'].animation = self.game.rs.getAnimation('人物走路_前')
             if self.game.inputSystem.getKeyPress(pygame.K_f):
-                newobj = self.addAnimationGameObject('obj1', '史莱姆运动2', True, False, player.getWorldPosition())
-                newobj.direction = [500, 0]
+                self.addAnimationGameObject(f'obj{self.game.counter}', '史莱姆运动2', True, False, player.getWorldPosition())
+                self.game.counter = self.game.counter + 1
             if self.game.inputSystem.getKeyPress(pygame.K_q):
-                newobj = self.addAnimationGameObject('obj1', '草地1', True, False, player.getWorldPosition())
-                newobj.direction = [0, 0]
+                self.addAnimationGameObject(f'obj{self.game.counter}', '草地1', True, False, player.getWorldPosition())
+   
+                self.game.counter = self.game.counter + 1
             if self.game.inputSystem.getKeyPress(pygame.K_e):
-                newobj = self.addAnimationGameObject('obj1', '草地2', True, False, player.getWorldPosition())
-                newobj.direction = [0, 0]
+                self.addAnimationGameObject(f'obj{self.game.counter}', '草地2', True, False, player.getWorldPosition())
+
+                self.game.counter = self.game.counter + 1
             if self.game.inputSystem.getKeyPress(pygame.K_x):
-                newobj = self.addAnimationGameObject('obj1', '棕色的草', True, False, player.getWorldPosition())
-                newobj.direction = [0, 0]
+                self.addAnimationGameObject(f'obj{self.game.counter}', '棕色的草', True, False, player.getWorldPosition())
+
+                self.game.counter = self.game.counter + 1
+
+            if self.game.inputSystem.getKeyPress(pygame.K_g):
+                self.game.saveObject()
         # 我们想要获得这个人物在这一帧可以走多远（路程）
         # 我的目标速度是每秒200单位（速度）
         # 我当前这一帧的时间是(self.game.frametime/1000000)秒（时间）

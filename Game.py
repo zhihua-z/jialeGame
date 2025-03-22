@@ -45,7 +45,7 @@ class Game:
         #frametime：渲染一张画面的时间
         self.fps = 0.0
         #fps framepersecond：帧率，一秒能花多少张画面
-
+        self.counter = 0
 
         # # 设置小窗口
         # self.var小窗口 = pygame.display.set_mode((200,200))
@@ -78,6 +78,12 @@ class Game:
         f.write(s)
         f.close()
     
+    def saveObject(self):
+        self.entity.saveObject()
+
+
+
+
     def getFont(self, fontName):
         return self.rs.getFont(fontName)
     
