@@ -13,13 +13,18 @@ class GameObject:
         self.components = {}
 #serialize：序列化：把物体编码成一段可读的文字和数字
     def serialize(self):
+     
         dict1 = {}
         dict1['name'] =  self.name
         dict1['type'] =  self.type
         dict1['pos'] =  self.pos
-        
+        dict1['components'] = {}
+       
+       
         for item in self.components:
-            dict1[item] = self.components[item].serialize()
+
+        
+            dict1['components'][item] = self.components[item].serialize()
 
 
         return dict1
@@ -44,7 +49,7 @@ class GameObject:
         self.pos = pos
         self.visible = True
         
-        self.type = 'None'
+        self.type = 'GameObject'
         self.direction = [0, 0]
         
         self.components = {

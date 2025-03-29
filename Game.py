@@ -82,8 +82,6 @@ class Game:
         self.entity.saveObject()
 
 
-
-
     def getFont(self, fontName):
         return self.rs.getFont(fontName)
     

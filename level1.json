@@ -1,296 +1,108 @@
 {
     "Camera": {
         "name": "Camera",
-        "type": "None",
+        "type": "GameObject",
         "pos": [
-            92.11800000000376,
-            200.0
-        ]
+            207.03044246686784,
+            -220.33855753313406
+        ],
+        "components": {}
     },
     "积分": {
         "name": "积分",
-        "type": "None",
+        "type": "GameObject",
         "pos": [
             650.0,
             50.0
         ],
-        "TextRenderer": {
-            "name": "TextRenderer",
-            "visible": true,
-            "moveWithCamera": true,
-            "text": "积分: 14170",
-            "font": "三极榜楷_24",
-            "fontColor": [
-                255,
-                255,
-                0
-            ]
+        "components": {
+            "TextRenderer": {
+                "name": "TextRenderer",
+                "visible": true,
+                "moveWithCamera": true,
+                "text": "积分: 32163",
+                "font": "三极榜楷_24",
+                "fontColor": [
+                    255,
+                    255,
+                    0
+                ]
+            }
         }
     },
     "Player": {
         "name": "Player",
-        "type": "None",
+        "type": "GameObject",
         "pos": [
             400.0,
             200.0
         ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": true,
-            "animation_name": "人物走路_左"
+        "components": {
+            "AnimationRenderer": {
+                "visible": true,
+                "moveWithCamera": true,
+                "AnimationName": "人物走路_后"
+            }
         }
     },
     "obj0": {
         "name": "obj0",
-        "type": "None",
+        "type": "GameObject",
         "pos": [
-            800.0,
-            416.0
+            672.0,
+            352.0
         ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地2"
+        "components": {
+            "AnimationRenderer": {
+                "visible": true,
+                "moveWithCamera": false,
+                "AnimationName": "草地2"
+            }
         }
     },
     "obj1": {
         "name": "obj1",
-        "type": "None",
+        "type": "GameObject",
         "pos": [
-            800.0,
-            416.0
+            608.0,
+            224.0
         ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地1"
+        "components": {
+            "AnimationRenderer": {
+                "visible": true,
+                "moveWithCamera": false,
+                "AnimationName": "草地1"
+            }
         }
     },
     "obj2": {
         "name": "obj2",
-        "type": "None",
+        "type": "GameObject",
         "pos": [
-            800.0,
-            416.0
+            608.0,
+            224.0
         ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地2"
+        "components": {
+            "AnimationRenderer": {
+                "visible": true,
+                "moveWithCamera": false,
+                "AnimationName": "草地1"
+            }
         }
     },
     "obj3": {
         "name": "obj3",
-        "type": "None",
-        "pos": [
-            800.0,
-            416.0
-        ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地1"
-        }
-    },
-    "obj4": {
-        "name": "obj4",
-        "type": "None",
-        "pos": [
-            800.0,
-            416.0
-        ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地2"
-        }
-    },
-    "obj5": {
-        "name": "obj5",
-        "type": "None",
-        "pos": [
-            800.0,
-            416.0
-        ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地1"
-        }
-    },
-    "obj6": {
-        "name": "obj6",
-        "type": "None",
-        "pos": [
-            800.0,
-            416.0
-        ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地2"
-        }
-    },
-    "obj7": {
-        "name": "obj7",
-        "type": "None",
-        "pos": [
-            800.0,
-            416.0
-        ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地1"
-        }
-    },
-    "obj8": {
-        "name": "obj8",
-        "type": "None",
-        "pos": [
-            736.0,
-            416.0
-        ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地1"
-        }
-    },
-    "obj9": {
-        "name": "obj9",
-        "type": "None",
-        "pos": [
-            736.0,
-            416.0
-        ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地2"
-        }
-    },
-    "obj10": {
-        "name": "obj10",
-        "type": "None",
-        "pos": [
-            736.0,
-            416.0
-        ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地1"
-        }
-    },
-    "obj11": {
-        "name": "obj11",
-        "type": "None",
-        "pos": [
-            736.0,
-            416.0
-        ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地2"
-        }
-    },
-    "obj12": {
-        "name": "obj12",
-        "type": "None",
-        "pos": [
-            736.0,
-            416.0
-        ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地1"
-        }
-    },
-    "obj13": {
-        "name": "obj13",
-        "type": "None",
+        "type": "GameObject",
         "pos": [
             608.0,
-            416.0
+            96.0
         ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地2"
-        }
-    },
-    "obj14": {
-        "name": "obj14",
-        "type": "None",
-        "pos": [
-            608.0,
-            416.0
-        ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地2"
-        }
-    },
-    "obj15": {
-        "name": "obj15",
-        "type": "None",
-        "pos": [
-            544.0,
-            416.0
-        ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地2"
-        }
-    },
-    "obj16": {
-        "name": "obj16",
-        "type": "None",
-        "pos": [
-            544.0,
-            416.0
-        ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地2"
-        }
-    },
-    "obj17": {
-        "name": "obj17",
-        "type": "None",
-        "pos": [
-            480.0,
-            416.0
-        ],
-        "AnimationRenderer": {
-            "name": "AnimationRenderer",
-            "visible": true,
-            "moveWithCamera": false,
-            "animation_name": "草地2"
+        "components": {
+            "AnimationRenderer": {
+                "visible": true,
+                "moveWithCamera": false,
+                "AnimationName": "草地1"
+            }
         }
     }
 }

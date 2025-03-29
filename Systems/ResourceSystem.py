@@ -67,12 +67,12 @@ class ResourceSystem:
         
         
         # 加载游戏关卡
-        data = open('level0.json', 'r').read()
+        data = open('level1.json', 'r').read()
         self.level1 = json.loads(data)
         
         # 从读到的文件里创建出来这些游戏物体
         for item in self.level1:
-            self.game.createObject(item)
+            self.game.createObject(self.level1[item])
         
         
     def getFont(self, fontName):

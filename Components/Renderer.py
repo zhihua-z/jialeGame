@@ -29,10 +29,10 @@ class AnimationRenderer(RendererComponent):
 
     def serialize (self):
         dict1 = {}
-        dict1['name'] = self.name
+        
         dict1['visible'] = self.visible
         dict1['moveWithCamera'] = self.moveWithCamera
-        dict1['animation_name'] = self.animation.animation_name
+        dict1['AnimationName'] = self.animation.animation_name
 
         return dict1
 class SpriteRenderer(RendererComponent):
