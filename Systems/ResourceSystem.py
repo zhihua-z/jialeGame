@@ -40,13 +40,14 @@ class ResourceSystem:
         self.var动画资源['史莱姆小'] = pygame.image.load('Resources/img/shilaimu_xiao.png')
         self.var动画资源['游戏贴图'] = pygame.image.load('Resources/img/GRASS+.png')
         self.var动画资源['游戏贴图1'] = pygame.image.load('Resources/img/minecraft.png')
-        
+        self.var动画资源['子弹'] = pygame.image.load('Resources/img/子弹.png')       
         
         # 加载游戏资源贴图
         self.var动画['草地1'] = AnimatedSprite(self.var动画资源['游戏贴图'], 0, 0, 1, 64, 64, '草地1')
         self.var动画['草地2'] = AnimatedSprite(self.var动画资源['游戏贴图'], 64, 0, 1, 64, 64, '草地2')
         self.var动画['棕色的草'] = AnimatedSprite(self.var动画资源['游戏贴图'], 640, 0, 3, 64, 64, '棕色的草')
         self.var动画['草原'] = AnimatedSprite(self.var动画资源['游戏贴图'], 640, 0, 3, 64, 640, '草原')
+        self.var动画['子弹'] = AnimatedSprite(self.var动画资源['子弹'], 0,0,1,64,64,'子弹')
     
 
 

@@ -3,8 +3,8 @@
         "name": "Camera",
         "type": "GameObject",
         "pos": [
-            207.03044246686784,
-            -220.33855753313406
+            -225.53585135376616,
+            150.0666200934218
         ],
         "components": {}
     },
@@ -20,7 +20,7 @@
                 "name": "TextRenderer",
                 "visible": true,
                 "moveWithCamera": true,
-                "text": "积分: 32163",
+                "text": "积分: 23479",
                 "font": "三极榜楷_24",
                 "fontColor": [
                     255,
@@ -49,14 +49,14 @@
         "name": "obj0",
         "type": "GameObject",
         "pos": [
-            672.0,
-            352.0
+            160.0,
+            224.0
         ],
         "components": {
             "AnimationRenderer": {
                 "visible": true,
                 "moveWithCamera": false,
-                "AnimationName": "草地2"
+                "AnimationName": "草地1"
             }
         }
     },
@@ -64,8 +64,8 @@
         "name": "obj1",
         "type": "GameObject",
         "pos": [
-            608.0,
-            224.0
+            160.0,
+            160.0
         ],
         "components": {
             "AnimationRenderer": {
@@ -79,7 +79,7 @@
         "name": "obj2",
         "type": "GameObject",
         "pos": [
-            608.0,
+            -32.0,
             224.0
         ],
         "components": {
@@ -94,8 +94,23 @@
         "name": "obj3",
         "type": "GameObject",
         "pos": [
-            608.0,
-            96.0
+            -32.0,
+            416.0
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "visible": true,
+                "moveWithCamera": false,
+                "AnimationName": "草地1"
+            }
+        }
+    },
+    "obj4": {
+        "name": "obj4",
+        "type": "GameObject",
+        "pos": [
+            160.0,
+            416.0
         ],
         "components": {
             "AnimationRenderer": {

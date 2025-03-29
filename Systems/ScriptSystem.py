@@ -14,7 +14,7 @@ class ScriptSystem():
     
 
         obj = self.game.entity.CreateNewObject(name,newpos)
-
+        self.game.counter += 1
 
         obj.addComponent(
             'AnimationRenderer', 
@@ -32,17 +32,26 @@ class ScriptSystem():
         
         camera.direction = [0, 0]
         if self.running:
+            playerfacingdirection = [0,-600]
             if self.game.inputSystem.getKeyDown(pygame.K_a) == True:
                 camera.direction[0] = -200
+                playerfacingdirection[0] = -600
+                playerfacingdirection[1] = 0
                 player.components['AnimationRenderer'].animation = self.game.rs.getAnimation('人物走路_左')
             if self.game.inputSystem.getKeyDown(pygame.K_d) == True:
                 camera.direction[0] = 200
+                playerfacingdirection[0] = 600
+                playerfacingdirection[1] = 0
                 player.components['AnimationRenderer'].animation = self.game.rs.getAnimation('人物走路_右')
             if self.game.inputSystem.getKeyDown(pygame.K_w) == True:
                 camera.direction[1] = -200
+                playerfacingdirection[1] = -600
+                playerfacingdirection[0] = 0
                 player.components['AnimationRenderer'].animation = self.game.rs.getAnimation('人物走路_后')
             if self.game.inputSystem.getKeyDown(pygame.K_s) == True:
                 camera.direction[1] = 200
+                playerfacingdirection[1] = 600
+                playerfacingdirection[0] = 0
                 player.components['AnimationRenderer'].animation = self.game.rs.getAnimation('人物走路_前')
             if self.game.inputSystem.getKeyPress(pygame.K_f):
                 self.addAnimationGameObject(f'obj{self.game.counter}', '史莱姆运动2', True, False, player.getWorldPosition())
@@ -62,6 +71,11 @@ class ScriptSystem():
 
             if self.game.inputSystem.getKeyPress(pygame.K_g):
                 self.game.saveObject()
+
+            if self.game.inputSystem.getKeyPress(pygame.K_r):
+                
+                r = self.addAnimationGameObject(f'obj{self.game.counter}','子弹',True,False,player.getWorldPosition())
+                r.direction = playerfacingdirection.copy()
         # 我们想要获得这个人物在这一帧可以走多远（路程）
         # 我的目标速度是每秒200单位（速度）
         # 我当前这一帧的时间是(self.game.frametime/1000000)秒（时间）
