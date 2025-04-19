@@ -57,6 +57,10 @@
                 "visible": true,
                 "moveWithCamera": false,
                 "AnimationName": "草地1"
+            },
+
+            "BoxCollider": {
+                "visible": true
             }
         }
     },
@@ -72,6 +76,10 @@
                 "visible": true,
                 "moveWithCamera": false,
                 "AnimationName": "草地1"
+            },
+
+            "BoxCollider": {
+                "visible": true
             }
         }
     },
@@ -87,6 +95,10 @@
                 "visible": true,
                 "moveWithCamera": false,
                 "AnimationName": "草地1"
+            },
+
+            "BoxCollider": {
+                "visible": true
             }
         }
     },
@@ -102,6 +114,10 @@
                 "visible": true,
                 "moveWithCamera": false,
                 "AnimationName": "草地1"
+            },
+
+            "BoxCollider": {
+                "visible": true
             }
         }
     },
@@ -117,6 +133,10 @@
                 "visible": true,
                 "moveWithCamera": false,
                 "AnimationName": "草地1"
+            },
+
+            "BoxCollider": {
+                "visible": true
             }
         }
     }

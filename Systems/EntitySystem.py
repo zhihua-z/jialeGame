@@ -121,6 +121,11 @@ class EntitySystem:
                     item['components']['TextRenderer']['visible'],
                     item['components']['TextRenderer']['moveWithCamera']
                 )
+            elif componentName == 'BoxCollider':
+                obj.addComponent(
+                    'BoxCollider',
+                    item['components']['BoxCollider']['visible']
+                )
         
         return obj
     
