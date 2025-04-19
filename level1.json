@@ -77,7 +77,10 @@
                 "moveWithCamera": false,
                 "AnimationName": "草地1"
             },
+<<<<<<< HEAD
 
+=======
+>>>>>>> acfbf1398e9266b0e7f6692881aefd5adccd8c2e
             "BoxCollider": {
                 "visible": true
             }

@@ -4,8 +4,7 @@ from Components.ComponentBase import Component
 class RendererComponent(Component):
     
     def __init__(self, game, gameObject, name, visible, moveWithCamera):
-        super().__init__(game, name)
-        self.gameObject = gameObject
+        super().__init__(game, name, gameObject)
         self.visible = visible
         self.moveWithCamera = moveWithCamera
         
