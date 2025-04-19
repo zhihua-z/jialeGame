@@ -3,9 +3,12 @@ import math
 
 class PhysicsSystem:
     
-    def __init__(self):
-        pass
-    
+    def __init__(self, game):
+        self.colliders = []
+        self.game = game
+        
+    def addCollider(self, collider):
+        self.colliders.append(collider)
     
     def distance(self, pos1, pos2):
         a=pos1[0] - pos2[0]
@@ -16,38 +19,92 @@ class PhysicsSystem:
     
     def update(self, time):
 
-        # #计算物理碰撞
-        for item in self.var碰撞物体:
-            for other in self.var碰撞物体:
-                if item == other:
-                    continue
+        for i in range(len(self.colliders)):
+            for j in range(i + 1, len(self.colliders)):
+                a = self.colliders[i]
+                b = self.colliders[j]
                 
-                # 只想计算玩家和其他物体之间的碰撞
-                if item['object'].name != 'Player' or item['object'].name != 'shilaimu':
-                    continue
-                
-                item1 = item['object']
-                item2 = other['object']
-                
-                if item1.type == 'Circle' and item2.type == 'Circle':
-                    # 检测item1和item2是否碰撞
-                    juli = self.distance(item1.pos, item2.pos)
-                    
-                    if juli <= item1.radius + item2.radius:
-                        print(f'你被撞了！') 
-                        self.running = False
-                
-                if item1.type == 'Circle' and item2.type == 'Rectangle':
-                    circleRectanglePos = self.checkCircleRectanglePos(item1, item2)
-                    hit, dist = self.checkCircleRectangleHit(item1, item2, circleRectanglePos)
+                if a.name == 'BoxCollider' and b.name == 'BoxCollider':
+                    hit, dist = self.checkBoxColliderWithBoxCollider(a, b)
                     
                     if hit:
-                        print('撞到啦')
-                        self.player.pos = self.setCircleRectangleHitDistance(item1, item2, circleRectanglePos,item1.direction)
-                        self.player.direction[0] = 0
-                        self.player.direction[1] = 0
+                        pass
+                        # 处理碰撞
+                        print('hit')
                     else:
                         pass
+        # # #计算物理碰撞
+        # for item in self.var碰撞物体:
+        #     for other in self.var碰撞物体:
+        #         if item == other:
+        #             continue
+                
+        #         item1 = item['object']
+        #         item2 = other['object']
+                
+        #         if item1.type == 'Circle' and item2.type == 'Circle':
+        #             # 检测item1和item2是否碰撞
+        #             juli = self.distance(item1.pos, item2.pos)
+                    
+        #             if juli <= item1.radius + item2.radius:
+        #                 print(f'你被撞了！') 
+        #                 self.running = False
+                
+        #         if item1.type == 'Circle' and item2.type == 'Rectangle':
+        #             circleRectanglePos = self.checkCircleRectanglePos(item1, item2)
+        #             hit, dist = self.checkCircleRectangleHit(item1, item2, circleRectanglePos)
+                    
+        #             if hit:
+        #                 print('撞到啦')
+        #                 self.player.pos = self.setCircleRectangleHitDistance(item1, item2, circleRectanglePos,item1.direction)
+        #                 self.player.direction[0] = 0
+        #                 self.player.direction[1] = 0
+        #             else:
+        #                 pass
+
+    def checkPointInBoxCollider(self, pos, collider):
+        # 默认宽度64
+        cx0 = collider.gameObject.pos[0] - 32
+        cy0 = collider.gameObject.pos[1] - 32
+        cx1 = collider.gameObject.pos[0] + 32
+        cy1 = collider.gameObject.pos[1] + 32
+        
+        return cx0 < pos[0] and cx1 > pos[0] and cy0 < pos[1] and cy1 > pos[1]
+
+    def checkBoxColliderWithBoxCollider(self, a, b):
+        hit = False
+        dist = 0
+        
+        
+        ax0 = a.gameObject.pos[0] - 32
+        ay0 = a.gameObject.pos[1] - 32
+        ax1 = a.gameObject.pos[0] + 32
+        ay1 = a.gameObject.pos[1] + 32
+        
+        bx0 = b.gameObject.pos[0] - 32
+        by0 = b.gameObject.pos[1] - 32
+        bx1 = b.gameObject.pos[0] + 32
+        by1 = b.gameObject.pos[1] + 32
+        
+        if self.checkPointInBoxCollider((ax0, ay0), b):
+            hit = True
+        if self.checkPointInBoxCollider((ax0, ay1), b):
+            hit = True
+        if self.checkPointInBoxCollider((ax1, ay0), b):
+            hit = True
+        if self.checkPointInBoxCollider((ax1, ay1), b):
+            hit = True
+        if self.checkPointInBoxCollider((bx0, by0), a):
+            hit = True
+        if self.checkPointInBoxCollider((bx0, by0), a):
+            hit = True
+        if self.checkPointInBoxCollider((bx0, by0), a):
+            hit = True
+        if self.checkPointInBoxCollider((bx0, by0), a):
+            hit = True
+            
+        return (hit, 0)
+        
 
     #   1   2   3
     #   4   5   6

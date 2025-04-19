@@ -75,7 +75,7 @@ class EntitySystem:
             # ┌───────────────────────────────┐
             # │       Sprite Renderer         │
             # └───────────────────────────────┘
-            if componentName == 'SpriteRenderer':
+            elif componentName == 'SpriteRenderer':
                 obj.addComponent(
                     'SpriteRenderer', 
                     item['components']['SpriteRenderer']['SpriteName'],

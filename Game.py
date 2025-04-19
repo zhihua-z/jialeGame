@@ -11,7 +11,7 @@ from Systems.ResourceSystem import ResourceSystem
 from Systems.EntitySystem import EntitySystem
 from Systems.RenderSystem import RenderSystem
 from Systems.ScriptSystem import ScriptSystem
-
+from Systems.PhysicsSystem import PhysicsSystem
 
 
 
@@ -61,6 +61,7 @@ class Game:
         self.renderSystem = RenderSystem(self, self.var主窗口)
         self.rs = ResourceSystem(self)
         self.scriptSystem = ScriptSystem(self)
+        self.physics = PhysicsSystem(self)
         
         
         # ┌────────────────────────────────────────────────────────
@@ -95,6 +96,9 @@ class Game:
     # 把渲染器添加到渲染系统里，所以等会儿可以画出来
     def addRenderer(self, renderer):
         self.renderSystem.addRenderer(renderer)
+        
+    def addCollider(self, collider):
+        self.physics.addCollider(collider)
     
     def createObject(self, item):
         self.entity.CreateObject(item)
@@ -133,7 +137,7 @@ class Game:
                     self.inputSystem.update(event)
             
                     
-            
+            self.physics.update(self.time)
             
             # ┌────────────────────────────────────────────────────────
             # │          游戏逻辑都在这里

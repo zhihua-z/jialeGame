@@ -1,5 +1,6 @@
 import pygame
 from Components.Renderer import AnimationRenderer,SpriteRenderer, CircleRenderer, TextRenderer , RectangleRenderer
+from Components.Collider import BoxCollider
 
 # 游戏物体
 class GameObject:
@@ -88,6 +89,10 @@ class GameObject:
             # param1: text, param2 font, param3 color, param4 visible, param5 moveWithCamera
             self.components['TextRenderer'] = TextRenderer(self.game, self, "TextRenderer", param1, param2, param3, param4, param5)
             self.game.addRenderer(self.components['TextRenderer'])
+        elif componentName == 'BoxCollider':
+            # param1: visible
+            self.components['BoxCollider'] = BoxCollider(self.game, self, param1, False)
+            self.game.addCollider(self.components['BoxCollider'])
     
     def update(self):
         

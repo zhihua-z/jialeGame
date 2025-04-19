@@ -20,6 +20,9 @@ class RenderSystem:
             return [pos[0] + self.game.camerapos[0], pos[1] + self.game.camerapos[1]]
 
         def draw(self):
+            
+            # z value sort
+            
             for r in self.renders:
                 if not r.visible:
                     continue
