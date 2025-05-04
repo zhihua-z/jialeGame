@@ -19,8 +19,11 @@ class ScriptSystem():
         obj.addComponent(
             'AnimationRenderer', 
             animationName,
-            visible,
-            moveWithCamera
+            visible
+        )
+        obj.addComponent(
+            'BoxCollider', 
+            visible
         )
         return obj
         
@@ -29,7 +32,7 @@ class ScriptSystem():
         camera = self.game.entity.findObject('Camera')
         player = self.game.entity.findObject('Player')
         jifen.components['TextRenderer'].text = f'积分: {self.jifen}'
-        
+               
         camera.direction = [0, 0]
         if self.running:
             playerfacingdirection = [0,-600]

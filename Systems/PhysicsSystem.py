@@ -31,6 +31,16 @@ class PhysicsSystem:
                         pass
                         # 处理碰撞
                         print('hit')
+                        print('hit')
+                        print('hit')
+                        print('hit')
+                        if a.gameObject.name == 'Player':  
+                            a.gameObject.moveWithCamera = False
+                            a.gameObject.pos = [190,210]
+                    
+                        if b.gameObject.name == 'Player':  
+                            b.gameObject.moveWithCamera = False
+                            a.gameObject.pos = [400,200]
                     else:
                         pass
         # # #计算物理碰撞
@@ -73,13 +83,15 @@ class PhysicsSystem:
 
     def checkBoxColliderWithBoxCollider(self, a, b):
         hit = False
-        dist = 0
+        dist = 1
+
+        apos = a.gameObject.getWorldPosition()
         
+        ax0 = apos[0] - 32
+        ay0 = apos[1] - 32
+        ax1 = apos[0] + 32
+        ay1 = apos[1] + 32
         
-        ax0 = a.gameObject.pos[0] - 32
-        ay0 = a.gameObject.pos[1] - 32
-        ax1 = a.gameObject.pos[0] + 32
-        ay1 = a.gameObject.pos[1] + 32
         
         bx0 = b.gameObject.pos[0] - 32
         by0 = b.gameObject.pos[1] - 32
@@ -96,14 +108,14 @@ class PhysicsSystem:
             hit = True
         if self.checkPointInBoxCollider((bx0, by0), a):
             hit = True
-        if self.checkPointInBoxCollider((bx0, by0), a):
+        if self.checkPointInBoxCollider((bx0, by1), a):
             hit = True
-        if self.checkPointInBoxCollider((bx0, by0), a):
+        if self.checkPointInBoxCollider((bx1, by0), a):
             hit = True
-        if self.checkPointInBoxCollider((bx0, by0), a):
+        if self.checkPointInBoxCollider((bx1, by1), a):
             hit = True
             
-        return (hit, 0)
+        return (hit, dist)
         
 
     #   1   2   3

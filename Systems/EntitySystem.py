@@ -55,7 +55,8 @@ class EntitySystem:
             game = self.game, 
             screen = self.game.var主窗口, 
             name = item['name'],
-            pos = item['pos']
+            pos = item['pos'],
+            moveWithCamera = item['moveWithCamera']
             #pos：posisition：位置
         )
         #
@@ -68,8 +69,7 @@ class EntitySystem:
                 obj.addComponent(
                     'AnimationRenderer',  
                     item['components']['AnimationRenderer']['AnimationName'],
-                    item['components']['AnimationRenderer']['visible'],
-                    item['components']['AnimationRenderer']['moveWithCamera']
+                    item['components']['AnimationRenderer']['visible']
                 )
 
             # ┌───────────────────────────────┐
@@ -79,8 +79,7 @@ class EntitySystem:
                 obj.addComponent(
                     'SpriteRenderer', 
                     item['components']['SpriteRenderer']['SpriteName'],
-                    item['components']['SpriteRenderer']['visible'],
-                    item['components']['SpriteRenderer']['moveWithCamera']
+                    item['components']['SpriteRenderer']['visible']
                 )
                 
             # ┌───────────────────────────────┐
@@ -90,8 +89,7 @@ class EntitySystem:
                 obj.addComponent(
                     'CircleRenderer',
                     item['components']['CircleRenderer']["radius"],
-                    item['components']['CircleRenderer']['visible'],
-                    item['components']['CircleRenderer']['moveWithCamera']
+                    item['components']['CircleRenderer']['visible']
                 )
 
 
@@ -105,8 +103,7 @@ class EntitySystem:
                     item['components']['RectangleRenderer']["width"],
                     item['components']['RectangleRenderer']["height"],
                     item['components']['RectangleRenderer']['color'],
-                    item['components']['RectangleRenderer']['visible'],
-                    item['components']['RectangleRenderer']['moveWithCamera']
+                    item['components']['RectangleRenderer']['visible']
                 )
                 
             # ┌───────────────────────────────┐
@@ -118,8 +115,7 @@ class EntitySystem:
                     item['components']['TextRenderer']['text'],
                     item['components']['TextRenderer']['font'],
                     item['components']['TextRenderer']['fontColor'],
-                    item['components']['TextRenderer']['visible'],
-                    item['components']['TextRenderer']['moveWithCamera']
+                    item['components']['TextRenderer']['visible']
                 )
             elif componentName == 'BoxCollider':
                 obj.addComponent(
@@ -129,11 +125,12 @@ class EntitySystem:
         
         return obj
     
-    def CreateNewObject(self, name, pos = [0, 0]):
+    def CreateNewObject(self, name, pos = [0, 0],moveWithCamera = False):
         obj = GameObject(
             game = self.game, 
             screen = self.game.var主窗口, 
             name = name,
+            moveWithCamera=moveWithCamera,
             pos = pos
         )
     

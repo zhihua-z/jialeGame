@@ -10,6 +10,7 @@ class GameObject:
         self.name = ''
         self.type = 'GameObject'
         self.pos = [1, 1]
+        self.moveWithCamera = False
         
         self.components = {}
 #serialize：序列化：把物体编码成一段可读的文字和数字
@@ -43,11 +44,12 @@ class GameObject:
 
 
 
-    def __init__(self, game, screen, name, pos):
+    def __init__(self, game, screen, name, pos ,moveWithCamera):
         self.game = game
         self.screen = screen
         self.name = name
         self.pos = pos
+        self.moveWithCamera = moveWithCamera
         self.visible = True
         
         self.type = 'GameObject'
@@ -58,7 +60,10 @@ class GameObject:
         }
     
     def getWorldPosition(self):
-        return [self.pos[0] + self.game.camerapos[0], self.pos[1] + self.game.camerapos[1]]
+        if self.moveWithCamera :
+            return [self.pos[0] + self.game.camerapos[0], self.pos[1] + self.game.camerapos[1]]
+        else:
+            return self.pos
         
     
     # 添加组件除了组件的名字之外，我们还会传一堆数据过来。
@@ -66,28 +71,28 @@ class GameObject:
     def addComponent(self, componentName, param1 = None, param2 = None, param3 = None, param4 = None, param5 = None, param6 = None):
         if componentName == 'AnimationRenderer':
             # param1: animation name, param2 visible, param3 moveWithCamera
-            self.components['AnimationRenderer'] = AnimationRenderer(self.game, self, 'AnimationRenderer', param1, param2, param3)   
+            self.components['AnimationRenderer'] = AnimationRenderer(self.game, self, 'AnimationRenderer', param1, param2)   
             self.game.addRenderer(self.components['AnimationRenderer'])
             #param:参数
 
         elif componentName == 'SpriteRenderer':
             # param1: animation name, param2 visible, param3 moveWithCamera
-            self.components['SpriteRenderer'] = SpriteRenderer(self.game, self, 'SpriteRenderer', param1, param2, param3)   
+            self.components['SpriteRenderer'] = SpriteRenderer(self.game, self, 'SpriteRenderer', param1, param2)   
             self.game.addRenderer(self.components['SpriteRenderer'])
             #param:参数
 
         elif componentName == 'CircleRenderer':
             # param1: radius, param2 visible, param3 moveWithCamera
-            self.components['CircleRenderer'] = CircleRenderer(self.game, self, "CircleRenderer",param1, param2, param3)
+            self.components['CircleRenderer'] = CircleRenderer(self.game, self, "CircleRenderer",param1, param2)
             self.game.addRenderer(self.components['CircleRenderer'])
         elif componentName == 'RectangleRenderer':
              # param1: width, param2 height, param3 color, param4 visible, param5 moveWithCamera
-            self.components['RectangleRenderer'] = RectangleRenderer(self.game, self, "RectangleRenderer",param1, param2, param3, param4, param5)
+            self.components['RectangleRenderer'] = RectangleRenderer(self.game, self, "RectangleRenderer",param1, param2, param3, param4)
             self.game.addRenderer(self.components['RectangleRenderer'])
             
         elif componentName == 'TextRenderer':
             # param1: text, param2 font, param3 color, param4 visible, param5 moveWithCamera
-            self.components['TextRenderer'] = TextRenderer(self.game, self, "TextRenderer", param1, param2, param3, param4, param5)
+            self.components['TextRenderer'] = TextRenderer(self.game, self, "TextRenderer", param1, param2, param3, param4)
             self.game.addRenderer(self.components['TextRenderer'])
         elif componentName == 'BoxCollider':
             # param1: visible

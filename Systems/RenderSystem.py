@@ -27,7 +27,7 @@ class RenderSystem:
                 if not r.visible:
                     continue
                 
-                if r.moveWithCamera:
+                if r.gameObject.moveWithCamera:
                     pos = r.gameObject.pos
                 else:
                     pos = self.changeWorldToScreenPosition(r.gameObject.pos)

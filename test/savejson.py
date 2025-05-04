@@ -14,6 +14,7 @@ class GameObject:
         self.name = ''
         self.type = 'GameObject'
         self.pos = [1, 1]
+        self.moveWithCamera = False
         
         self.components = []
 

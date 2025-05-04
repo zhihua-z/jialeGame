@@ -33,3 +33,8 @@ class BoxCollider(Collider):
         super().__init__(game, gameObject,"BoxCollider",visible,moveWithCamera)
         self.visible = visible
 
+    def serialize (self):
+        dict1 = {}
+        dict1['name'] = "BoxCollider"
+        dict1['visible'] = self.visible
+        return dict1
