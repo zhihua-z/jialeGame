@@ -68,7 +68,7 @@ class ResourceSystem:
         
         
         # 加载游戏关卡
-        data = open('level1.json', 'r').read()
+        data = open('level1.json', 'r', encoding='utf-8').read()
         self.level1 = json.loads(data)
         
         # 从读到的文件里创建出来这些游戏物体

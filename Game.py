@@ -137,12 +137,13 @@ class Game:
                     self.inputSystem.update(event)
             
                     
-            self.physics.update(self.time)
             
             # ┌────────────────────────────────────────────────────────
             # │          游戏逻辑都在这里
             # └────────────────────────────────────────────────────────
             self.scriptSystem.update()
+            
+            self.physics.update(self.time)
             
             # ┌────────────────────────────────────────────────────────
             # │          画出游戏画面

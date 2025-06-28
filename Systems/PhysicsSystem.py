@@ -1,5 +1,6 @@
 # Physics: 物理
 import math
+from Components.GameObject import GameObject
 
 class PhysicsSystem:
     
@@ -35,42 +36,27 @@ class PhysicsSystem:
                         print('hit')
                         print('hit')
                         if a.gameObject.name == 'Player':  
-                            a.gameObject.moveWithCamera = False
-                            a.gameObject.pos = [190,210]
-                    
-                        if b.gameObject.name == 'Player':  
-                            b.gameObject.moveWithCamera = False
-                            a.gameObject.pos = [400,200]
+                            player = self.game.entity.findObject('Player')
+                            camera = self.game.entity.findObject('Camera')
+
+                            # 让玩家向当前方向相反的方向反弹dist这么多
+                            if dist > 0:
+                                length = math.sqrt(camera.direction[0] ** 2 + camera.direction[1] ** 2)
+                                if length > 0:
+                                    player.move_to(
+                                        player.pos[0] - camera.direction[0] / length * dist,
+                                        player.pos[1] - camera.direction[1] / length * dist
+                                    )
+
+                            player.direction = [0, 0]  # 停止
+                            camera.direction = [0, 0]
                     else:
                         pass
-        # # #计算物理碰撞
-        # for item in self.var碰撞物体:
-        #     for other in self.var碰撞物体:
-        #         if item == other:
-        #             continue
-                
-        #         item1 = item['object']
-        #         item2 = other['object']
-                
-        #         if item1.type == 'Circle' and item2.type == 'Circle':
-        #             # 检测item1和item2是否碰撞
-        #             juli = self.distance(item1.pos, item2.pos)
-                    
-        #             if juli <= item1.radius + item2.radius:
-        #                 print(f'你被撞了！') 
-        #                 self.running = False
-                
-        #         if item1.type == 'Circle' and item2.type == 'Rectangle':
-        #             circleRectanglePos = self.checkCircleRectanglePos(item1, item2)
-        #             hit, dist = self.checkCircleRectangleHit(item1, item2, circleRectanglePos)
-                    
-        #             if hit:
-        #                 print('撞到啦')
-        #                 self.player.pos = self.setCircleRectangleHitDistance(item1, item2, circleRectanglePos,item1.direction)
-        #                 self.player.direction[0] = 0
-        #                 self.player.direction[1] = 0
-        #             else:
-        #                 pass
+        
+        # 自动更新所有物体的位置
+        for name in self.game.entity.gameObjects:
+            obj: GameObject = self.game.entity.gameObjects[name]
+            obj.updatePhysics()
 
     def checkPointInBoxCollider(self, pos, collider):
         # 默认宽度64
@@ -80,6 +66,14 @@ class PhysicsSystem:
         cy1 = collider.gameObject.pos[1] + 32
         
         return cx0 < pos[0] and cx1 > pos[0] and cy0 < pos[1] and cy1 > pos[1]
+
+    def checkBoxColliderHitDistance(self, point, rect):
+        pass
+        # 1. 计算出这个点对于这个长方形来说在哪个象限
+        # 2. 
+        # 3. 根据象限计算出距离（取这个点到长方形的边的距离较短的一个）
+        # 4. 返回距离 
+
 
     def checkBoxColliderWithBoxCollider(self, a, b):
         hit = False

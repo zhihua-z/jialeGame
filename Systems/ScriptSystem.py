@@ -32,7 +32,7 @@ class ScriptSystem():
         camera = self.game.entity.findObject('Camera')
         player = self.game.entity.findObject('Player')
         jifen.components['TextRenderer'].text = f'积分: {self.jifen}'
-               
+        
         camera.direction = [0, 0]
         if self.running:
             playerfacingdirection = [0,-600]
@@ -85,11 +85,6 @@ class ScriptSystem():
     
         # 计算游戏内容
         self.jifen += 1
-        
-        # 自动更新所有物体的位置
-        for name in self.game.entity.gameObjects:
-            obj = self.game.entity.gameObjects[name]
-            obj.update()
             
         self.game.camerapos[0] = camera.pos[0]
         self.game.camerapos[1] = camera.pos[1]

@@ -99,7 +99,11 @@ class GameObject:
             self.components['BoxCollider'] = BoxCollider(self.game, self, param1, False)
             self.game.addCollider(self.components['BoxCollider'])
     
-    def update(self):
+    def move_to(self, x, y):
+        self.pos[0] = x
+        self.pos[1] = y
+        
+    def updatePhysics(self):
         
         direction = [0, 0]
         direction[0] = self.direction[0] * (self.game.frametime / 1000000)
@@ -113,22 +117,6 @@ class GameObject:
         else:
             self.pos[0] += direction[0]
             self.pos[1] += direction[1]
-        
-        # # x方向的物理计算
-        # if self.pos[0] + 20 > self.game.width: #x方向撞了右边
-        #     self.direction[0] = -self.direction[0]
-        #     self.pos[0] = self.game.width - 20
-        # if self.pos[0] - 20 < 0: #x方向撞了左边
-        #     self.direction[0] = -self.direction[0]
-        #     self.pos[0] = 20
-        
-        # # y方向的物理计算
-        # if self.pos[1] + 20 > self.game.height: #y方向撞了右边
-        #     self.direction[1] = -self.direction[1]
-        #     self.pos[1] = self.game.height - 20
-        # if self.pos[1] - 20 < 0: #y方向撞了左边
-        #     self.direction[1] = -self.direction[1]
-        #     self.pos[1] = 20
         
     def draw(self):
         if self.spriteAnimation is not None:
