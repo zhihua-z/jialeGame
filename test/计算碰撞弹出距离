@@ -1,0 +1,27 @@
+
+        # # 物体移动的方向
+        # dir = [-100, -200]
+
+        # # 方向的速度
+        # dir_leng = math.sqrt(dir[0] ** 2 + dir[1] ** 2)
+
+        # # 找出长度为1的方向向量
+        # unit_dir = [dir[0] / dir_leng, dir[1] / dir_leng]
+
+
+        # # 计算弹出距离
+        # alpha = math.atan(dir[0] / dir[1])
+
+        # a = 10 # 小一点的值
+
+        # # 找出碰撞距离
+        # c = a / math.cos(math.atan(dir[0] / dir[1]))
+
+        # # 物体弹出多少？
+        # # x方向
+        # unit_dir[0] * c
+
+        # # y方向
+        # unit_dir[1] * c
+
+        
