@@ -1,9 +1,0 @@
-{
-    "name": "shilaimu1",
-    "animation": "史莱姆运动大",
-    "pos": [
-        450,
-        200
-    ],
-    "radius": 20
-}
