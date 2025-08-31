@@ -15,12 +15,12 @@ class ResourceSystem:
 		self.var动画资源 = {}
 	def load(self):
 		# 加载贴图
-		self.var贴图['人物行走'] = pygame.image.load('image.png')
-		self.var动画资源['Grass'] = pygame.image.load('GRASS+.png')
+		self.var贴图['人物行走'] = pygame.image.load('Resources/img/人物行走.png')
+		self.var动画资源['Grass'] = pygame.image.load('Resources/img/GRASS+.png')
 		#加载字体
-		self.var字体['爱点乾峰行书-2'] =  pygame.font.Font('AiDianGanFengXingShuttf-2.ttf',50)
+		self.var字体['爱点乾峰行书-2'] =  pygame.font.Font('Resources/font/AiDianGanFengXingShuttf-2.ttf',50)
 		#加载声音
-		self.var声音['背景音乐'] = pygame.mixer.Sound('背景音乐.mp3')
+		self.var声音['背景音乐'] = pygame.mixer.Sound('Resources/sound/背景音乐.mp3')
 		print("资源加载完成")
 		
 

@@ -19,11 +19,9 @@ class Game:
 		#加载资源
 		self.rs.load()
 
-		pygame.mixer.music.load('背景音乐.mp3')  # 加载背景音乐文件
+		pygame.mixer.music.load('Resources/sound/背景音乐.mp3')  # 加载背景音乐文件
 		pygame.mixer.music.set_volume(0.05)  # 设置音量，范围是0.0到1.0
 		pygame.mixer.music.play(-1)  # 循环播放背景音乐
-		#加载字体
-		self.font = self.rs.getFont('爱点乾峰行书-2')
 
 
 
@@ -72,7 +70,9 @@ class Game:
 			self.var主窗口.blit(var人物行走, rect)  # 将图片绘制到窗口上
 
 			# 在左上角显示分数
-			text_surface = self.font.render(f'Score: {self.score}', True, (255, 255,255))  # 白色文字
+			font = self.rs.getFont('爱点乾峰行书-2')
+			self.score = int(self.time // 10)
+			text_surface = font.render(f'Score: {self.score}', True, (255, 255,255))  # 白色文字
 			self.var主窗口.blit(text_surface, (10, 10))  # 在窗口左上角绘制文字
 			
 			#更新屏幕内容   两个渲染画板：展示A，画反面B，如果，否则就有撕裂效果。
