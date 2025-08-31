@@ -1,9 +1,0 @@
-{
-    "name": "Player",
-    "animation": "人物走路_前",
-    "pos": [
-        200,
-        200
-    ],
-    "radius": 20
-}
