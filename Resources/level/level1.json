@@ -1,44 +1,70 @@
-[
-    {
+{
+    "Camera": {
         "name": "Camera",
         "type": "GameObject",
+        "moveWithCamera": true,
         "pos": [
-            400,
-            200
+            -225.53585135376616,
+            150.0666200934218
         ],
         "components": {}
     },
-    {
+    "积分": {
         "name": "积分",
         "type": "GameObject",
         "pos": [
-            650,
-            50
+            650.0,
+            50.0
         ],
+        "moveWithCamera": true,
         "components": {
             "TextRenderer": {
-                "text": "积分",
-                "font": "三极榜楷_24",
-                "fontColor": [255, 255, 0],
+                "name": "TextRenderer",
                 "visible": true,
-                "moveWithCamera": true
+                "text": "积分: 23479",
+                "font": "三极榜楷_24",
+                "fontColor": [
+                    255,
+                    255,
+                    0
+                ]
             }
         }
     },
-    {
+    "Player": {
         "name": "Player",
         "type": "GameObject",
         "pos": [
-            400,
-            200
+            400.0,
+            200.0
         ],
+        "moveWithCamera": true,
         "components": {
             "AnimationRenderer": {
-                "AnimationName": "人物走路_前",
                 "visible": true,
-                "moveWithCamera": true
+                "AnimationName": "人物走路_后"
+            },
+            "BoxCollider": {
+                "visible": true
+            }
+        }
+    },
+    "obj0": {
+        "name": "obj0",
+        "type": "GameObject",
+        "pos": [
+            160.0,
+            224.0
+        ],
+        "moveWithCamera": false,
+        "components": {
+            "AnimationRenderer": {
+                "visible": true,
+                "AnimationName": "草地1"
+            },
+            "BoxCollider": {
+                "visible": true
             }
         }
     }
-    
-]
+}
