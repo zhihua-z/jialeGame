@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Camera",
+        "type": "GameObject",
+        "pos": [
+            400,
+            200
+        ],
+        "components": {}
+    },
+    {
+        "name": "积分",
+        "type": "GameObject",
+        "pos": [
+            650,
+            50
+        ],
+        "components": {
+            "TextRenderer": {
+                "text": "积分",
+                "font": "三极榜楷_24",
+                "fontColor": [255, 255, 0],
+                "visible": true,
+                "moveWithCamera": true
+            }
+        }
+    },
+    {
+        "name": "Player",
+        "type": "GameObject",
+        "pos": [
+            400,
+            200
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "人物走路_前",
+                "visible": true,
+                "moveWithCamera": true
+            }
+        }
+    }
+    
+]
