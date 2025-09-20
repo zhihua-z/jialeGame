@@ -2,11 +2,18 @@ import pygame
 
 class RenderSystem:
 	#渲染应该有屏幕
-	def init__(self,game,screen):
+	def __init__(self,game,screen):
 		self.game = game
 		self.screen = screen
 		self.renders = []
+		#self.numbers = []
 		###完成
+
+	#def load(self):
+		#font = self.game.rs.getFont('爱点乾峰行书-2')
+		# for i in range(10):
+		# 	text_surface = font.render(str(i), True, (255, 255, 255))
+		# 	self.numbers.append(text_surface)
 
 	#针对游戏物体添加不同的渲染系统
 	def addRenderer(self,renderer):
@@ -30,6 +37,7 @@ class RenderSystem:
 			if not r_对象.visible:
 				continue
 			
+			# 从世界坐标转换为屏幕坐标
 			if r_对象.gameObject.moveWithCamera == True:
 				pos = r_对象.gameObject.pos
 			else:
@@ -40,7 +48,7 @@ class RenderSystem:
 				if r_对象.sprite is not None:
 					pic = r_对象.sprite.get_sprite(self.game.time // 1000)
 					rect = pic.get_rect()
-					rect.center = (pos[0], pos[1])
+					rect.center = (pos[0], pos[1]) # 设置锚点
 					self.screen.blit(pic, rect)
 
 			#创建字体渲染器

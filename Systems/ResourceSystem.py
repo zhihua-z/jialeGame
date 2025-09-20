@@ -13,6 +13,7 @@ class ResourceSystem:
 		self.var声音 = {}
 
 		self.var动画资源 = {}
+		
 	def load(self):
 		# 加载贴图
 		self.var贴图['人物行走'] = pygame.image.load('Resources/img/人物行走.png')
