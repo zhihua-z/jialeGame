@@ -1,4 +1,5 @@
 import pygame
+import json
 from GameObject import GameObject
 class EntitySystem:#9.5 22：06 ：我开始做entity system
 	#由定义出来的classes生成的实例
@@ -8,6 +9,16 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 
 	def saveObject(self):
 		dict_saveObject = {}#设个列表用来存储object
+
+		for item in self.gameObjects:
+			dict_saveObject[item] = self.gameObjects[item].serialize()
+		#把物体的名字作为键，物体的属性作为值
+
+		towrite = json.dumps(dict_saveObject,indent=4,ensure_ascii=False)
+		a = open('output.json',"w")
+		a.write(towrite)
+		a.close()
+
 
 	def findObject(self, name):#寻找物体
 		if name in self.gameObjects:
