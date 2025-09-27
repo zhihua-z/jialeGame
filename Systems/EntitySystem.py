@@ -7,6 +7,16 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 		self.game = game
 		self.gameObjects = {}
 
+	import json
+#读取json文件
+	def loadObjectsFromJson(self, filename):
+		with open(filename, "r", encoding="utf-8") as f:
+			data = json.load(f)
+    # data 是一个字典，可以遍历并创建对象
+		for name, obj_data in data.items():
+			obj = self.CreateGameObject(obj_data)
+			self.gameObjects[name] = obj
+
 	def saveObject(self):
 		dict_saveObject = {}#设个列表用来存储object
 
