@@ -3,7 +3,9 @@ import pygame
 import tkinter as tk
 from Systems.ResourceSystem import ResourceSystem
 from Systems.RenderSystem import RenderSystem
-
+from Systems.EntitySystem import EntitySystem
+from Systems.RenderSystem import SpriteRenderer, AnimationRenderer, FontRenderer
+from Systems.InputSystem import InputSystem
 class Game:
 	def __init__(self):
 		pygame.init()
@@ -13,14 +15,38 @@ class Game:
 		pygame.display.set_caption('泰拉瑞亚')
 		self.rs = ResourceSystem()
 		self.renderSystem = RenderSystem(self, self.var主窗口)
+		self.entitysystem = EntitySystem(self)
 		self.score = 0	
 		
 
 
 	def load(self):
 		#加载资源
+		print("Game.load() 被调用")
 		self.rs.load()
+		#获取代码
+		self.entitysystem.loadObjectsFromJson('Resources/level/level1.json')
+		for obj in self.entitysystem.gameObjects.values():
+			print("对象名：", obj.name, "组件：", obj.components)
+			if obj is  None:
+				continue
+			for comp_name, comp_data in obj.components.items():
+				print("遍历到组件：", comp_name, comp_data)
+				if comp_name == "SpriteRenderer":
+					from Systems.RenderSystem import SpriteRenderer
+					sprite = self.rs.getSprite(comp_data["spriteName"])
+					print("SpriteRenderer资源:", sprite)
+					renderer = SpriteRenderer(sprite, obj, moveWithCamera=obj.moveWithCamera)
+					self.renderSystem.addRenderer(renderer)
+				elif comp_name == "AnimationRenderer":
+					from Systems.RenderSystem import AnimationRenderer
+					photos = self.rs.getAnimationFrames(comp_data["AnimationName"])
+					print("AnimationRenderer帧数:", len(photos))
+					renderer = AnimationRenderer(photos, obj, moveWithCamera=obj.moveWithCamera)
+					self.renderSystem.addRenderer(renderer)
+		
 
+		#加载背景音乐
 		pygame.mixer.music.load('Resources/sound/背景音乐.mp3')  # 加载背景音乐文件
 		pygame.mixer.music.set_volume(0.05)  # 设置音量，范围是0.0到1.0
 		pygame.mixer.music.play(-1)  # 循环播放背景音乐

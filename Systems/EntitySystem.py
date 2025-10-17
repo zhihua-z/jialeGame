@@ -10,12 +10,14 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 	import json
 #读取json文件
 	def loadObjectsFromJson(self, filename):
+		import json
 		with open(filename, "r", encoding="utf-8") as f:
 			data = json.load(f)
-    # data 是一个字典，可以遍历并创建对象
-		for name, obj_data in data.items():
-			obj = self.CreateGameObject(obj_data)
-			self.gameObjects[name] = obj
+			for name, obj_data in data.items():
+				obj = self.CreateGameObject(obj_data)
+				if obj is not None:
+					self.gameObjects[name] = obj
+
 
 	def saveObject(self):
 		dict_saveObject = {}#设个列表用来存储object
@@ -37,20 +39,17 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 		
 		
 		return None
-	def CreateObject(self, item):#创建物体
-		obj = None
-		if item['type'] == 'GameObject':
-			obj = self.CreateGameObject(item)
 
-		if obj is not None:
-			self.gameObjects[obj.name] = obj
+		
 
 	def CreateGameObject(self, item):	#应用实例，呼应上文
-		    obj = GameObject(
-            game = self.game, 
-            screen = self.game.var主窗口, 
-            name = item['name'],
-            pos = item['pos'],
-            moveWithCamera = item['moveWithCamera']
+		obj = GameObject(
+        	game=self.game,
+        	screen=self.game.var主窗口,
+        	name=item['name'],
+       		pos=item['pos'],
+        	components=item.get('components', {}),
+        	moveWithCamera=item.get('moveWithCamera', False)
             #导入了我的gameobject
         )
+		return obj  #

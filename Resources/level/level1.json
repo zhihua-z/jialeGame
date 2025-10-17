@@ -40,27 +40,9 @@
         ],
         "moveWithCamera": true,
         "components": {
-            "AnimationRenderer": {
+            "SpriteRenderer": {
                 "visible": true,
-                "AnimationName": "人物走路_后"
-            },
-            "BoxCollider": {
-                "visible": true
-            }
-        }
-    },
-    "obj0": {
-        "name": "obj0",
-        "type": "GameObject",
-        "pos": [
-            160.0,
-            224.0
-        ],
-        "moveWithCamera": false,
-        "components": {
-            "AnimationRenderer": {
-                "visible": true,
-                "AnimationName": "草地1"
+                "spriteName": "人物行走"
             },
             "BoxCollider": {
                 "visible": true
