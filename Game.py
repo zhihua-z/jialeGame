@@ -4,7 +4,7 @@ import tkinter as tk
 from Systems.ResourceSystem import ResourceSystem
 from Systems.RenderSystem import RenderSystem
 from Systems.EntitySystem import EntitySystem
-from Systems.RenderSystem import SpriteRenderer, AnimationRenderer, FontRenderer
+from Systems.RenderSystem import SpriteRenderer, AnimationRenderer, TextRenderer
 from Systems.InputSystem import InputSystem
 class Game:
 	def __init__(self):
@@ -16,6 +16,10 @@ class Game:
 		self.rs = ResourceSystem()
 		self.renderSystem = RenderSystem(self, self.var主窗口)
 		self.entitysystem = EntitySystem(self)
+		self.inputSystem = InputSystem()
+		self.camerapos = [0, 0]
+		
+
 		self.score = 0	
 		
 
@@ -27,10 +31,10 @@ class Game:
 		#获取代码
 		self.entitysystem.loadObjectsFromJson('Resources/level/level1.json')
 		for obj in self.entitysystem.gameObjects.values():
-			print("对象名：", obj.name, "组件：", obj.components)
+			print("对象名：", obj.name, "组件：", obj.components_data)
 			if obj is  None:
 				continue
-			for comp_name, comp_data in obj.components.items():
+			for comp_name, comp_data in obj.components_data.items():
 				print("遍历到组件：", comp_name, comp_data)
 				if comp_name == "SpriteRenderer":
 					from Systems.RenderSystem import SpriteRenderer
@@ -38,12 +42,22 @@ class Game:
 					print("SpriteRenderer资源:", sprite)
 					renderer = SpriteRenderer(sprite, obj, moveWithCamera=obj.moveWithCamera)
 					self.renderSystem.addRenderer(renderer)
+					obj.addComponent(renderer)
 				elif comp_name == "AnimationRenderer":
 					from Systems.RenderSystem import AnimationRenderer
 					photos = self.rs.getAnimationFrames(comp_data["AnimationName"])
 					print("AnimationRenderer帧数:", len(photos))
 					renderer = AnimationRenderer(photos, obj, moveWithCamera=obj.moveWithCamera)
 					self.renderSystem.addRenderer(renderer)
+					obj.addComponent(renderer)
+				elif comp_name == "TextRenderer":
+					from Systems.RenderSystem import TextRenderer
+					font = self.rs.getFont(comp_data["font"])
+					text = comp_data.get("text")
+					color = comp_data.get("fontColor", (255, 255, 255))
+					renderer = TextRenderer(font, text, color, obj, moveWithCamera=obj.moveWithCamera)
+					self.renderSystem.addRenderer(renderer)
+					obj.addComponent(renderer)
 		
 
 		#加载背景音乐
@@ -53,15 +67,7 @@ class Game:
 
 
 
-	def handle_keydown(event, surface):
-		if event.key == pygame.K_x:
-			print("按下了x键,开始自言自语")
-			root = tk.Tk()
-			root.title("自言自语")
-			entry = tk.Entry(root)
-			root.geometry("300x100")  # 设置窗口大小
-			entry.pack()
-			root.mainloop()	# 让Tk窗口保持显示	
+
         
 
 	def run(self):
@@ -75,15 +81,19 @@ class Game:
 		# 5. 统计信息 分数 ScriptSystem
 		# 6. 控制帧率 算时间，fps
 		while running:
+			#运行preupdate
 			t1 = datetime.datetime.now()
+			self.inputSystem.preUpdate()
+
 			for event in pygame.event.get():
+				
 				if event.type == pygame.QUIT:
 					running = False
 				if event.type == pygame.KEYDOWN:
-					self.handle_keydown(event, self.var主窗口)
+					self.inputSystem.update(event)
 					# 处理键盘按下事件
 				if event.type == pygame.KEYUP:
-				# 处理键盘松开事件
+				# 处理键盘松开事件,用inputsystem.update(event)更好
 					quit
 				if event.type == pygame.MOUSEBUTTONDOWN:
 					# 处理鼠标按下事件
@@ -91,7 +101,23 @@ class Game:
 				if event.type == pygame.MOUSEMOTION:
 					# 处理鼠标移动事件
 					quit
+				player = self.entitysystem.gameObjects.get('Player')
+				if self.inputSystem.getkeyDown(pygame.K_w) :
+					player.pos[1] -= 5
+				if self.inputSystem.getkeyDown(pygame.K_s) :
+					player.pos[1] += 5
+				if self.inputSystem.getkeyDown(pygame.K_a) :
+					player.pos[0] -= 5
+				if self.inputSystem.getkeyDown(pygame.K_d) :
+					player.pos[0] += 5
 
+
+				
+#					if not getattr(self, "_input_warn_printed", False):
+#						print("InputSystem 调用异常：", e)
+#						self._input_warn_printed = True
+				
+			self.var主窗口.fill((0, 0, 0))
 			self.renderSystem.draw()
 			# var人物行走 =self.rs.getSprite('人物行走')  # 获取资源
 			
@@ -105,11 +131,18 @@ class Game:
 			# self.var主窗口.blit(var人物行走, rect)  # 将图片绘制到窗口上
 
 			# # 在左上角显示分数
-			# font = self.rs.getFont('爱点乾峰行书-2')
-			# self.score = int(self.time // 10)
-			# text_surface = font.render(f'Score: {self.score}', True, (255, 255,255))  # 白色文字
+			
+			self.score = int(self.time // 10)
+			
 			# self.var主窗口.blit(text_surface, (10, 10))  # 在窗口左上角绘制文字
 			
+
+			#如果inputsystem有变化，就更新,"w""a""s""d"控制移动,以此来进行x,y坐标的变化
+
+
+
+			
+
 			#更新屏幕内容   两个渲染画板：展示A，画反面B，如果，否则就有撕裂效果。
 			pygame.display.flip()
 			t2 = datetime.datetime.now()

@@ -21,12 +21,11 @@ class AnimationRenderer:
 			frame_index = int(time // 100) % len(self.photos)
 			return self.photos[frame_index]
 		
-class FontRenderer:
-		def __init__(self, font, text, fontSize, fontColor, gameObject, moveWithCamera=False):
-			self.name = "FontRenderer"
+class TextRenderer:
+		def __init__(self, font, text, fontColor, gameObject, moveWithCamera=False):
+			self.name = "TextRenderer"
 			self.font = font  # 字体对象
 			self.text = text  # 要渲染的文本
-			self.fontSize = fontSize  # 字体大小
 			self.fontColor = fontColor  # 字体颜色
 			self.gameObject = gameObject
 			self.moveWithCamera = moveWithCamera
@@ -38,11 +37,12 @@ class RenderSystem:
 		self.game = game
 		self.screen = screen
 		self.renders = []
+		
 		#self.numbers = []
 		###完成
 
 
-		def get_current_frame(self, time):
+	def get_current_frame(self, time):
 			if not self.photos:
 				return None
 			frame_index = int(time // 100) % len(self.photos)
@@ -98,12 +98,13 @@ class RenderSystem:
 					rect = frame.get_rect()
 					rect.center = (pos[0], pos[1]) # 设置锚点
 					self.screen.blit(frame, rect)
+					print(f"[RenderSystem] 成功绘制动画帧")
 
 			#创建字体渲染器
-			elif r_对象.name == 'FontRenderer':
+			elif r_对象.name == 'TextRenderer':
 				if r_对象.font is not None:
-					font = pygame.font.Font(r_对象.font, r_对象.fontSize)
-					text_surface = font.render(r_对象.text, True, r_对象.fontColor)
+					font = r_对象.font
+					text_surface = font.render(r_对象.text+str(self.game.score), True, r_对象.fontColor)
 					text_rect = text_surface.get_rect()
 					text_rect.center = (pos[0], pos[1])
 					self.screen.blit(text_surface, text_rect)

@@ -13,7 +13,7 @@
         "name": "积分",
         "type": "GameObject",
         "pos": [
-            650.0,
+            400.0,
             50.0
         ],
         "moveWithCamera": true,
@@ -21,8 +21,8 @@
             "TextRenderer": {
                 "name": "TextRenderer",
                 "visible": true,
-                "text": "积分: 23479",
-                "font": "三极榜楷_24",
+                "text": "积分: ",
+                "font": "爱点乾峰行书-2",
                 "fontColor": [
                     255,
                     255,
@@ -48,5 +48,22 @@
                 "visible": true
             }
         }
-    }
+    },
+	"Grass":{
+		"name": "Grass",
+		"type": "GameObject",
+		"pos": [
+			300.0,
+			300.0
+		],
+		"components": {
+			"AnimationRenderer": {
+				"visible": true,
+				"AnimationName": "Grass"
+			},
+			"BoxCollider": {
+				"visible": false
+			}
+		}
+	}
 }

@@ -32,4 +32,4 @@ class Animation:
 				self.frame_height
 			))
 			self.frames.append(frame)
-			frame_count = frame_count + 1
+			

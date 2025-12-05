@@ -48,8 +48,11 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
         	screen=self.game.var主窗口,
         	name=item['name'],
        		pos=item['pos'],
-        	components=item.get('components', {}),
+        	components={},
         	moveWithCamera=item.get('moveWithCamera', False)
             #导入了我的gameobject
         )
+		obj.components_data = item.get('components', {})  #
 		return obj  #
+	
+	

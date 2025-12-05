@@ -47,3 +47,16 @@ class ResourceSystem:
 		else:
 			print(f"资源 {name} 未找到")
 			return None
+	def getAnimationFrames(self, name):
+		if name in self.var动画资源:
+			sprite_sheet = self.var动画资源[name]
+			frame_width = sprite_sheet.get_width() // 25  # 假设每行有25帧
+			frame_height = sprite_sheet.get_height() // 14
+			frames = []
+			for i in range(25):
+				frame = sprite_sheet.subsurface((i * frame_width, 0, frame_width, frame_height))
+				frames.append(frame)
+			return frames
+		else:
+			print(f"动画资源 {name} 未找到")
+			return []
