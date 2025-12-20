@@ -13,8 +13,8 @@
         "name": "积分",
         "type": "GameObject",
         "pos": [
-            400.0,
-            50.0
+            75.0,
+            750.0
         ],
         "moveWithCamera": true,
         "components": {
@@ -28,24 +28,6 @@
                     255,
                     0
                 ]
-            }
-        }
-    },
-    "Player": {
-        "name": "Player",
-        "type": "GameObject",
-        "pos": [
-            400.0,
-            200.0
-        ],
-        "moveWithCamera": true,
-        "components": {
-            "SpriteRenderer": {
-                "visible": true,
-                "spriteName": "人物行走"
-            },
-            "BoxCollider": {
-                "visible": true
             }
         }
     },
@@ -65,5 +47,41 @@
 				"visible": false
 			}
 		}
-	}
+	},
+    "Player": {
+        "name": "Player",
+        "type": "GameObject",
+        "pos": [
+            200.0,
+            700.0
+        ],
+        "moveWithCamera": true,
+        "components": {
+            "AnimationRenderer": {
+				"AnimationName": "Player",
+				"visible": true
+			},
+            "BoxCollider": {
+                "visible": true
+            }
+        }
+    },
+    "Enemy": {
+        "name": "Enemy",
+        "type": "GameObject",
+        "pos": [
+            150.0,
+            50.0
+        ],
+        "moveWithCamera": true,
+        "components": {
+            "AnimationRenderer": {
+				"AnimationName": "Enemy",
+				"visible": true
+			},
+            "BoxCollider": {
+                "visible": true
+            }
+        }
+    }
 }

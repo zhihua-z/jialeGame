@@ -55,4 +55,28 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 		obj.components_data = item.get('components', {})  #
 		return obj  #
 	
+	# 游戏对象生成都在这里
+	def create蓝色子弹(self, pos):
+		import uuid
+		
+		bulletname = '蓝色子弹' + str(uuid.uuid4())
+		bullet = GameObject(
+			game=self.game,
+			screen=self.game.var主窗口,
+			name=bulletname,
+	   		pos=pos,
+			components={},
+			moveWithCamera=False
+		)
+		#添加组件
+		from Systems.RenderSystem import AnimationRenderer
+		
+		# 获取动画帧
+		animation = self.game.rs.var动画资源.get("蓝色子弹")
+		frames = self.game.rs.getAnimationFramesByAnimation(animation)
+		renderer = AnimationRenderer(frames, bullet, moveWithCamera=False)
+		self.game.renderSystem.addRenderer(renderer)
+		self.gameObjects[bulletname] = bullet
+		bullet.addComponent(renderer)
+		return bullet
 	

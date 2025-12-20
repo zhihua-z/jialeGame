@@ -1,13 +1,72 @@
 {
+	"人物行走": {
+		"type": "Sprite",
+		"file_path": "Resources/img/人物行走.png"
+	},
+	"Grass": {
+		"type": "Sprite",
+		"file_path": "Resources/img/GRASS+.png"
+	},
+	"spritesheet": {
+		"type": "Sprite",
+		"file_path": "Resources/img/spritesheet.png"
+	},
+	"爱点乾峰行书-2": {
+		"type": "Font",
+		"file_path": "Resources/font/AiDianGanFengXingShuttf-2.ttf",
+		"size": 24
+	},
+	"背景音乐": {
+		"type": "Sound",
+		"file_path": "Resources/sound/背景音乐.mp3"
+	},
 	"GreenGrass1": {
 		"type": "Animation",
-		"sprite_sheet": "Resources/img/GRASS+.png",
+		"sprite_sheet": "Grass",
 		"start_x": 1216,
 		"start_y": 576,
 		"frame_width": 64,
 		"frame_height": 64,
 		"frame_count": 3,
-		"fps": 10
+		"fps": 10,
+		"flipX": false,
+		"flipY": false
+	},
+	"Player": {
+		"type": "Animation",
+		"sprite_sheet": "spritesheet",
+		"start_x": 944,
+		"start_y": 0,
+		"frame_width": 63,
+		"frame_height": 82,
+		"frame_count": 1,
+		"fps": 1,
+		"flipX": false,
+		"flipY": false
+	},
+	"Enemy": {
+		"type": "Animation",
+		"sprite_sheet": "spritesheet",
+		"start_x": 654,
+		"start_y": 7,
+		"frame_width": 45,
+		"frame_height": 75,
+		"frame_count": 1,
+		"fps": 1,
+		"flipX": false,
+		"flipY": false
+	},
+	"蓝色子弹": {
+		"type": "Animation",
+		"sprite_sheet": "spritesheet",
+		"start_x": 457,
+		"start_y": 212,
+		"frame_width": 23,
+		"frame_height": 32,
+		"frame_count": 1,
+		"fps": 1,
+		"flipX": false,
+		"flipY": true
 	}
 }
 	

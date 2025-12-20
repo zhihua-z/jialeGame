@@ -59,7 +59,6 @@ class RenderSystem:
 
 	#针对游戏物体添加不同的渲染系统
 	def addRenderer(self,renderer):
-		print("添加渲染器：", renderer.name, "绑定物体：", renderer.gameObject.name)
 		self.renders.append(renderer)
 
 	#渲染坐标转换,世界坐标转屏幕坐标,如人物实现视角跟随
@@ -72,10 +71,8 @@ class RenderSystem:
 	
 	#画出来
 	def draw(self):
-		print("draw被调用，当前渲染器数量：", len(self.renders))
 		#将渲染对象进行不同的操作
 		for r_对象 in self.renders:
-			print("渲染器类型：", r_对象.name, "物体位置：", r_对象.gameObject.pos)
 			#跳过不可见的
 			if not r_对象.visible:
 				continue
@@ -101,7 +98,6 @@ class RenderSystem:
 					rect = frame.get_rect()
 					rect.center = (pos[0], pos[1]) # 设置锚点
 					self.screen.blit(frame, rect)
-					print(f"[RenderSystem] 成功绘制动画帧")
 
 			#创建字体渲染器
 			elif r_对象.name == 'TextRenderer':

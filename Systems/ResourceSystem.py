@@ -15,19 +15,18 @@ class ResourceSystem:
 		self.var动画资源 = {}
 		
 	def load(self):
-		# 加载贴图
-		self.var贴图['人物行走'] = pygame.image.load('Resources/img/人物行走.png')
-		self.var贴图['Grass'] = pygame.image.load('Resources/img/GRASS+.png')
-		#加载字体
-		self.var字体['爱点乾峰行书-2'] =  pygame.font.Font('Resources/font/AiDianGanFengXingShuttf-2.ttf',50)
-		#加载声音
-		self.var声音['背景音乐'] = pygame.mixer.Sound('Resources/sound/背景音乐.mp3')
-		#加载动画资源
 		import json
 		with open('Resources/rs.json', "r", encoding="utf-8") as f:
 			data = json.load(f)
 			for name, obj_data in data.items():
-				self.var动画资源[name] = obj_data
+				if obj_data.get("type") == "Animation":
+					self.var动画资源[name] = obj_data
+				elif obj_data.get("type") == "Sprite":
+					self.var贴图[name] = pygame.image.load(obj_data.get("file_path"))
+				elif obj_data.get("type") == "Sound":
+					self.var声音[name] = pygame.mixer.Sound(obj_data.get("file_path"))
+				elif obj_data.get("type") == "Font":
+					self.var字体[name] = pygame.font.Font(obj_data.get("file_path"), obj_data.get("size", 24))
 		print("资源加载完成")
 
 
@@ -55,14 +54,22 @@ class ResourceSystem:
 		else:
 			print(f"资源 {name} 未找到")
 			return None
-	def getAnimationFrames(self, name,sprite_sheet, start_x=0, start_y=0, frame_width=64, frame_height=64, frame_count=3):
-		if sprite_sheet in self.var贴图:
-			sprite_sheet = self.var贴图[sprite_sheet]
-			frames = []
-			for i in range(frame_count):
-				frame = sprite_sheet.subsurface((start_x + i * frame_width, start_y, frame_width, frame_height))
-				frames.append(frame)
-			return frames
-		else:
-			print(f"动画资源 {name} 未找到")
-			return []
+	
+	def getAnimationFramesByAnimation(self, animation):
+		frames = []
+		sprite_sheet = self.var贴图.get(animation.get("sprite_sheet"))
+		for i in range(animation["frame_count"]):
+			frame = sprite_sheet.subsurface((animation["start_x"] + i * animation["frame_width"], animation["start_y"], animation["frame_width"], animation["frame_height"]))
+			if animation["flipX"] or animation["flipY"]:
+				frame = pygame.transform.flip(frame, animation["flipX"], animation["flipY"])
+			frames.append(frame)
+		return frames
+
+	def getAnimationFrames(self, name,sprite_sheet, start_x=0, start_y=0, frame_width=64, frame_height=64, frame_count=3, flipX=False, flipY=False):
+		frames = []
+		for i in range(frame_count):
+			frame = sprite_sheet.subsurface((start_x + i * frame_width, start_y, frame_width, frame_height))
+			if flipX or flipY:
+				frame = pygame.transform.flip(frame, flipX, flipY)
+			frames.append(frame)
+		return frames

@@ -9,10 +9,10 @@ from Systems.InputSystem import InputSystem
 class Game:
 	def __init__(self):
 		pygame.init()
-		self.var主窗口 = pygame.display.set_mode((600,400))
+		self.var主窗口 = pygame.display.set_mode((400,800))
 		self.time = 0
 		#命名标题，caption:标题
-		pygame.display.set_caption('泰拉瑞亚')
+		pygame.display.set_caption('雷电大战-简易版 by jiale')
 		self.rs = ResourceSystem()
 		self.renderSystem = RenderSystem(self, self.var主窗口)
 		self.entitysystem = EntitySystem(self)
@@ -55,10 +55,12 @@ class Game:
 						frame_height = animation.get("frame_height", 64)
 						frame_count = animation.get("frame_count", 3)
 						fps = animation.get("fps", 4)
+						flipX = animation.get("flipX", False)
+						flipY = animation.get("flipY", False)
 						
 					#获取动画帧
 
-					photos = self.rs.getAnimationFrames(comp_data["AnimationName"],sprite_sheet, start_x, start_y, frame_width, frame_height, frame_count)
+					photos = self.rs.getAnimationFrames(comp_data["AnimationName"],sprite_sheet, start_x, start_y, frame_width, frame_height, frame_count, flipX, flipY)
 					print("AnimationRenderer帧数:", len(photos))
 					renderer = AnimationRenderer(photos, obj, moveWithCamera=obj.moveWithCamera, fps=fps)
 					self.renderSystem.addRenderer(renderer)
@@ -98,6 +100,8 @@ class Game:
 			t1 = datetime.datetime.now()
 			self.inputSystem.preUpdate()
 
+
+			# 1. 处理事件
 			for event in pygame.event.get():
 				
 				if event.type == pygame.QUIT:
@@ -107,25 +111,39 @@ class Game:
 					# 处理键盘按下事件
 				if event.type == pygame.KEYUP:
 				# 处理键盘松开事件,用inputsystem.update(event)更好
-					quit
+					self.inputSystem.update(event)
+					pass
 				if event.type == pygame.MOUSEBUTTONDOWN:
 					# 处理鼠标按下事件
-					quit
+					pass
 				if event.type == pygame.MOUSEMOTION:
 					# 处理鼠标移动事件
-					quit
-				player = self.entitysystem.gameObjects.get('Player')
-				if self.inputSystem.getkeyDown(pygame.K_w) :
-					player.pos[1] -= 5
-				if self.inputSystem.getkeyDown(pygame.K_s) :
-					player.pos[1] += 5
-				if self.inputSystem.getkeyDown(pygame.K_a) :
-					player.pos[0] -= 5
-				if self.inputSystem.getkeyDown(pygame.K_d) :
-					player.pos[0] += 5
+					pass
 
-
+			# 2. 更新游戏物理状态
+			player = self.entitysystem.gameObjects.get('Player')
+			if self.inputSystem.getkeyDown(pygame.K_w) :
+				player.pos[1] -= 0.1
+			if self.inputSystem.getkeyDown(pygame.K_s) :
+				player.pos[1] += 0.1
+			if self.inputSystem.getkeyDown(pygame.K_a) :
+				player.pos[0] -= 0.1
+			if self.inputSystem.getkeyDown(pygame.K_d) :
+				player.pos[0] += 0.1
+			if self.inputSystem.getKeyPress(pygame.K_j) :
+				# 生成蓝色子弹
+				bullet = self.entitysystem.create蓝色子弹([player.pos[0], player.pos[1]-20])
 				
+			for x in self.entitysystem.gameObjects.values():
+				if x.name.startswith('蓝色子弹'):
+					x.pos[1] -= 0.3
+
+
+
+
+
+
+
 #					if not getattr(self, "_input_warn_printed", False):
 #						print("InputSystem 调用异常：", e)
 #						self._input_warn_printed = True
@@ -161,7 +179,6 @@ class Game:
 			t2 = datetime.datetime.now()
 			self.time += (t2-t1).microseconds/1000
 			# 统计信息
-			print(f'这一帧花了 {self.time} 毫秒')
 
 	def quit(self):
 		#卸载所有模块
