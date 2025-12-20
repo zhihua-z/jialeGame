@@ -45,9 +45,22 @@ class Game:
 					obj.addComponent(renderer)
 				elif comp_name == "AnimationRenderer":
 					from Systems.RenderSystem import AnimationRenderer
-					photos = self.rs.getAnimationFrames(comp_data["AnimationName"])
+					getAnimationname = comp_data["AnimationName"]
+					if getAnimationname in self.rs.var动画资源:
+						animation = self.rs.var动画资源[getAnimationname]
+						start_x = animation.get("start_x", 0)
+						start_y = animation.get("start_y", 0)
+						sprite_sheet = self.rs.var贴图.get(animation.get("sprite_sheet"))
+						frame_width = animation.get("frame_width", 64)
+						frame_height = animation.get("frame_height", 64)
+						frame_count = animation.get("frame_count", 3)
+						fps = animation.get("fps", 4)
+						
+					#获取动画帧
+
+					photos = self.rs.getAnimationFrames(comp_data["AnimationName"],sprite_sheet, start_x, start_y, frame_width, frame_height, frame_count)
 					print("AnimationRenderer帧数:", len(photos))
-					renderer = AnimationRenderer(photos, obj, moveWithCamera=obj.moveWithCamera)
+					renderer = AnimationRenderer(photos, obj, moveWithCamera=obj.moveWithCamera, fps=fps)
 					self.renderSystem.addRenderer(renderer)
 					obj.addComponent(renderer)
 				elif comp_name == "TextRenderer":

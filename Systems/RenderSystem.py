@@ -9,16 +9,19 @@ class SpriteRenderer:
 			self.visible = True
 
 class AnimationRenderer:
-		def __init__(self, photos, gameObject, moveWithCamera=False):
+		def __init__(self, photos, gameObject, moveWithCamera=False,fps = 4):
 			self.name = "AnimationRenderer"
 			self.photos = photos  # 动画帧列表
 			self.gameObject = gameObject
 			self.moveWithCamera = moveWithCamera
 			self.visible = True
+			self.fps = fps
+
 		def get_current_frame(self, time):
 			if not self.photos:
 				return None
-			frame_index = int(time // 100) % len(self.photos)
+			frame_time_ms = 1000 / max(self.fps, 1)
+			frame_index = int(time // frame_time_ms) % len(self.photos)
 			return self.photos[frame_index]
 		
 class TextRenderer:

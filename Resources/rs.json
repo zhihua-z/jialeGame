@@ -1,0 +1,13 @@
+{
+	"GreenGrass1": {
+		"type": "Animation",
+		"sprite_sheet": "Resources/img/GRASS+.png",
+		"start_x": 1216,
+		"start_y": 576,
+		"frame_width": 64,
+		"frame_height": 64,
+		"frame_count": 3,
+		"fps": 10
+	}
+}
+	

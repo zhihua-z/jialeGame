@@ -58,8 +58,8 @@
 		],
 		"components": {
 			"AnimationRenderer": {
-				"visible": true,
-				"AnimationName": "Grass"
+				"AnimationName": "GreenGrass1",
+				"visible": true
 			},
 			"BoxCollider": {
 				"visible": false
