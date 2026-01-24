@@ -73,6 +73,11 @@ class Game:
 					renderer = TextRenderer(font, text, color, obj, moveWithCamera=obj.moveWithCamera)
 					self.renderSystem.addRenderer(renderer)
 					obj.addComponent(renderer)
+				
+				elif comp_name == "BoxCollider":
+					from Systems.collider import BoxCollider
+					collider = BoxCollider(self, obj, comp_data.get("visible", False), moveWithCamera=obj.moveWithCamera)
+					obj.addComponent(collider)
 		
 
 		#加载背景音乐
@@ -122,14 +127,18 @@ class Game:
 
 			# 2. 更新游戏物理状态
 			player = self.entitysystem.gameObjects.get('Player')
-			if self.inputSystem.getkeyDown(pygame.K_w) :
-				player.pos[1] -= 0.1
-			if self.inputSystem.getkeyDown(pygame.K_s) :
-				player.pos[1] += 0.1
-			if self.inputSystem.getkeyDown(pygame.K_a) :
-				player.pos[0] -= 0.1
-			if self.inputSystem.getkeyDown(pygame.K_d) :
-				player.pos[0] += 0.1
+			if player is not None:
+				# 使用 pygame.key.get_pressed() 以确保连续按键响应
+				keys = pygame.key.get_pressed()
+				speed = 2.0
+				if keys[pygame.K_w] or keys[pygame.K_UP]:
+					player.pos[1] -= speed
+				if keys[pygame.K_s] or keys[pygame.K_DOWN]:
+					player.pos[1] += speed
+				if keys[pygame.K_a] or keys[pygame.K_LEFT]:
+					player.pos[0] -= speed
+				if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
+					player.pos[0] += speed
 			if self.inputSystem.getKeyPress(pygame.K_j) :
 				# 生成蓝色子弹
 				bullet = self.entitysystem.create蓝色子弹([player.pos[0], player.pos[1]-20])
