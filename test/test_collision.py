@@ -1,58 +1,12 @@
-import pygame
-#from GameObject import Component
-from GameObject import GameObject
-
-
-class Collider:
-
-    def __init__(self, game, gameObject, name, visible, moveWithCamera=False):
-        self.game = game
-        self.gameObject = gameObject
-        self.name = name
-        self.visible = visible
-        self.moveWithCamera = moveWithCamera
-
-class CircleCollider(Collider):
-    
-    def __init__(self, game, gameObject, name, radius, visible, moveWithCamera=False):
-        super().__init__(game, gameObject, name, visible, moveWithCamera)
-        self.radius = radius
-        
-
-
-class RectangleCollider(Collider):
-    
-    def __init__(self, game, gameObject, name, width, height, color, visible, moveWithCamera=False):
-        super().__init__(game, gameObject, name, visible, moveWithCamera)
-
-        self.width = width
-        self.height = height
-        self.color = color
-
-
-class BoxCollider(Collider):
-
-    def __init__(self, game, gameObject, width, height, visible, moveWithCamera=False):
-        super().__init__(game, gameObject, "BoxCollider", visible, moveWithCamera)
-        self.visible = visible
-        self.width = width
-        self.height = height
-    def serialize (self):
-        dict1 = {}
-        dict1['name'] = "BoxCollider"
-        dict1['visible'] = self.visible
-        return dict1
-    
-
-    def checkCollision(self, other):
-        # AABB碰撞检测
+def checkCollision(self, other):
+     # AABB碰撞检测
         # 如果我的任何一个点在那个个矩形里，就算碰撞
         # 如果我完全包裹在另一个矩形里，也算碰撞
-        ax, ay = self.gameObject.pos
-        aw, ah = (self.width, self.height)  # 假设当前物体的宽高为64x64，可以根据实际情况调整
-        bx, by = other.gameObject.pos
-        bw, bh = (other.width, other.height)  # 假设另一个物体的宽高为64x64，可以根据实际情况调整
-
+        ax, ay = self
+        aw, ah = (30, 30)  # 假设当前物体的宽高为64x64，可以根据实际情况调整
+        bx, by = other
+        bw, bh = (100, 100)  # 假设另一个物体的宽高为64x64，可以根据实际情况调整
+        
         #  检测四个角点
         '''
         a0 ------- a1   -
@@ -126,3 +80,5 @@ class BoxCollider(Collider):
             return True  # a3 在 b 矩形内
         
         return False
+        
+print(checkCollision((50, 116), (50, 50)))  # 测试函数调用

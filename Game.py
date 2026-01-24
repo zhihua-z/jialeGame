@@ -11,6 +11,7 @@ class Game:
 		pygame.init()
 		self.var主窗口 = pygame.display.set_mode((400,800))
 		self.time = 0
+		self.dt = 0  # Delta time 每一帧的时间间隔
 		#命名标题，caption:标题
 		pygame.display.set_caption('雷电大战-简易版 by jiale')
 		self.rs = ResourceSystem()
@@ -76,7 +77,9 @@ class Game:
 				
 				elif comp_name == "BoxCollider":
 					from Systems.collider import BoxCollider
-					collider = BoxCollider(self, obj, comp_data.get("visible", False), moveWithCamera=obj.moveWithCamera)
+					width = comp_data.get("width", 64)
+					height = comp_data.get("height", 64)
+					collider = BoxCollider(self, obj, width, height, comp_data.get("visible", False), moveWithCamera=obj.moveWithCamera)
 					obj.addComponent(collider)
 		
 
@@ -130,32 +133,43 @@ class Game:
 			if player is not None:
 				# 使用 pygame.key.get_pressed() 以确保连续按键响应
 				keys = pygame.key.get_pressed()
-				speed = 2.0
+				speed = 400.0
 				if keys[pygame.K_w] or keys[pygame.K_UP]:
-					player.pos[1] -= speed
+					player.pos[1] -= speed * self.dt
 				if keys[pygame.K_s] or keys[pygame.K_DOWN]:
-					player.pos[1] += speed
+					player.pos[1] += speed * self.dt
 				if keys[pygame.K_a] or keys[pygame.K_LEFT]:
-					player.pos[0] -= speed
+					player.pos[0] -= speed * self.dt
 				if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
-					player.pos[0] += speed
-			if self.inputSystem.getKeyPress(pygame.K_j) :
+					player.pos[0] += speed * self.dt
 				# 生成蓝色子弹
+			if self.inputSystem.getKeyPress(pygame.K_j) :
 				bullet = self.entitysystem.create蓝色子弹([player.pos[0], player.pos[1]-20])
 				
 			for x in self.entitysystem.gameObjects.values():
 				if x.name.startswith('蓝色子弹'):
-					x.pos[1] -= 0.3
+					x.pos[1] -= 600.0 * self.dt
+
+
+			# 1. 循环全部的游戏物体，如果他们有collider，就查找其他物体的collider
+			for obj in self.entitysystem.gameObjects.values():
+				if "BoxCollider" in obj.components:
+					collider1 = obj.components["BoxCollider"]
+					for other_obj in self.entitysystem.gameObjects.values():
+						if other_obj == obj:
+							continue
+						if "BoxCollider" in other_obj.components:
+							collider2 = other_obj.components["BoxCollider"]
+							if collider1.checkCollision(collider2):
+								print(f"碰撞检测：{obj.name} 碰到了 {other_obj.name}")
 
 
 
 
 
-
-
-#					if not getattr(self, "_input_warn_printed", False):
-#						print("InputSystem 调用异常：", e)
-#						self._input_warn_printed = True
+#			if not getattr(self, "_input_warn_printed", False):
+#				print("InputSystem 调用异常：", e)
+#				self._input_warn_printed = True
 				
 			self.var主窗口.fill((0, 0, 0))
 			self.renderSystem.draw()
@@ -186,6 +200,7 @@ class Game:
 			#更新屏幕内容   两个渲染画板：展示A，画反面B，如果，否则就有撕裂效果。
 			pygame.display.flip()
 			t2 = datetime.datetime.now()
+			self.dt = (t2 - t1).microseconds / 1000000.0  # 计算每一帧的时间间隔，单位为秒
 			self.time += (t2-t1).microseconds/1000
 			# 统计信息
 
