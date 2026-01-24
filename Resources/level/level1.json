@@ -60,8 +60,8 @@
 			},
             "BoxCollider": {
                 "visible": true,
-                "width": 55,
-                "height": 64
+                "width": 60,
+                "height": 80
             }
         }
     },
@@ -80,8 +80,8 @@
 			},
             "BoxCollider": {
                 "visible": true,
-                "width": 35,
-                "height": 64
+                "width": 37,
+                "height": 72
             }
         }
     }

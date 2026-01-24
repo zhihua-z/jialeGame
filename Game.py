@@ -20,6 +20,7 @@ class Game:
 		self.inputSystem = InputSystem()
 		self.camerapos = [0, 0]
 		
+		self.showDebugInfo = True
 
 		self.score = 0	
 		
@@ -100,9 +101,9 @@ class Game:
 		# 主循环的目标就是每一帧都要做的事情
 		# 1. 处理事件 通过event获取
 		# 2. 更新游戏物理状态 通过物理系统  ScriptSystem
-		# 3. 画出游戏内容 通过渲染系统
-		# 5. 统计信息 分数 ScriptSystem
-		# 6. 控制帧率 算时间，fps
+		# 3. 统计信息 分数 ScriptSystem
+		# 4. 画出游戏内容 通过渲染系统
+		# 5. 控制帧率 算时间，fps
 		while running:
 			#运行preupdate
 			t1 = datetime.datetime.now()
@@ -145,6 +146,9 @@ class Game:
 				# 生成蓝色子弹
 			if self.inputSystem.getKeyPress(pygame.K_j) :
 				bullet = self.entitysystem.create蓝色子弹([player.pos[0], player.pos[1]-20])
+
+			if self.inputSystem.getKeyPress(pygame.K_F3) :
+				self.showDebugInfo = not self.showDebugInfo
 				
 			for x in self.entitysystem.gameObjects.values():
 				if x.name.startswith('蓝色子弹'):
@@ -165,40 +169,42 @@ class Game:
 
 
 
+			# 3. 统计信息 分数 ScriptSystem
+			# # 在左上角显示分数
+			self.score = int(self.time // 10)
 
 
-#			if not getattr(self, "_input_warn_printed", False):
-#				print("InputSystem 调用异常：", e)
-#				self._input_warn_printed = True
-				
+
+			# 4. 画出游戏内容 通过渲染系统
 			self.var主窗口.fill((0, 0, 0))
 			self.renderSystem.draw()
-			# var人物行走 =self.rs.getSprite('人物行走')  # 获取资源
-			
-			# #画出游戏内容
-			# self.var主窗口.fill((0,0,0))
-			# rect = var人物行走.get_rect()
-			# rect.center = (300,200)
-			# self.var主窗口.blit(var人物行走, rect)# 将图片绘制到窗口上
-			
-			# rect .center = (400, 200)  # 设置图片中心位置
-			# self.var主窗口.blit(var人物行走, rect)  # 将图片绘制到窗口上
 
-			# # 在左上角显示分数
 			
-			self.score = int(self.time // 10)
-			
-			# self.var主窗口.blit(text_surface, (10, 10))  # 在窗口左上角绘制文字
-			
+			# 4.1 画出调试信息（Debug）
+			if self.showDebugInfo:
+				# 在屏幕上画出一个64x64的红色中空正方形，表示玩家位置
+				player = self.entitysystem.gameObjects.get('Player')
+				if player is not None:
+					player_box = player.components.get("BoxCollider")
+					if player_box and player_box.visible:
+						pygame.draw.rect(self.var主窗口, (255, 0, 0), (player.pos[0]-player_box.width/2 - self.camerapos[0], player.pos[1]-player_box.height/2 - self.camerapos[1], player_box.width, player_box.height), 1)
 
-			#如果inputsystem有变化，就更新,"w""a""s""d"控制移动,以此来进行x,y坐标的变化
+				
+				enemy = self.entitysystem.gameObjects.get('Enemy')
+				if enemy is not None:
+					enemy_box = enemy.components.get("BoxCollider")
+					if enemy_box and enemy_box.visible:
+						pygame.draw.rect(self.var主窗口, (255, 0, 0), (enemy.pos[0]-enemy_box.width/2 - self.camerapos[0], enemy.pos[1]-enemy_box.height/2 - self.camerapos[1], enemy_box.width, enemy_box.height), 1)
 
 
 
-			
-
-			#更新屏幕内容   两个渲染画板：展示A，画反面B，如果，否则就有撕裂效果。
+			# 更新屏幕内容   两个渲染画板：展示A，画反面B，如果，否则就有撕裂效果。
 			pygame.display.flip()
+
+
+
+
+			# 5. 控制帧率 算时间，fps
 			t2 = datetime.datetime.now()
 			self.dt = (t2 - t1).microseconds / 1000000.0  # 计算每一帧的时间间隔，单位为秒
 			self.time += (t2-t1).microseconds/1000
