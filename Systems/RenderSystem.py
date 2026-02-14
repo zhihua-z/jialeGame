@@ -1,16 +1,27 @@
 import pygame
 
-class SpriteRenderer:
+from component import Component
+
+class Renderer(Component):
+	def __init__(self, game, gameObject, name):
+		super().__init__(game, gameObject, name)
+		
+	def cleanup(self):
+		if self in self.game.renderSystem.renders:
+			self.game.renderSystem.renders.remove(self)
+
+class SpriteRenderer(Renderer):
 		def __init__(self, sprite, gameObject, moveWithCamera=False):
-			self.name = "SpriteRenderer"
+			super().__init__(gameObject.game, gameObject, "SpriteRenderer")
 			self.sprite = sprite
 			self.gameObject = gameObject
 			self.moveWithCamera = moveWithCamera
 			self.visible = True
+			
 
-class AnimationRenderer:
+class AnimationRenderer(Renderer):
 		def __init__(self, photos, gameObject, moveWithCamera=False,fps = 4):
-			self.name = "AnimationRenderer"
+			super().__init__(gameObject.game, gameObject, "AnimationRenderer")
 			self.photos = photos  # 动画帧列表
 			self.gameObject = gameObject
 			self.moveWithCamera = moveWithCamera
@@ -24,9 +35,9 @@ class AnimationRenderer:
 			frame_index = int(time // frame_time_ms) % len(self.photos)
 			return self.photos[frame_index]
 		
-class TextRenderer:
+class TextRenderer(Renderer):
 		def __init__(self, font, text, fontColor, gameObject, moveWithCamera=False):
-			self.name = "TextRenderer"
+			super().__init__(gameObject.game, gameObject, "TextRenderer")
 			self.font = font  # 字体对象
 			self.text = text  # 要渲染的文本
 			self.fontColor = fontColor  # 字体颜色

@@ -20,6 +20,10 @@
 		"type": "Sound",
 		"file_path": "Resources/sound/背景音乐.mp3"
 	},
+	"射击": {
+		"type": "Sound",
+		"file_path": "Resources/sound/射击.mp3"
+	},
 	"GreenGrass1": {
 		"type": "Animation",
 		"sprite_sheet": "Grass",

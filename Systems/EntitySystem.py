@@ -6,6 +6,8 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 	def __init__(self, game ):
 		self.game = game
 		self.gameObjects = {}
+		self.counter = 0
+
 
 	import json
 #读取json文件
@@ -18,6 +20,10 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 				if obj is not None:
 					self.gameObjects[name] = obj
 
+	# 每呼叫一次，计数器+1
+	def GenID(self):
+		self.counter += 1
+		return self.counter
 
 	def saveObject(self):
 		dict_saveObject = {}#设个列表用来存储object
@@ -31,6 +37,21 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 		a.write(towrite)
 		a.close()
 
+	# 传入一个对象ID，删除这个对象
+	def removeObject(self, obj_id):
+		for name, obj in list(self.gameObjects.items()):
+			if obj.id == obj_id:
+				# delete ： 删除
+
+				# 先清除全部的组件
+				for component in obj.components.values():
+					component.cleanup()  # 调用组件的清理方法，释放资源等
+
+				# 再删除这个对象
+				del self.gameObjects[name]
+				print(f"对象 {name} 已被移除")
+				return
+		print(f"对象 ID {obj_id} 未找到，无法移除")
 
 	def findObject(self, name):#寻找物体
 		if name in self.gameObjects:
@@ -71,12 +92,18 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 		#添加组件
 		from Systems.RenderSystem import AnimationRenderer
 		
-		# 获取动画帧
+		# 添加动画渲染组件
 		animation = self.game.rs.var动画资源.get("蓝色子弹")
 		frames = self.game.rs.getAnimationFramesByAnimation(animation)
 		renderer = AnimationRenderer(frames, bullet, moveWithCamera=False)
 		self.game.renderSystem.addRenderer(renderer)
 		self.gameObjects[bulletname] = bullet
 		bullet.addComponent(renderer)
+
+		# 添加box collider
+		from Systems.collider import BoxCollider
+		collider = BoxCollider(self.game, bullet, visible=False, width=16, height=20, moveWithCamera=False)
+		bullet.addComponent(collider)
+
 		return bullet
 	

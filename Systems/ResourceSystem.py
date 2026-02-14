@@ -2,9 +2,6 @@ import pygame
 
 
 
-
-
-
 class ResourceSystem:
 	def __init__(self):
 		self.var贴图 = {}

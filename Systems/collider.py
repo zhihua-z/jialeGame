@@ -1,14 +1,13 @@
 import pygame
 #from GameObject import Component
 from GameObject import GameObject
+from component import Component
 
 
-class Collider:
+class Collider(Component):
 
     def __init__(self, game, gameObject, name, visible, moveWithCamera=False):
-        self.game = game
-        self.gameObject = gameObject
-        self.name = name
+        super().__init__(game, gameObject, name)
         self.visible = visible
         self.moveWithCamera = moveWithCamera
 
