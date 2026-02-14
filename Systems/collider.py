@@ -32,9 +32,10 @@ class RectangleCollider(Collider):
 
 class BoxCollider(Collider):
 
-    def __init__(self, game, gameObject, visible, moveWithCamera=False):
+    def __init__(self, game, gameObject, visible, width, height, moveWithCamera=False):
         super().__init__(game, gameObject, "BoxCollider", visible, moveWithCamera)
-        self.visible = visible
+        self.width = width
+        self.height = height
 
     def serialize (self):
         dict1 = {}
@@ -53,46 +54,61 @@ class BoxCollider(Collider):
         return cx0 < pos[0] and cx1 > pos[0] and cy0 < pos[1] and cy1 > pos[1]
 
 
+        #'''
+        #a0 ------- a1   -
+        #|          |   |
+        #|           |   ah
+        #|           |   |
+        #a3 ------- a2   -
 
-    def checkBoxColliderWithBoxCollider(self, a, b):
-        hit = False
-        dist = 1
+                #|----aw-----|
 
-        apos = a.gameObject.getWorldPosition()
-        
-        ax0 = apos[0] - 32
-        ay0 = apos[1] - 32
-        ax1 = apos[0] + 32
-        ay1 = apos[1] + 32
-        
-        
-        bx0 = b.gameObject.pos[0] - 32
-        by0 = b.gameObject.pos[1] - 32
-        bx1 = b.gameObject.pos[0] + 32
-        by1 = b.gameObject.pos[1] + 32
-        
-        if self.checkPointInBoxCollider((ax0, ay0), b):
-            hit = True
-        if self.checkPointInBoxCollider((ax0, ay1), b):
-            hit = True
-        if self.checkPointInBoxCollider((ax1, ay0), b):
-            hit = True
-        if self.checkPointInBoxCollider((ax1, ay1), b):
-            hit = True
-        if self.checkPointInBoxCollider((bx0, by0), a):
-            hit = True
-        if self.checkPointInBoxCollider((bx0, by1), a):
-            hit = True
-        if self.checkPointInBoxCollider((bx1, by0), a):
-            hit = True
-        if self.checkPointInBoxCollider((bx1, by1), a):
-            hit = True
-            
-        return (hit, dist)
-        
+         #       b0 ------- b1   -
+          #      |           |   |
+           #     |           |   bh
+            #    |           |   |
+             #   b3 ------- b2   -
+              #  
+               # |----bw-----|
 
-    #   1   2   3
-    #   4   5   6
-    #   7   8   9
+    def checkCollision(self, other):
+        # 检测与另一个BoxCollider的碰撞
+        ax,ay = self.gameObject.pos
+        aw = self.width
+        ah = self.height
+        bx,by = other.gameObject.pos
+        bw = other.width
+        bh = other.height
+        a0 = [ax - aw / 2, ay + ah / 2]
+        a1 = [ax + aw / 2, ay + ah / 2]
+        a2 = [ax + aw / 2, ay - ah / 2]
+        a3 = [ax - aw / 2, ay - ah / 2]
+        b0 = [bx - bw / 2, by + bh / 2]
+        b2 = [bx + bw / 2, by - bh / 2]
+        if (a0[0] >= b0[0] and a0[1] <= b0[1] 
+                           and 
+            a0[0] <= b2[0] and a0[1] >= b2[1] 
+                           and 
+            a2[0] >= b0[0] and a2[1] <= b0[1] 
+                           and 
+            a2[0] <= b2[0] and a2[1] >= b2[1]):
+            return True
+        if (a0[0] >= b0[0] and a0[1] <= b0[1] and
+            a0[0] <= b2[0] and a0[1] >= b2[1]):
+            return True
+        if (a2[0] >= b0[0] and a2[1] <= b0[1] and
+            a2[0] <= b2[0] and a2[1] >= b2[1]):
+            return True
+        if (a1[0] >= b0[0] and a1[1] <= b0[1] and
+            a1[0] <= b2[0] and a1[1] >= b2[1]):
+            return True
+        if (a3[0] >= b0[0] and a3[1] <= b0[1] and
+            a3[0] <= b2[0] and a3[1] >= b2[1]):
+            return True
+        
+        return False
+        
+        
+        
         
 

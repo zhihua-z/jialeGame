@@ -42,9 +42,6 @@
 			"AnimationRenderer": {
 				"AnimationName": "GreenGrass1",
 				"visible": true
-			},
-			"BoxCollider": {
-				"visible": false
 			}
 		}
 	},
@@ -62,7 +59,9 @@
 				"visible": true
 			},
             "BoxCollider": {
-                "visible": true
+                "visible": true,
+				"width":64,
+				"height":64
             }
         }
     },
@@ -80,7 +79,9 @@
 				"visible": true
 			},
             "BoxCollider": {
-                "visible": true
+                "visible": true,
+				"width":50,
+				"height":64
             }
         }
     }
