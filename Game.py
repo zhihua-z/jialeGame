@@ -125,7 +125,20 @@ class Game:
 					pass
 				if event.type == pygame.MOUSEBUTTONDOWN:
 					# 处理鼠标按下事件
-					pass
+					pos = event.pos
+					print(f"Mouse button down at {pos}")
+					worldPos = self.renderSystem.changeScreenToWorldPosition(pos)
+					print(f"对应的世界坐标是 {worldPos}")
+					# # 生成蓝色子弹
+					# bullet = self.entitysystem.create蓝色子弹(worldPos)
+					# 射击音效 = self.rs.getSound("射击")
+					# if 射击音效:
+					# 	射击音效.set_volume(0.1)  # 设置音量，范围是0.0到1.0
+					# 	射击音效.play()
+					# 放个草 
+					草 = self.entitysystem.create草(worldPos)
+					
+
 				if event.type == pygame.MOUSEMOTION:
 					# 处理鼠标移动事件
 					pass
@@ -133,7 +146,6 @@ class Game:
 			# 2. 更新游戏物理状态
 			player = self.entitysystem.gameObjects.get('Player')
 			camera = self.entitysystem.gameObjects.get('Camera')
-			print('player: ',player.pos, '    camera: ',camera.pos)
 
 			if player is not None:
 				# 使用 pygame.key.get_pressed() 以确保连续按键响应

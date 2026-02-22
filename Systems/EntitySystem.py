@@ -1,6 +1,8 @@
 import pygame
 import json
 from GameObject import GameObject
+
+
 class EntitySystem:#9.5 22：06 ：我开始做entity system
 	#由定义出来的classes生成的实例
 	def __init__(self, game ):
@@ -106,4 +108,25 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 		bullet.addComponent(collider)
 
 		return bullet
+
+	def create草(self, pos):
+		import uuid
+		
+		草name = '草' + str(uuid.uuid4())
+		草 = GameObject(
+			game=self.game,
+			screen=self.game.var主窗口,
+			name=草name,
+	   		pos=pos,
+			components={},
+			moveWithCamera=False
+		)
+		#添加组件
+		from Systems.RenderSystem import AnimationRenderer
+		
+		animation = self.game.rs.var动画资源['GreenGrass1']
+		animationRender = AnimationRenderer(self.game.rs.getAnimationFramesByAnimation(animation), 草, moveWithCamera=False, fps=4)
+		self.game.renderSystem.addRenderer(animationRender)
+
+		return 草
 	
