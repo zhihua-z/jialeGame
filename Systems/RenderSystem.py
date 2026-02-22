@@ -73,12 +73,13 @@ class RenderSystem:
 		self.renders.append(renderer)
 
 	#渲染坐标转换,世界坐标转屏幕坐标,如人物实现视角跟随
+
 	def changeWorldToScreenPosition(self, pos):
-		return [pos[0] - self.game.camerapos[0], pos[1] - self.game.camerapos[1]]
+		return [pos[0], -pos[1] + 800]
 	
 	#屏幕坐标转世界坐标，静态景物
 	def changeScreenToWorldPosition(self, pos):
-		return [pos[0] + self.game.camerapos[0], pos[1] + self.game.camerapos[1]]
+		return [pos[0], 800 - pos[1]]
 	
 	#画出来
 	def draw(self):

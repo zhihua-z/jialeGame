@@ -4,8 +4,7 @@
         "type": "GameObject",
         "moveWithCamera": true,
         "pos": [
-            -225.53585135376616,
-            150.0666200934218
+            0, 0
         ],
         "components": {}
     },
@@ -50,9 +49,8 @@
         "type": "GameObject",
         "pos": [
             200.0,
-            700.0
+            50.0
         ],
-        "moveWithCamera": true,
         "components": {
             "AnimationRenderer": {
 				"AnimationName": "Player",
@@ -65,14 +63,51 @@
             }
         }
     },
-    "Enemy": {
+    "Enemy1": {
         "name": "Enemy",
         "type": "GameObject",
         "pos": [
             150.0,
-            50.0
+            700.0
         ],
-        "moveWithCamera": true,
+        "components": {
+            "AnimationRenderer": {
+				"AnimationName": "Enemy",
+				"visible": true
+			},
+            "BoxCollider": {
+                "visible": true,
+				"width":50,
+				"height":64
+            }
+        }
+    },
+    "Enemy2": {
+        "name": "Enemy",
+        "type": "GameObject",
+        "pos": [
+            240.0,
+            700.0
+        ],
+        "components": {
+            "AnimationRenderer": {
+				"AnimationName": "Enemy",
+				"visible": true
+			},
+            "BoxCollider": {
+                "visible": true,
+				"width":50,
+				"height":64
+            }
+        }
+    },
+    "Enemy3": {
+        "name": "Enemy",
+        "type": "GameObject",
+        "pos": [
+            80.0,
+            700.0
+        ],
         "components": {
             "AnimationRenderer": {
 				"AnimationName": "Enemy",

@@ -102,7 +102,7 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 
 		# 添加box collider
 		from Systems.collider import BoxCollider
-		collider = BoxCollider(self.game, bullet, visible=False, width=16, height=20, moveWithCamera=False)
+		collider = BoxCollider(self.game, bullet, visible=True, width=16, height=20, moveWithCamera=False)
 		bullet.addComponent(collider)
 
 		return bullet
