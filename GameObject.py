@@ -11,6 +11,8 @@ class GameObject:#我需要一个空的箱子让我放东西或有东西的箱�
 		self.moveWithCamera = moveWithCamera
 
 
+		# 获取id
+		self.id = self.game.entitysystem.GenID()
 	#上为物体的属性，下位添加组件
 	def addComponent(self, component):
 		self.components[component.name] = component
