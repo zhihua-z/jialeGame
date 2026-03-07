@@ -1,11 +1,19 @@
 import pygame
 import json
+
+from Component.renderer import SpriteRenderer, AnimationRenderer, TextRenderer
+from Component.collider import BoxCollider
+
+from Scripts.bullet自杀 import Bullet自杀Script
+
+
 from GameObject import GameObject
 class EntitySystem:#9.5 22：06 ：我开始做entity system
 	#由定义出来的classes生成的实例
 	def __init__(self, game ):
 		self.game = game
 		self.gameObjects = {}
+		self.to_remove = []
 		self.counter = 0#初始化计数器
 	import json
 #读取json文件
@@ -17,6 +25,50 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 				obj = self.CreateGameObject(obj_data)
 				if obj is not None:
 					self.gameObjects[name] = obj
+
+				print("对象名：", obj.name, "组件：", obj.components_data)
+				if obj is  None:
+					continue
+				for comp_name, comp_data in obj.components_data.items():
+					print("遍历到组件：", comp_name, comp_data)
+					if comp_name == "SpriteRenderer":
+						sprite = self.game.rs.getSprite(comp_data["spriteName"])
+						print("SpriteRenderer资源:", sprite)
+						renderer = SpriteRenderer(sprite, obj, moveWithCamera=obj.moveWithCamera)
+						self.game.renderSystem.addRenderer(renderer)
+						obj.addComponent(renderer)
+					elif comp_name == "AnimationRenderer":
+						getAnimationname = comp_data["AnimationName"]
+						if getAnimationname in self.game.rs.var动画资源:
+							animation = self.game.rs.var动画资源[getAnimationname]
+							start_x = animation.get("start_x", 0)
+							start_y = animation.get("start_y", 0)
+							sprite_sheet = self.game.rs.var贴图.get(animation.get("sprite_sheet"))
+							frame_width = animation.get("frame_width", 64)
+							frame_height = animation.get("frame_height", 64)
+							frame_count = animation.get("frame_count", 3)
+							fps = animation.get("fps", 4)
+							flipX = animation.get("flipX", False)
+							flipY = animation.get("flipY", False)
+							
+						#获取动画帧
+
+						photos = self.game.rs.getAnimationFrames(comp_data["AnimationName"],sprite_sheet, start_x, start_y, frame_width, frame_height, frame_count, flipX, flipY)
+						print("AnimationRenderer帧数:", len(photos))
+						renderer = AnimationRenderer(photos, obj, moveWithCamera=obj.moveWithCamera, fps=fps)
+						self.game.renderSystem.addRenderer(renderer)
+						obj.addComponent(renderer)
+					elif comp_name == "TextRenderer":
+						font = self.game.rs.getFont(comp_data["font"])
+						text = comp_data.get("text")
+						color = comp_data.get("fontColor", (255, 255, 255))
+						renderer = TextRenderer(font, text, color, obj, moveWithCamera=obj.moveWithCamera)
+						self.game.renderSystem.addRenderer(renderer)
+						obj.addComponent(renderer)
+					
+					elif comp_name == "BoxCollider":
+						collider = BoxCollider(self.game, obj, comp_data.get("visible", False),comp_data.get("width",False),comp_data.get("height",False), moveWithCamera=obj.moveWithCamera)
+						obj.addComponent(collider)
 	def GenID(self):
 		self.counter += 1
 		return self.counter
@@ -35,6 +87,16 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 		a.write(towrite)
 		a.close()
 
+	# 传入一个对象ID，删除这个对象
+	# 注意：在遍历gameObjects时，不要直接删除对象，而是把要删除的对象ID记录下来，等遍历结束后再统一删除，避免在遍历过程中修改字典导致的错误。
+	def remove(self, obj_id):
+		self.to_remove.append(obj_id)
+	
+	# 处理删除请求，在合适的时机调用这个方法来统一删除对象，避免在遍历过程中修改字典导致的错误。
+	def processRemovals(self):
+		for obj_id in self.to_remove:
+			self.removeObject(obj_id)
+		self.to_remove.clear()
 
 	# 传入一个对象ID，删除这个对象
 	def removeObject(self, obj_id):
@@ -90,7 +152,6 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 			moveWithCamera=False
 		)
 		#添加组件
-		from Systems.RenderSystem import AnimationRenderer
 		
 		# 添加动画渲染组件
 		animation = self.game.rs.var动画资源.get("蓝色子弹")
@@ -101,7 +162,14 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 		bullet.addComponent(renderer)
 		
 		# 添加box collider
-		from Systems.collider import BoxCollider
-		collider = BoxCollider(self.game, bullet, visible=True, width=16, height=20, moveWithCamera=False)
+		from Component.collider import BoxCollider
+		collider = BoxCollider(self.game, bullet, visible=True, width=16, height=26, moveWithCamera=False)
 		bullet.addComponent(collider)
+		
+	
+		# 添加脚本
+		bullet_script = Bullet自杀Script(self.game, bullet, "Bullet自杀Script")
+		self.game.scriptSystem.addScript(bullet_script)
+		bullet.addComponent(bullet_script)
+
 		return bullet

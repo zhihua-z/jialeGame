@@ -1,7 +1,7 @@
 import pygame
 #from GameObject import Component
 from GameObject import GameObject
-from component import Component
+from Component.component import Component
 
 class Collider(Component):
 
@@ -9,6 +9,8 @@ class Collider(Component):
         self.game = game
         self.gameObject = gameObject
         self.name = name
+        self.visible = visible
+        self.moveWithCamera = moveWithCamera
         super().__init__(game, gameObject, name)
 
 class CircleCollider(Collider):
