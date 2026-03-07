@@ -21,7 +21,7 @@ class Game:
 		self.camerapos = [0, 0]
 		#进行地图区域的设置
 		self.map_area = [-1000, -400, 1000, 3000]  # 地图区域，格式为 [x_min, y_min, x_max, y_max]
-		self.showDebugInfo = True
+		self.showDebugInfo = False
 		#展示调试信息
 		self.score = 0	
 		
@@ -138,14 +138,16 @@ class Game:
 
 			# 2. 更新游戏物理状态
 			player = self.entitysystem.gameObjects.get('Player')
+			camera = self.entitysystem.gameObjects.get('Camera')
+			print('player: ',player.pos, '    camera: ',camera.pos)
 			if player is not None:
 				# 使用 pygame.key.get_pressed() 以确保连续按键响应
 				keys = pygame.key.get_pressed()
 				speed = 400 * self.dt  # 根据帧时间调整速度 100————>400更快了
 				if keys[pygame.K_w] or keys[pygame.K_UP]:
-					player.pos[1] -= speed
-				if keys[pygame.K_s] or keys[pygame.K_DOWN]:
 					player.pos[1] += speed
+				if keys[pygame.K_s] or keys[pygame.K_DOWN]:
+					player.pos[1] -= speed
 				if keys[pygame.K_a] or keys[pygame.K_LEFT]:
 					player.pos[0] -= speed
 				if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
@@ -163,7 +165,7 @@ class Game:
 				
 			for x in self.entitysystem.gameObjects.values():
 				if x.name.startswith('蓝色子弹'):
-					x.pos[1] -= 800 * self.dt  # 子弹速度：随帧率变化而变化
+					x.pos[1] += 800 * self.dt  # 子弹速度：随帧率变化而变化#从加到减说明屏幕坐标和世界坐标y轴方向相反了
 
 				
 			
@@ -202,7 +204,7 @@ class Game:
 				if "BoxCollider" in obj.components:
 					collider1 = obj.components["BoxCollider"]
 					for other_obj in self.entitysystem.gameObjects.values():
-						if obj.id >= other_obj.id:#考虑大于的情况
+						if obj.id == other_obj.id:#考虑大于的情况 #之后又不考虑了
 							continue
 						#关于时间复杂度的一些提前学习
 						# 计算复杂度 
@@ -228,24 +230,30 @@ class Game:
 						if "BoxCollider" in other_obj.components:
 							collider2 = other_obj.components["BoxCollider"]
 
-
-
 							# 目标：在这个真正的检测开始之前，尽可能地排除掉不可能碰撞的情况，减少checkCollision的调用次数。
 							if collider1.checkCollision(collider2):
 								print(f"碰撞检测：{obj.name} 碰到了 {other_obj.name}")
+								if obj.name.startswith('蓝色子弹') and other_obj.name.startswith('Enemy') or obj.name.startswith('Enemy') and other_obj.name.startswith('蓝色子弹'):
+										to_remove.append(obj.id)  # 子弹和敌人都要删除
+										to_remove.append(other_obj.id)
 
 #					if not getattr(self, "_input_warn_printed", False):
 #						print("InputSystem 调用异常：", e)
 #						self._input_warn_printed = True
 			# 3. 统计信息 分数 ScriptSystem
 			# # 在左上角显示分数,对自己的分数进行定义
+
 			self.score = int(self.time // 10)
+
+			for obj in to_remove:
+				self.entitysystem.removeObject(obj)
 				
 
 
 			#通过渲染系统画出游戏内容
 			self.var主窗口.fill((0, 0, 0))
 			self.renderSystem.draw()
+
 			
 			# 4.1 画出（Debug）测出来的调试信息
 			if self.showDebugInfo:
@@ -272,9 +280,9 @@ class Game:
 					if "BoxCollider" in obj.components:
 						collider = obj.components["BoxCollider"]
 						if collider.visible:
+							screenPos = self.renderSystem.changeWorldToScreenPosition(obj.pos)
 							pygame.draw.rect(self.var主窗口, (255, 0, 0), 
-											(obj.pos[0]-collider.width/2 - self.camerapos[0], obj.pos[1]-collider.height/2 - self.camerapos[1], 
-												collider.width, collider.height), 1)
+							(screenPos[0] - collider.width/2, screenPos[1] - collider.height/2, collider.width, collider.height), 1)
 							
 				# 显示FPS
 				font = self.rs.getFont("爱点乾峰行书-2")
