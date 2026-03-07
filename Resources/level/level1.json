@@ -4,8 +4,7 @@
         "type": "GameObject",
         "moveWithCamera": true,
         "pos": [
-            0,0
-           
+            0, 0
         ],
         "components": {}
     },

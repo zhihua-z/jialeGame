@@ -131,7 +131,9 @@ class Game:
 					pass
 				if event.type == pygame.MOUSEBUTTONDOWN:
 					# 处理鼠标按下事件
-					pass
+					worldPos = self.renderSystem.changeScreenToWorldPosition(pygame.mouse.get_pos())
+					self.entitysystem.create蓝色子弹(worldPos)
+
 				if event.type == pygame.MOUSEMOTION:
 					# 处理鼠标移动事件
 					pass
