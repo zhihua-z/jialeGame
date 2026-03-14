@@ -4,7 +4,8 @@ import tkinter as tk
 from Systems.ResourceSystem import ResourceSystem
 from Systems.RenderSystem import RenderSystem
 from Systems.EntitySystem import EntitySystem
-from Systems.RenderSystem import SpriteRenderer, AnimationRenderer, TextRenderer
+from Systems.ScriptSystem import ScriptSystem
+from Component.renderer import SpriteRenderer, AnimationRenderer, TextRenderer
 from Systems.InputSystem import InputSystem
 class Game:
 	def __init__(self):
@@ -14,14 +15,15 @@ class Game:
 		self.dt = 0
 		#命名标题，caption:标题
 		pygame.display.set_caption('雷电大战-简易版 by jiale')
-		self.rs = ResourceSystem()
+		self.rs = ResourceSystem(self)
 		self.renderSystem = RenderSystem(self, self.var主窗口)
 		self.entitysystem = EntitySystem(self)
 		self.inputSystem = InputSystem()
+		self.scriptSystem = ScriptSystem(self, self.var主窗口)
 		self.camerapos = [0, 0]
 		#进行地图区域的设置
 		self.map_area = [-1000, -400, 1000, 3000]  # 地图区域，格式为 [x_min, y_min, x_max, y_max]
-		self.showDebugInfo = False
+		self.showDebugInfo = True
 		#展示调试信息
 		self.score = 0	
 		
@@ -34,57 +36,6 @@ class Game:
 		#加载资源
 		print("Game.load() 被调用")
 		self.rs.load()
-		#获取代码
-		self.entitysystem.loadObjectsFromJson('Resources/level/level1.json')
-		for obj in self.entitysystem.gameObjects.values():
-			print("对象名：", obj.name, "组件：", obj.components_data)
-			if obj is  None:
-				continue
-			for comp_name, comp_data in obj.components_data.items():
-				print("遍历到组件：", comp_name, comp_data)
-				if comp_name == "SpriteRenderer":
-					from Systems.RenderSystem import SpriteRenderer
-					sprite = self.rs.getSprite(comp_data["spriteName"])
-					print("SpriteRenderer资源:", sprite)
-					renderer = SpriteRenderer(sprite, obj, moveWithCamera=obj.moveWithCamera)
-					self.renderSystem.addRenderer(renderer)
-					obj.addComponent(renderer)
-				elif comp_name == "AnimationRenderer":
-					from Systems.RenderSystem import AnimationRenderer
-					getAnimationname = comp_data["AnimationName"]
-					if getAnimationname in self.rs.var动画资源:
-						animation = self.rs.var动画资源[getAnimationname]
-						start_x = animation.get("start_x", 0)
-						start_y = animation.get("start_y", 0)
-						sprite_sheet = self.rs.var贴图.get(animation.get("sprite_sheet"))
-						frame_width = animation.get("frame_width", 64)
-						frame_height = animation.get("frame_height", 64)
-						frame_count = animation.get("frame_count", 3)
-						fps = animation.get("fps", 4)
-						flipX = animation.get("flipX", False)
-						flipY = animation.get("flipY", False)
-						
-					#获取动画帧
-
-					photos = self.rs.getAnimationFrames(comp_data["AnimationName"],sprite_sheet, start_x, start_y, frame_width, frame_height, frame_count, flipX, flipY)
-					print("AnimationRenderer帧数:", len(photos))
-					renderer = AnimationRenderer(photos, obj, moveWithCamera=obj.moveWithCamera, fps=fps)
-					self.renderSystem.addRenderer(renderer)
-					obj.addComponent(renderer)
-				elif comp_name == "TextRenderer":
-					from Systems.RenderSystem import TextRenderer
-					font = self.rs.getFont(comp_data["font"])
-					text = comp_data.get("text")
-					color = comp_data.get("fontColor", (255, 255, 255))
-					renderer = TextRenderer(font, text, color, obj, moveWithCamera=obj.moveWithCamera)
-					self.renderSystem.addRenderer(renderer)
-					obj.addComponent(renderer)
-				
-				elif comp_name == "BoxCollider":
-					from Systems.collider import BoxCollider
-					collider = BoxCollider(self, obj, comp_data.get("visible", False),comp_data.get("width",False),comp_data.get("height",False), moveWithCamera=obj.moveWithCamera)
-					obj.addComponent(collider)
-		
 
 		##原来的声音加载
 		# pygame.mixer.music.load('Resources/sound/背景音乐.mp3')  # 加载背景音乐文件
@@ -141,7 +92,6 @@ class Game:
 			# 2. 更新游戏物理状态
 			player = self.entitysystem.gameObjects.get('Player')
 			camera = self.entitysystem.gameObjects.get('Camera')
-			print('player: ',player.pos, '    camera: ',camera.pos)
 			if player is not None:
 				# 使用 pygame.key.get_pressed() 以确保连续按键响应
 				keys = pygame.key.get_pressed()
@@ -154,6 +104,12 @@ class Game:
 					player.pos[0] -= speed
 				if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
 					player.pos[0] += speed
+
+
+						# 3. 更新游戏逻辑进行实时更新
+			self.scriptSystem.update(self.time)
+
+
 			if self.inputSystem.getKeyPress(pygame.K_j) :
 				# 生成蓝色子弹
 				bullet = self.entitysystem.create蓝色子弹([player.pos[0], player.pos[1]-20])
@@ -170,7 +126,8 @@ class Game:
 					x.pos[1] += 800 * self.dt  # 子弹速度：随帧率变化而变化#从加到减说明屏幕坐标和世界坐标y轴方向相反了
 
 				
-			
+				if x.name.startswith('Enemy'):
+					x.pos[1] -= 100 * self.dt  # 敌人速度：随帧率变化而变化
 			'''
 			代码效率：
 			如果我有5个物体 A.1 	B.2 	C.3 	D.4 	E.5
@@ -185,18 +142,16 @@ class Game:
 
 			# 超出屏幕范围检测
 			# post delete 延后删除: 先把所有要删除的对象ID记录下来，等遍历结束后再统一删除，避免在遍历过程中修改字典导致的错误。
-
-			to_remove = []
-
-			for obj in self.entitysystem.gameObjects.values():
-				# [x_min, y_min, x_max, y_max]
-				# evaluator: 计算器，计算字符串表达式的值
-				if obj.pos[0] < self.map_area[0] or obj.pos[0] > self.map_area[2] or obj.pos[1] < self.map_area[1] or obj.pos[1] > self.map_area[3]:
-					to_remove.append(obj.id)
-
-			# 执行删除操作
-			for obj_id in to_remove:
-				self.entitysystem.removeObject(obj_id)	
+			# for obj in self.entitysystem.gameObjects.values():
+			# 	[x_min, y_min, x_max, y_max]
+			# 	evaluator: 计算器，计算字符串表达式的值
+			# 	if obj.pos[0] < self.map_area[0] or obj.pos[0] > self.map_area[2] or obj.pos[1] < self.map_area[1] or obj.pos[1] > self.map_area[3]:
+			# 		to_remove.append(obj.id)
+			# 	if obj.name.startswith('Enemy') and obj.pos[1] < 0:  # 如果敌人飞出屏幕下方也删除
+			# 		to_remove.append(obj.id)
+			# 		print(
+			# 			f"敌人 {obj.name} 飞出屏幕，已删除"
+			# 		)
 
 
 
@@ -235,20 +190,19 @@ class Game:
 							# 目标：在这个真正的检测开始之前，尽可能地排除掉不可能碰撞的情况，减少checkCollision的调用次数。
 							if collider1.checkCollision(collider2):
 								print(f"碰撞检测：{obj.name} 碰到了 {other_obj.name}")
-								if obj.name.startswith('蓝色子弹') and other_obj.name.startswith('Enemy') or obj.name.startswith('Enemy') and other_obj.name.startswith('蓝色子弹'):
-										to_remove.append(obj.id)  # 子弹和敌人都要删除
-										to_remove.append(other_obj.id)
+								# if obj.name.startswith('蓝色子弹') and other_obj.name.startswith('Enemy') or obj.name.startswith('Enemy') and other_obj.name.startswith('蓝色子弹'):
+								# 		to_remove.append(obj.id)  # 子弹和敌人都要删除
+								# 		to_remove.append(other_obj.id)
 
 #					if not getattr(self, "_input_warn_printed", False):
 #						print("InputSystem 调用异常：", e)
 #						self._input_warn_printed = True
 			# 3. 统计信息 分数 ScriptSystem
 			# # 在左上角显示分数,对自己的分数进行定义
+			self.entitysystem.processRemovals()  # 统一处理删除请求
 
 			self.score = int(self.time // 10)
 
-			for obj in to_remove:
-				self.entitysystem.removeObject(obj)
 				
 
 
@@ -257,43 +211,6 @@ class Game:
 			self.renderSystem.draw()
 
 			
-			# 4.1 画出（Debug）测出来的调试信息
-			if self.showDebugInfo:
-				# 
-				player = self.entitysystem.gameObjects.get('Player')
-				##玩家
-				#if player is not None:
-				#	player_box = player.components.get("BoxCollider")
-				#	if player_box and player_box.visible:
-				#		pygame.draw.rect(self.var主窗口, (255, 0, 0), 
-				#	   (player.pos[0]-player_box.width/2 - self.camerapos[0], player.pos[1]-player_box.height/2 - self.camerapos[1], 
-		 		#		player_box.width, player_box.height), 1)
-			
-				##敌人
-				#enemy = self.entitysystem.gameObjects.get('Enemy')
-				#if enemy is not None:
-				#	enemy_box = enemy.components.get("BoxCollider")
-				#	if enemy_box and enemy_box.visible:
-				#		pygame.draw.rect(self.var主窗口, (255, 0, 0), 
-				#	   (enemy.pos[0]-enemy_box.width/2 - self.camerapos[0], enemy.pos[1]-enemy_box.height/2 - self.camerapos[1], 
-		 		#		enemy_box.width, enemy_box.height), 1)
-				 
-				for obj in self.entitysystem.gameObjects.values():
-					if "BoxCollider" in obj.components:
-						collider = obj.components["BoxCollider"]
-						if collider.visible:
-							screenPos = self.renderSystem.changeWorldToScreenPosition(obj.pos)
-							pygame.draw.rect(self.var主窗口, (255, 0, 0), 
-							(screenPos[0] - collider.width/2, screenPos[1] - collider.height/2, collider.width, collider.height), 1)
-							
-				# 显示FPS
-				font = self.rs.getFont("爱点乾峰行书-2")
-				fps_text = font.render(f"FPS: {int(1/self.dt) if self.dt > 0 else 'inf'}", True, (255, 255, 255))
-				self.var主窗口.blit(fps_text, (10, 10))
-
-
-			
-
 			#更新屏幕内容   两个渲染画板：展示A，画反面B，如果，否则就有撕裂效果。
 			pygame.display.flip()
 

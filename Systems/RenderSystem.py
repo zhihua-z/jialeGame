@@ -1,6 +1,6 @@
 import pygame
 
-from component import Component
+from Component.component import Component
 
 class Renderer(Component):
 	def __init__(self, game, gameObject, name):
