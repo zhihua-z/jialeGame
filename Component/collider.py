@@ -1,7 +1,7 @@
 import pygame
 #from GameObject import Component
 from GameObject import GameObject
-from component import Component
+from Component.component import Component
 
 class Collider(Component):
 
@@ -27,6 +27,8 @@ class RectangleCollider(Collider):
         self.width = width
         self.height = height
         self.color = color
+        self.visible = visible
+        self.movewithCamera = moveWithCamera
 
 
 class BoxCollider(Collider):
