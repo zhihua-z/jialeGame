@@ -79,6 +79,9 @@
                 "visible": true,
 				"width":50,
 				"height":64
+            },
+            "EnemyScript": {
+                "life": 20
             }
         }
     },
@@ -98,6 +101,9 @@
                 "visible": true,
 				"width":50,
 				"height":64
+            },
+            "EnemyScript": {
+                "life": 20
             }
         }
     },
@@ -117,6 +123,9 @@
                 "visible": true,
 				"width":50,
 				"height":64
+            },
+            "EnemyScript": {
+                "life": 20
             }
         }
     }

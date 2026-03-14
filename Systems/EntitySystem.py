@@ -4,10 +4,12 @@ import json
 from Component.renderer import SpriteRenderer, AnimationRenderer, TextRenderer
 from Component.collider import BoxCollider
 
+from Scripts.EnemyScript import EnemyScript
 from Scripts.bullet自杀 import Bullet自杀Script
 
 
 from GameObject import GameObject
+from Scripts.玩家子弹击杀 import 玩家子弹击杀
 class EntitySystem:#9.5 22：06 ：我开始做entity system
 	#由定义出来的classes生成的实例
 	def __init__(self, game ):
@@ -69,6 +71,23 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 					elif comp_name == "BoxCollider":
 						collider = BoxCollider(self.game, obj, comp_data.get("visible", False),comp_data.get("width",False),comp_data.get("height",False), moveWithCamera=obj.moveWithCamera)
 						obj.addComponent(collider)
+					elif comp_name == "EnemyScript":
+						life = comp_data.get("life", 20)
+						enemy_script = EnemyScript(self.game, obj, "EnemyScript", life)
+						self.game.scriptSystem.addScript(enemy_script)
+						obj.addComponent(enemy_script)
+					elif comp_name == "Bullet自杀Script":
+						bullet_script = Bullet自杀Script(self.game, obj, "Bullet自杀Script")
+						self.game.scriptSystem.addScript(bullet_script)
+						obj.addComponent(bullet_script)
+					elif comp_name == "玩家子弹击杀":
+						玩家子弹击杀_script = 玩家子弹击杀(self.game, obj, "玩家子弹击杀")
+						self.game.scriptSystem.addScript(玩家子弹击杀_script)
+						obj.addComponent(玩家子弹击杀_script)
+
+					# 方式1：直接在这里根据组件名称创建对应的组件实例，并添加到对象上。
+					# 方式2(业界最常用)：factory模式：创建一个组件工厂，根据组件名称动态创建组件实例，这样就不需要在这里写死每种组件的创建逻辑了，后续添加新组件也更方便。
+					# 方式3（第二常用）：反射（Reflection）：如果使用的编程语言支持反射，可以直接根据组件名称动态找到对应的组件类并创建实例，这样就完全不需要在这里写死每种组件的创建逻辑了，后续添加新组件也更方便。
 	def GenID(self):
 		self.counter += 1
 		return self.counter
@@ -171,5 +190,9 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 		bullet_script = Bullet自杀Script(self.game, bullet, "Bullet自杀Script")
 		self.game.scriptSystem.addScript(bullet_script)
 		bullet.addComponent(bullet_script)
+
+		玩家子弹击杀_script = 玩家子弹击杀(self.game, bullet, "玩家子弹击杀")
+		self.game.scriptSystem.addScript(玩家子弹击杀_script)
+		bullet.addComponent(玩家子弹击杀_script)
 
 		return bullet

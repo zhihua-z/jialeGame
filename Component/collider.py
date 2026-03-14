@@ -13,6 +13,8 @@ class Collider(Component):
         self.moveWithCamera = moveWithCamera
         super().__init__(game, gameObject, name)
 
+        self.collision = None  # 碰撞对象，默认为None
+
 class CircleCollider(Collider):
     
     def __init__(self, game, gameObject, name, radius, visible, moveWithCamera=False):
