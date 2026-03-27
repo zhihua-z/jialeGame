@@ -6,7 +6,8 @@ import pygame
 
 
 class ResourceSystem:
-	def __init__(self):
+	def __init__(self,game):
+		self.game = game
 		self.var贴图 = {}
 		self.var字体 = {}
 		self.var动画 = {}
@@ -29,8 +30,7 @@ class ResourceSystem:
 					self.var字体[name] = pygame.font.Font(obj_data.get("file_path"), obj_data.get("size", 24))
 		print("资源加载完成")
 
-
-		
+		self.game.entitysystem.loadObjectsFromJson('Resources/level/level1.json')
 
 
 

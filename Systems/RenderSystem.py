@@ -1,48 +1,6 @@
 import pygame
 
-from Component.component import Component
 
-class Renderer(Component):
-	def __init__(self, game, gameObject, name):
-		super().__init__(game, gameObject, name)
-		
-	def cleanup(self):
-		if self in self.game.renderSystem.renders:
-			self.game.renderSystem.renders.remove(self)
-
-class SpriteRenderer(Renderer):
-		def __init__(self, sprite, gameObject, moveWithCamera=False):
-			super().__init__(gameObject.game, gameObject, "SpriteRenderer")
-			self.sprite = sprite
-			self.gameObject = gameObject
-			self.moveWithCamera = moveWithCamera
-			self.visible = True
-
-class AnimationRenderer(Renderer):
-		def __init__(self, photos, gameObject, moveWithCamera=False,fps = 4):
-			super().__init__(gameObject.game, gameObject, "AnimationRenderer")
-			self.photos = photos  # 动画帧列表
-			self.gameObject = gameObject
-			self.moveWithCamera = moveWithCamera
-			self.visible = True
-			self.fps = fps
-
-		def get_current_frame(self, time):
-			if not self.photos:
-				return None
-			frame_time_ms = 1000 / max(self.fps, 1)
-			frame_index = int(time // frame_time_ms) % len(self.photos)
-			return self.photos[frame_index]
-		
-class TextRenderer(Renderer):
-		def __init__(self, font, text, fontColor, gameObject, moveWithCamera=False):
-			super().__init__(gameObject.game, gameObject, "TextRenderer")
-			self.font = font  # 字体对象
-			self.text = text  # 要渲染的文本
-			self.fontColor = fontColor  # 字体颜色
-			self.gameObject = gameObject
-			self.moveWithCamera = moveWithCamera
-			self.visible = True
 
 class RenderSystem:
 	#渲染应该有屏幕
@@ -61,11 +19,7 @@ class RenderSystem:
 			frame_index = int(time // 100) % len(self.photos)
 			return self.photos[frame_index]
 
-	#def load(self):
-		#font = self.game.rs.getFont('爱点乾峰行书-2')
-		# for i in range(10):
-		# 	text_surface = font.render(str(i), True, (255, 255, 255))
-		# 	self.numbers.append(text_surface)
+
 
 	#针对游戏物体添加不同的渲染系统
 	def addRenderer(self,renderer):
@@ -116,4 +70,19 @@ class RenderSystem:
 					text_rect = text_surface.get_rect()
 					text_rect.center = (pos[0], pos[1])
 					self.screen.blit(text_surface, text_rect)
+			
+					# 4.1 画出（Debug）测出来的调试信息
+		if self.game.showDebugInfo:
+			for obj in self.game.entitysystem.gameObjects.values():
+				if "BoxCollider" in obj.components:
+					collider = obj.components["BoxCollider"]
+					if collider.visible:
+						screenPos = self.changeWorldToScreenPosition(obj.pos)
+						pygame.draw.rect(self.screen, (255, 0, 0), 
+						(screenPos[0] - collider.width/2, screenPos[1] - collider.height/2, collider.width, collider.height), 1)
+						
+			# 显示FPS
+			font = self.game.rs.getFont("爱点乾峰行书-2")
+			fps_text = font.render(f"FPS: {int(1/self.game.dt) if self.game.dt > 0 else 'inf'}", True, (255, 255, 255))
+			self.screen.blit(fps_text, (10, 10))
 			
