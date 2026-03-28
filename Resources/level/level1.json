@@ -12,8 +12,8 @@
         "name": "积分",
         "type": "GameObject",
         "pos": [
-            75.0,
-            750.0
+            64.0,
+            768.0
         ],
         "moveWithCamera": true,
         "components": {
@@ -30,13 +30,13 @@
             }
         }
     },
-	"Grass":{
-		"name": "Grass",
-		"type": "GameObject",
-		"pos": [
-			300.0,
-			300.0
-		],
+    "Grass":{
+        "name": "Grass",
+        "type": "GameObject",
+        "pos": [
+            320.0,
+            320.0
+        ],
 		"components": {
 			"AnimationRenderer": {
 				"AnimationName": "GreenGrass1",
@@ -44,22 +44,264 @@
 			}
 		}
 	},
+    
+    "Tile_0_0": { "name": "Tile_0_0", "type": "GameObject", "pos": [0, 0], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_64_0": { "name": "Tile_64_0", "type": "GameObject", "pos": [64, 0], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_128_0": { "name": "Tile_128_0", "type": "GameObject", "pos": [128, 0], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_192_0": { "name": "Tile_192_0", "type": "GameObject", "pos": [192, 0], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_256_0": { "name": "Tile_256_0", "type": "GameObject", "pos": [256, 0], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_320_0": { "name": "Tile_320_0", "type": "GameObject", "pos": [320, 0], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_384_0": { "name": "Tile_384_0", "type": "GameObject", "pos": [384, 0], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_448_0": { "name": "Tile_448_0", "type": "GameObject", "pos": [448, 0], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_512_0": { "name": "Tile_512_0", "type": "GameObject", "pos": [512, 0], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_576_0": { "name": "Tile_576_0", "type": "GameObject", "pos": [576, 0], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_640_0": { "name": "Tile_640_0", "type": "GameObject", "pos": [640, 0], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+
+    "Tile_0_64": { "name": "Tile_0_64", "type": "GameObject", "pos": [0, 64], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_64_64": { "name": "Tile_64_64", "type": "GameObject", "pos": [64, 64], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_128_64": { "name": "Tile_128_64", "type": "GameObject", "pos": [128, 64], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_192_64": { "name": "Tile_192_64", "type": "GameObject", "pos": [192, 64], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_256_64": { "name": "Tile_256_64", "type": "GameObject", "pos": [256, 64], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_320_64": { "name": "Tile_320_64", "type": "GameObject", "pos": [320, 64], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_384_64": { "name": "Tile_384_64", "type": "GameObject", "pos": [384, 64], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_448_64": { "name": "Tile_448_64", "type": "GameObject", "pos": [448, 64], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_512_64": { "name": "Tile_512_64", "type": "GameObject", "pos": [512, 64], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_576_64": { "name": "Tile_576_64", "type": "GameObject", "pos": [576, 64], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_640_64": { "name": "Tile_640_64", "type": "GameObject", "pos": [640, 64], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+
+    "Tile_0_128": { "name": "Tile_0_128", "type": "GameObject", "pos": [0, 128], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_64_128": { "name": "Tile_64_128", "type": "GameObject", "pos": [64, 128], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_128_128": { "name": "Tile_128_128", "type": "GameObject", "pos": [128, 128], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_192_128": { "name": "Tile_192_128", "type": "GameObject", "pos": [192, 128], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_256_128": { "name": "Tile_256_128", "type": "GameObject", "pos": [256, 128], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_320_128": { "name": "Tile_320_128", "type": "GameObject", "pos": [320, 128], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_384_128": { "name": "Tile_384_128", "type": "GameObject", "pos": [384, 128], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_448_128": { "name": "Tile_448_128", "type": "GameObject", "pos": [448, 128], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_512_128": { "name": "Tile_512_128", "type": "GameObject", "pos": [512, 128], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_576_128": { "name": "Tile_576_128", "type": "GameObject", "pos": [576, 128], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_640_128": { "name": "Tile_640_128", "type": "GameObject", "pos": [640, 128], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+
+    "Tile_0_192": { "name": "Tile_0_192", "type": "GameObject", "pos": [0, 192], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_64_192": { "name": "Tile_64_192", "type": "GameObject", "pos": [64, 192], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_128_192": { "name": "Tile_128_192", "type": "GameObject", "pos": [128, 192], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_192_192": { "name": "Tile_192_192", "type": "GameObject", "pos": [192, 192], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_256_192": { "name": "Tile_256_192", "type": "GameObject", "pos": [256, 192], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_320_192": { "name": "Tile_320_192", "type": "GameObject", "pos": [320, 192], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_384_192": { "name": "Tile_384_192", "type": "GameObject", "pos": [384, 192], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_448_192": { "name": "Tile_448_192", "type": "GameObject", "pos": [448, 192], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_512_192": { "name": "Tile_512_192", "type": "GameObject", "pos": [512, 192], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_576_192": { "name": "Tile_576_192", "type": "GameObject", "pos": [576, 192], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_640_192": { "name": "Tile_640_192", "type": "GameObject", "pos": [640, 192], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+
+    "Tile_0_256": { "name": "Tile_0_256", "type": "GameObject", "pos": [0, 256], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_64_256": { "name": "Tile_64_256", "type": "GameObject", "pos": [64, 256], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_128_256": { "name": "Tile_128_256", "type": "GameObject", "pos": [128, 256], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_192_256": { "name": "Tile_192_256", "type": "GameObject", "pos": [192, 256], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_256_256": { "name": "Tile_256_256", "type": "GameObject", "pos": [256, 256], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_320_256": { "name": "Tile_320_256", "type": "GameObject", "pos": [320, 256], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_384_256": { "name": "Tile_384_256", "type": "GameObject", "pos": [384, 256], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_448_256": { "name": "Tile_448_256", "type": "GameObject", "pos": [448, 256], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_512_256": { "name": "Tile_512_256", "type": "GameObject", "pos": [512, 256], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_576_256": { "name": "Tile_576_256", "type": "GameObject", "pos": [576, 256], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_640_256": { "name": "Tile_640_256", "type": "GameObject", "pos": [640, 256], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+
+    "Tile_0_320": { "name": "Tile_0_320", "type": "GameObject", "pos": [0, 320], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_64_320": { "name": "Tile_64_320", "type": "GameObject", "pos": [64, 320], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_128_320": { "name": "Tile_128_320", "type": "GameObject", "pos": [128, 320], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_192_320": { "name": "Tile_192_320", "type": "GameObject", "pos": [192, 320], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_256_320": { "name": "Tile_256_320", "type": "GameObject", "pos": [256, 320], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_320_320": { "name": "Tile_320_320", "type": "GameObject", "pos": [320, 320], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_384_320": { "name": "Tile_384_320", "type": "GameObject", "pos": [384, 320], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_448_320": { "name": "Tile_448_320", "type": "GameObject", "pos": [448, 320], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_512_320": { "name": "Tile_512_320", "type": "GameObject", "pos": [512, 320], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_576_320": { "name": "Tile_576_320", "type": "GameObject", "pos": [576, 320], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_640_320": { "name": "Tile_640_320", "type": "GameObject", "pos": [640, 320], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+
+    "Tile_0_384": { "name": "Tile_0_384", "type": "GameObject", "pos": [0, 384], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_64_384": { "name": "Tile_64_384", "type": "GameObject", "pos": [64, 384], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_128_384": { "name": "Tile_128_384", "type": "GameObject", "pos": [128, 384], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_192_384": { "name": "Tile_192_384", "type": "GameObject", "pos": [192, 384], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_256_384": { "name": "Tile_256_384", "type": "GameObject", "pos": [256, 384], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_320_384": { "name": "Tile_320_384", "type": "GameObject", "pos": [320, 384], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_384_384": { "name": "Tile_384_384", "type": "GameObject", "pos": [384, 384], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_448_384": { "name": "Tile_448_384", "type": "GameObject", "pos": [448, 384], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_512_384": { "name": "Tile_512_384", "type": "GameObject", "pos": [512, 384], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_576_384": { "name": "Tile_576_384", "type": "GameObject", "pos": [576, 384], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_640_384": { "name": "Tile_640_384", "type": "GameObject", "pos": [640, 384], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+
+    "Tile_0_448": { "name": "Tile_0_448", "type": "GameObject", "pos": [0, 448], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_64_448": { "name": "Tile_64_448", "type": "GameObject", "pos": [64, 448], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_128_448": { "name": "Tile_128_448", "type": "GameObject", "pos": [128, 448], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_192_448": { "name": "Tile_192_448", "type": "GameObject", "pos": [192, 448], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_256_448": { "name": "Tile_256_448", "type": "GameObject", "pos": [256, 448], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_320_448": { "name": "Tile_320_448", "type": "GameObject", "pos": [320, 448], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_384_448": { "name": "Tile_384_448", "type": "GameObject", "pos": [384, 448], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_448_448": { "name": "Tile_448_448", "type": "GameObject", "pos": [448, 448], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_512_448": { "name": "Tile_512_448", "type": "GameObject", "pos": [512, 448], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_576_448": { "name": "Tile_576_448", "type": "GameObject", "pos": [576, 448], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_640_448": { "name": "Tile_640_448", "type": "GameObject", "pos": [640, 448], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+
+    "Tile_0_512": { "name": "Tile_0_512", "type": "GameObject", "pos": [0, 512], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_64_512": { "name": "Tile_64_512", "type": "GameObject", "pos": [64, 512], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_128_512": { "name": "Tile_128_512", "type": "GameObject", "pos": [128, 512], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_192_512": { "name": "Tile_192_512", "type": "GameObject", "pos": [192, 512], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_256_512": { "name": "Tile_256_512", "type": "GameObject", "pos": [256, 512], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_320_512": { "name": "Tile_320_512", "type": "GameObject", "pos": [320, 512], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_384_512": { "name": "Tile_384_512", "type": "GameObject", "pos": [384, 512], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_448_512": { "name": "Tile_448_512", "type": "GameObject", "pos": [448, 512], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_512_512": { "name": "Tile_512_512", "type": "GameObject", "pos": [512, 512], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_576_512": { "name": "Tile_576_512", "type": "GameObject", "pos": [576, 512], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_640_512": { "name": "Tile_640_512", "type": "GameObject", "pos": [640, 512], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+
+    "Tile_0_576": { "name": "Tile_0_576", "type": "GameObject", "pos": [0, 576], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_64_576": { "name": "Tile_64_576", "type": "GameObject", "pos": [64, 576], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_128_576": { "name": "Tile_128_576", "type": "GameObject", "pos": [128, 576], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_192_576": { "name": "Tile_192_576", "type": "GameObject", "pos": [192, 576], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_256_576": { "name": "Tile_256_576", "type": "GameObject", "pos": [256, 576], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_320_576": { "name": "Tile_320_576", "type": "GameObject", "pos": [320, 576], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_384_576": { "name": "Tile_384_576", "type": "GameObject", "pos": [384, 576], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_448_576": { "name": "Tile_448_576", "type": "GameObject", "pos": [448, 576], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_512_576": { "name": "Tile_512_576", "type": "GameObject", "pos": [512, 576], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_576_576": { "name": "Tile_576_576", "type": "GameObject", "pos": [576, 576], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_640_576": { "name": "Tile_640_576", "type": "GameObject", "pos": [640, 576], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+
+    "Tile_0_640": { "name": "Tile_0_640", "type": "GameObject", "pos": [0, 640], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_64_640": { "name": "Tile_64_640", "type": "GameObject", "pos": [64, 640], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_128_640": { "name": "Tile_128_640", "type": "GameObject", "pos": [128, 640], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_192_640": { "name": "Tile_192_640", "type": "GameObject", "pos": [192, 640], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_256_640": { "name": "Tile_256_640", "type": "GameObject", "pos": [256, 640], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_320_640": { "name": "Tile_320_640", "type": "GameObject", "pos": [320, 640], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_384_640": { "name": "Tile_384_640", "type": "GameObject", "pos": [384, 640], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_448_640": { "name": "Tile_448_640", "type": "GameObject", "pos": [448, 640], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_512_640": { "name": "Tile_512_640", "type": "GameObject", "pos": [512, 640], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_576_640": { "name": "Tile_576_640", "type": "GameObject", "pos": [576, 640], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_640_640": { "name": "Tile_640_640", "type": "GameObject", "pos": [640, 640], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+
+    "Tile_0_704": { "name": "Tile_0_704", "type": "GameObject", "pos": [0, 704], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_64_704": { "name": "Tile_64_704", "type": "GameObject", "pos": [64, 704], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_128_704": { "name": "Tile_128_704", "type": "GameObject", "pos": [128, 704], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_192_704": { "name": "Tile_192_704", "type": "GameObject", "pos": [192, 704], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_256_704": { "name": "Tile_256_704", "type": "GameObject", "pos": [256, 704], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_320_704": { "name": "Tile_320_704", "type": "GameObject", "pos": [320, 704], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "Tile_384_704": { "name": "Tile_384_704", "type": "GameObject", "pos": [384, 704], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_2_0", "visible": true } } },
+    "Tile_448_704": { "name": "Tile_448_704", "type": "GameObject", "pos": [448, 704], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_3_0", "visible": true } } },
+    "Tile_512_704": { "name": "Tile_512_704", "type": "GameObject", "pos": [512, 704], "components": { "AnimationRenderer": { "AnimationName": "GreenGrass1", "visible": true } } },
+    "Tile_576_704": { "name": "Tile_576_704", "type": "GameObject", "pos": [576, 704], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_0_0", "visible": true } } },
+    "Tile_640_704": { "name": "Tile_640_704", "type": "GameObject", "pos": [640, 704], "components": { "AnimationRenderer": { "AnimationName": "GrassTile_1_0", "visible": true } } },
+    "BushA": {
+        "name": "BushA",
+        "type": "GameObject",
+        "pos": [
+            128.0,
+            512.0
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "Bush_0_5",
+                "visible": true
+            },
+            "BoxCollider": {
+                "visible": false,
+                "width": 64,
+                "height": 64,
+                "group": 1
+            }
+        }
+    },
+    "RockA": {
+        "name": "RockA",
+        "type": "GameObject",
+        "pos": [
+            256.0,
+            448.0
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "Rock_2_6",
+                "visible": true
+            },
+            "BoxCollider": {
+                "visible": false,
+                "width": 48,
+                "height": 40,
+                "group": 1
+            }
+        }
+    },
+    "GrassPatch1": {
+        "name": "GrassPatch1",
+        "type": "GameObject",
+        "pos": [
+            64.0,
+            320.0
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "GrassTile_0_0",
+                "visible": true
+            }
+        }
+    },
+    "GrassPatch2": {
+        "name": "GrassPatch2",
+        "type": "GameObject",
+        "pos": [
+            384.0,
+            384.0
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "GrassTile_1_0",
+                "visible": true
+            }
+        }
+    },
+    "GrassPatch3": {
+        "name": "GrassPatch3",
+        "type": "GameObject",
+        "pos": [
+            192.0,
+            320.0
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "GrassTile_2_0",
+                "visible": true
+            }
+        }
+    },
+    "GrassPatch4": {
+        "name": "GrassPatch4",
+        "type": "GameObject",
+        "pos": [
+            256.0,
+            320.0
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "GrassTile_3_0",
+                "visible": true
+            }
+        }
+    },
     "Player": {
         "name": "Player",
         "type": "GameObject",
         "pos": [
-            200.0,
-            50.0
+            192.0,
+            64.0
         ],
         "components": {
             "AnimationRenderer": {
 				"AnimationName": "Player",
 				"visible": true
 			},
+            "玩家脚本": {},
             "BoxCollider": {
                 "visible": true,
 				"width":64,
-				"height":80
+				"height":80,
+                "group": 1
             }
         }
     },
@@ -67,9 +309,10 @@
         "name": "Enemy",
         "type": "GameObject",
         "pos": [
-            150.0,
-            700.0
+            128.0,
+            704.0
         ],
+        "direction": [0, -100],
         "components": {
             "AnimationRenderer": {
 				"AnimationName": "Enemy",
@@ -78,7 +321,8 @@
             "BoxCollider": {
                 "visible": true,
 				"width":50,
-				"height":64
+				"height":64,
+                "group": 1
             },
             "EnemyScript": {
                 "life": 20
@@ -89,9 +333,10 @@
         "name": "Enemy",
         "type": "GameObject",
         "pos": [
-            240.0,
-            700.0
+            256.0,
+            704.0
         ],
+        "direction": [0, -100],
         "components": {
             "AnimationRenderer": {
 				"AnimationName": "Enemy",
@@ -100,7 +345,8 @@
             "BoxCollider": {
                 "visible": true,
 				"width":50,
-				"height":64
+				"height":64,
+                "group": 1
             },
             "EnemyScript": {
                 "life": 20
@@ -111,9 +357,10 @@
         "name": "Enemy",
         "type": "GameObject",
         "pos": [
-            80.0,
-            700.0
+            64.0,
+            704.0
         ],
+        "direction": [0, -100],
         "components": {
             "AnimationRenderer": {
 				"AnimationName": "Enemy",
@@ -122,10 +369,107 @@
             "BoxCollider": {
                 "visible": true,
 				"width":50,
-				"height":64
+				"height":64,
+                "group": 1
             },
             "EnemyScript": {
                 "life": 20
+            }
+        }
+    },
+    "BushA": {
+        "name": "BushA",
+        "type": "GameObject",
+        "pos": [
+            128.0,
+            512.0
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "Bush_0_5",
+                "visible": true
+            },
+            "BoxCollider": {
+                "visible": false,
+                "width": 64,
+                "height": 64,
+                "group": 1
+            }
+        }
+    },
+    "GrassPatch1": {
+        "name": "GrassPatch1",
+        "type": "GameObject",
+        "pos": [
+            64.0,
+            320.0
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "GrassTile_0_0",
+                "visible": true
+            }
+        }
+    },
+    "GrassPatch2": {
+        "name": "GrassPatch2",
+        "type": "GameObject",
+        "pos": [
+            384.0,
+            384.0
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "GrassTile_1_0",
+                "visible": true
+            }
+        }
+    },
+    "RockA": {
+        "name": "RockA",
+        "type": "GameObject",
+        "pos": [
+            256.0,
+            448.0
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "Rock_2_6",
+                "visible": true
+            },
+            "BoxCollider": {
+                "visible": false,
+                "width": 48,
+                "height": 40,
+                "group": 1
+            }
+        }
+    },
+    "GrassPatch3": {
+        "name": "GrassPatch3",
+        "type": "GameObject",
+        "pos": [
+            192.0,
+            320.0
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "GrassTile_2_0",
+                "visible": true
+            }
+        }
+    },
+    "GrassPatch4": {
+        "name": "GrassPatch4",
+        "type": "GameObject",
+        "pos": [
+            256.0,
+            320.0
+        ],
+        "components": {
+            "AnimationRenderer": {
+                "AnimationName": "GrassTile_3_0",
+                "visible": true
             }
         }
     }

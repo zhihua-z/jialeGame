@@ -93,46 +93,15 @@ class Game:
 					# 处理鼠标移动事件
 					pass
 
-			# 2. 更新游戏物理状态
-			player = self.entitysystem.gameObjects.get('Player')
-			camera = self.entitysystem.gameObjects.get('Camera')
-			if player is not None:
-				# 使用 pygame.key.get_pressed() 以确保连续按键响应
-				keys = pygame.key.get_pressed()
-				speed = 400 * self.dt  # 根据帧时间调整速度 100————>400更快了
-				if keys[pygame.K_w] or keys[pygame.K_UP]:
-					player.pos[1] += speed
-				if keys[pygame.K_s] or keys[pygame.K_DOWN]:
-					player.pos[1] -= speed
-				if keys[pygame.K_a] or keys[pygame.K_LEFT]:
-					player.pos[0] -= speed
-				if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
-					player.pos[0] += speed
-
-
 
 			# 3. 更新游戏逻辑
 			self.scriptSystem.update(self.time)
 
-			if self.inputSystem.getKeyPress(pygame.K_j) :
-				# 生成蓝色子弹
-				bullet = self.entitysystem.create蓝色子弹([player.pos[0], player.pos[1]-20])
-				#在生成子弹的时候播放射击音效
-				射击音效 = self.rs.getSound("射击")
-				if 射击音效:
-					射击音效.set_volume(0.1)  # 设置音量，范围是0.0到1.0
-					射击音效.play()
+			# 4.1 显示调试信息
 			if self.inputSystem.getKeyPress(pygame.K_F3) :
 				self.showDebugInfo = not self.showDebugInfo
 				
-			for x in self.entitysystem.gameObjects.values():
-				if x.name.startswith('蓝色子弹'):
-					x.pos[1] += 800 * self.dt  # 子弹速度：随帧率变化而变化#从加到减说明屏幕坐标和世界坐标y轴方向相反了
-
-				if x.name.startswith('Enemy'):
-					x.pos[1] -= 100 * self.dt  # 敌人速度：随帧率变化而变化
-
-				
+			# 4.2 物理系统更新
 			self.physicsSystem.update(self.dt)  # 物理系统更新，处理碰撞等
 
 #					if not getattr(self, "_input_warn_printed", False):
@@ -143,6 +112,7 @@ class Game:
 
 			self.entitysystem.processRemovals()  # 统一处理删除请求
 
+			# 你来移动到某个脚本里
 			self.score = int(self.time // 10)
 
 

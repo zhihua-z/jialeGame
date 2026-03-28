@@ -1,5 +1,17 @@
 import pygame
 
+# 物理系统，负责处理物理相关的逻辑，例如碰撞检测、位置更新等
+# 9.5 22:06 ：我开始做physics system
+# 物理系统的职责：
+# 1. 碰撞检测：检测游戏物体之间的碰撞，并触发相应的事件或反应。
+# 2. 位置更新：根据物体的速度和加速度更新物体的位置。
+# 3. 物理交互：处理物体之间的物理交互，例如弹跳、摩擦等。
+# 4. 优化性能：通过空间划分等技术优化碰撞检测的性能，减少不必要的计算。
+# 物理系统的实现：
+# 1. 碰撞检测：使用简单的碰撞检测算法，例如轴对齐包围盒（AABB）或圆形碰撞检测，根据物体的形状和位置进行检测。
+# 2. 位置更新：根据物体的速度和加速度，使用基本的物理公式更新物体的位置。
+# 3. 物理交互：根据物体之间的碰撞情况，计算反弹、摩擦等物理效果，并更新物体的速度和位置。
+# 4. 优化性能：使用空间划分技术，例如四叉树或网格，将物体分布在不同的区域中，只检测同一区域内的物体之间的碰撞，减少不必要的计算。
 
 class PhysicsSystem:
     def __init__(self,game):
@@ -19,7 +31,10 @@ class PhysicsSystem:
 
 
     def update(self, dt):
-        # 处理物理更新，例如碰撞检测、位置更新等
+        # 处理物理更新，位置更新等
+        for obj in self.game.entitysystem.gameObjects.values():
+            obj.pos[0] += obj.direction[0] * dt
+            obj.pos[1] += obj.direction[1] * dt
         
         # 对全部游戏物体进行碰撞检测
         for obj in self.game.entitysystem.gameObjects.values():
@@ -37,20 +52,15 @@ class PhysicsSystem:
                     # O(log n) : 对数增长 100个物体就是7次检测
                     # O(1) : 常数时间 100个物体还是1次检测
 
-
-                    # O(n^2) -> O(n) 通过只检测玩家子弹和敌人之间的碰撞，其他不检测了。
-                    if obj.name.startswith('蓝色子弹') and other_obj.name.startswith('蓝色子弹'):
-                        continue  # 子弹之间不检测碰撞
-
-                    # O(n) -> O(n)
-                    if obj.name.startswith('蓝色子弹') and other_obj.name.startswith('Player'):
-                        continue  # 子弹只检测与敌人的碰撞
-                    if obj.name.startswith('Player') and other_obj.name.startswith('蓝色子弹'):
-                        continue  # 玩家只检测与子弹的碰撞
-
-
                     if "BoxCollider" in other_obj.components:
                         collider2 = other_obj.components["BoxCollider"]
+
+                        # 1组之间有碰撞检测
+                        # 2组之间没有碰撞检测，但是2组和1组之间有碰撞检测
+                        # 3组之间没有碰撞检测，但是3组和1组之间有碰撞检测 (future)
+                        if collider1.group == 2 and collider1.group == collider2.group:
+                            continue
+
 
                         # 目标：在这个真正的检测开始之前，尽可能地排除掉不可能碰撞的情况，减少checkCollision的调用次数。
                         if collider1.checkCollision(collider2):
@@ -58,11 +68,3 @@ class PhysicsSystem:
                             collider2.collision = obj
 
                             
-                            # if obj.name.startswith('蓝色子弹') and other_obj.name.startswith('Enemy'):
-                            #     self.game.entitysystem.remove(obj.id)  # 子弹要删除
-                            	
-                            
-                            # if obj.name.startswith('Enemy') and other_obj.name.startswith('蓝色子弹'):
-                            #     self.game.entitysystem.remove(other_obj.id)  # 子弹要删除
-                            	
-            

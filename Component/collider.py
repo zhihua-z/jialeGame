@@ -5,28 +5,30 @@ from Component.component import Component
 
 class Collider(Component):
 
-    def __init__(self, game, gameObject, name, visible, moveWithCamera=False):
+    def __init__(self, game, gameObject, name, visible, group, moveWithCamera=False):
         self.game = game
         self.gameObject = gameObject
         self.name = name
         self.visible = visible
         self.moveWithCamera = moveWithCamera
+        self.group = group
+
         super().__init__(game, gameObject, name)
 
         self.collision = None  # 碰撞对象，默认为None
 
 class CircleCollider(Collider):
     
-    def __init__(self, game, gameObject, name, radius, visible, moveWithCamera=False):
-        super().__init__(game, gameObject, name, visible, moveWithCamera)
+    def __init__(self, game, gameObject, name, radius, visible, group, moveWithCamera=False):
+        super().__init__(game, gameObject, name, visible, group, moveWithCamera)
         self.radius = radius
         
 
 
 class RectangleCollider(Collider):
     
-    def __init__(self, game, gameObject, name, width, height, color, visible, moveWithCamera=False):
-        super().__init__(game, gameObject, name, visible, moveWithCamera)
+    def __init__(self, game, gameObject, name, width, height, color, visible, group, moveWithCamera=False):
+        super().__init__(game, gameObject, name, visible, group, moveWithCamera)
 
         self.width = width
         self.height = height
@@ -35,8 +37,8 @@ class RectangleCollider(Collider):
 
 class BoxCollider(Collider):
 
-    def __init__(self, game, gameObject, visible, width, height, moveWithCamera=False):
-        super().__init__(game, gameObject, "BoxCollider", visible, moveWithCamera)
+    def __init__(self, game, gameObject, visible, width, height, group, moveWithCamera=False):
+        super().__init__(game, gameObject, "BoxCollider", visible, group, moveWithCamera)
         self.width = width
         self.height = height
 

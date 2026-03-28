@@ -10,6 +10,7 @@ from Scripts.bullet自杀 import Bullet自杀Script
 
 from GameObject import GameObject
 from Scripts.玩家子弹击杀 import 玩家子弹击杀
+from Scripts.玩家脚本 import 玩家脚本
 class EntitySystem:#9.5 22：06 ：我开始做entity system
 	#由定义出来的classes生成的实例
 	def __init__(self, game ):
@@ -43,7 +44,7 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 						getAnimationname = comp_data["AnimationName"]
 						if getAnimationname in self.game.rs.var动画资源:
 							animation = self.game.rs.var动画资源[getAnimationname]
-							start_x = animation.get("start_x", 0)
+							start_x = animation.get("start_x",  0)
 							start_y = animation.get("start_y", 0)
 							sprite_sheet = self.game.rs.var贴图.get(animation.get("sprite_sheet"))
 							frame_width = animation.get("frame_width", 64)
@@ -69,7 +70,15 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 						obj.addComponent(renderer)
 					
 					elif comp_name == "BoxCollider":
-						collider = BoxCollider(self.game, obj, comp_data.get("visible", False),comp_data.get("width",False),comp_data.get("height",False), moveWithCamera=obj.moveWithCamera)
+						collider = BoxCollider(
+							self.game, 
+							obj, 
+							comp_data.get("visible", False),
+							comp_data.get("width",False),
+							comp_data.get("height",False), 
+							comp_data.get("group", 1), 
+							moveWithCamera=obj.moveWithCamera
+						)
 						obj.addComponent(collider)
 					elif comp_name == "EnemyScript":
 						life = comp_data.get("life", 20)
@@ -84,6 +93,11 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 						玩家子弹击杀_script = 玩家子弹击杀(self.game, obj, "玩家子弹击杀")
 						self.game.scriptSystem.addScript(玩家子弹击杀_script)
 						obj.addComponent(玩家子弹击杀_script)
+					elif comp_name == "玩家脚本":
+						# 给玩家添加移动与射击行为
+						player_script = 玩家脚本(self.game, obj, "玩家脚本")
+						self.game.scriptSystem.addScript(player_script)
+						obj.addComponent(player_script)
 
 					# 方式1：直接在这里根据组件名称创建对应的组件实例，并添加到对象上。
 					# 方式2(业界最常用)：factory模式：创建一个组件工厂，根据组件名称动态创建组件实例，这样就不需要在这里写死每种组件的创建逻辑了，后续添加新组件也更方便。
@@ -154,6 +168,7 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
         	moveWithCamera=item.get('moveWithCamera', False)
             #导入了我的gameobject
         )
+		obj.direction = item.get('direction', (0, 0))  # 获取方向属性，如果没有则默认为(0, 0)
 		obj.components_data = item.get('components', {})  #
 		return obj  #
 	
@@ -170,6 +185,7 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 			components={},
 			moveWithCamera=False
 		)
+		bullet.direction = (0, 800)  # 设置子弹的初始方向和速度
 		#添加组件
 		
 		# 添加动画渲染组件
@@ -182,7 +198,7 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 		
 		# 添加box collider
 		from Component.collider import BoxCollider
-		collider = BoxCollider(self.game, bullet, visible=True, width=16, height=26, moveWithCamera=False)
+		collider = BoxCollider(self.game, bullet, visible=True, width=16, height=26, group=2, moveWithCamera=False)
 		bullet.addComponent(collider)
 		
 	
