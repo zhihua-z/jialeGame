@@ -16,6 +16,8 @@ import pygame
 class PhysicsSystem:
     def __init__(self,game):
         self.game = game
+        # 刚体列表，存储所有具有物理属性的游戏物体
+        self.rigidBodies = []
 
         '''
         代码效率：
@@ -36,6 +38,9 @@ class PhysicsSystem:
             obj.pos[0] += obj.direction[0] * dt
             obj.pos[1] += obj.direction[1] * dt
         
+        # for obj in self.rigidBodies:
+        #     对它们做碰撞
+
         # 对全部游戏物体进行碰撞检测
         for obj in self.game.entitysystem.gameObjects.values():
             if "BoxCollider" in obj.components:
@@ -63,6 +68,8 @@ class PhysicsSystem:
 
 
                         # 目标：在这个真正的检测开始之前，尽可能地排除掉不可能碰撞的情况，减少checkCollision的调用次数。
+                        # 当前系统只适用于1：1的碰撞，如果我同时碰撞两个物体，collision只会设置到最后一个碰撞的物体上，之前的会被覆盖掉。
+                        # 你可以把collision设置成一个列表，记录所有碰撞的物体，或者在碰撞发生时直接触发事件，通知相关的脚本来处理碰撞逻辑，这样就不会有覆盖的问题了。
                         if collider1.checkCollision(collider2):
                             collider1.collision = other_obj
                             collider2.collision = obj

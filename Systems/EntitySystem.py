@@ -126,6 +126,7 @@ class EntitySystem:#9.5 22：06 ：我开始做entity system
 		self.to_remove.append(obj_id)
 	
 	# 处理删除请求，在合适的时机调用这个方法来统一删除对象，避免在遍历过程中修改字典导致的错误。
+	# delete gracefully 优雅的删除
 	def processRemovals(self):
 		for obj_id in self.to_remove:
 			self.removeObject(obj_id)

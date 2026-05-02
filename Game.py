@@ -22,11 +22,13 @@ class Game:
 		self.inputSystem = InputSystem()
 		self.scriptSystem = ScriptSystem(self, self.var主窗口)
 		self.physicsSystem = PhysicsSystem(self)
+		
+		self.showDebugInfo = True
+		#展示调试信息
+
 		self.camerapos = [0, 0]
 		#进行地图区域的设置
 		self.map_area = [-1000, -400, 1000, 3000]  # 地图区域，格式为 [x_min, y_min, x_max, y_max]
-		self.showDebugInfo = True
-		#展示调试信息
 		self.score = 0	
 		
 		# 增添初始化声音系统
@@ -59,6 +61,7 @@ class Game:
 	def run(self):
 		# 游戏主循环，保持窗口打开
 		running = True
+		pause = False
 
 		# 主循环的目标就是每一帧都要做的事情
 		# 1. 处理事件 通过event获取
@@ -95,7 +98,9 @@ class Game:
 
 
 			# 3. 更新游戏逻辑
-			self.scriptSystem.update(self.time)
+			# 可以在这里负责暂停游戏
+			if not pause:
+				self.scriptSystem.update(self.time)
 
 			# 4.1 显示调试信息
 			if self.inputSystem.getKeyPress(pygame.K_F3) :
@@ -120,10 +125,6 @@ class Game:
 			#通过渲染系统画出游戏内容
 			self.var主窗口.fill((0, 0, 0))
 			self.renderSystem.draw()
-
-			
-
-			
 
 			#更新屏幕内容   两个渲染画板：展示A，画反面B，如果，否则就有撕裂效果。
 			pygame.display.flip()
